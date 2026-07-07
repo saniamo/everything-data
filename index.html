@@ -1,837 +1,656 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Everything Data | Monitoring, Evaluation, Learning & Analytics</title>
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
-
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
 <style>
 
 :root{
-
---primary:#163A5F;
---secondary:#4FA9DE;
---accent:#2CB1A1;
-
---background:#FFFFFF;
---section:#F7F9FC;
-
---heading:#243746;
---text:#556372;
---border:#E5EAF0;
-
+  --navy:#163A5F;
+  --sky:#4FA9DE;
+  --teal:#2CB1A1;
+  --paper:#FBFAF7;
+  --ink:#16232E;
+  --muted:#5B6B78;
+  --line:#E1E5EA;
+  --panel:#F3F6F9;
 }
 
-*{
-
-margin:0;
-padding:0;
-box-sizing:border-box;
-
-}
-
-html{
-
-scroll-behavior:smooth;
-
-}
+*{ margin:0; padding:0; box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
 
 body{
+  font-family:'Inter',sans-serif;
+  background:var(--paper);
+  color:var(--muted);
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
 
-font-family:'Inter',sans-serif;
-background:var(--background);
-color:var(--text);
-line-height:1.7;
-
+.mono{
+  font-family:'IBM Plex Mono',monospace;
+  letter-spacing:.06em;
 }
 
 .container{
-
-width:90%;
-max-width:1200px;
-margin:auto;
-
+  width:90%;
+  max-width:1180px;
+  margin:auto;
 }
+
+a{ color:inherit; }
+a:focus-visible, button:focus-visible{
+  outline:2px solid var(--teal);
+  outline-offset:3px;
+}
+
+@media (prefers-reduced-motion: reduce){
+  *{ animation:none !important; transition:none !important; }
+}
+
+/* ---------- HEADER ---------- */
 
 header{
-
-background:white;
-border-bottom:1px solid var(--border);
-position:sticky;
-top:0;
-z-index:999;
-
+  background:rgba(251,250,247,.92);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);
+  position:sticky;
+  top:0;
+  z-index:999;
 }
 
-nav{
-
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:20px 0;
-
+header nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:22px 0;
 }
 
 .logo{
-
-font-family:'Poppins',sans-serif;
-font-size:30px;
-font-weight:700;
-
+  font-family:'Fraunces',serif;
+  font-size:26px;
+  font-weight:600;
+  color:var(--navy);
 }
 
-.logo span{
-
-color:var(--secondary);
-
-}
-
-.logo{
-
-color:var(--primary);
-
-}
+.logo span{ color:var(--teal); }
 
 nav ul{
-
-display:flex;
-gap:35px;
-list-style:none;
-
+  display:flex;
+  gap:36px;
+  list-style:none;
 }
 
-nav a{
-
-text-decoration:none;
-color:var(--heading);
-font-weight:500;
-transition:.3s;
-
+nav ul a{
+  text-decoration:none;
+  color:var(--ink);
+  font-weight:500;
+  font-size:15px;
+  position:relative;
+  padding-bottom:4px;
 }
 
-nav a:hover{
-
-color:var(--secondary);
-
+nav ul a::after{
+  content:"";
+  position:absolute;
+  left:0; bottom:0;
+  width:0; height:2px;
+  background:var(--teal);
+  transition:width .25s ease;
 }
 
-.hero{
+nav ul a:hover::after{ width:100%; }
 
-padding:90px 0;
-
+.nav-cta{
+  padding:10px 22px;
+  border-radius:6px;
+  background:var(--navy);
+  color:white !important;
+  font-size:14px;
+  font-weight:600;
+  text-decoration:none;
 }
+
+.nav-cta:hover{ background:#0f2c4a; }
+
+/* ---------- HERO ---------- */
+
+.hero{ padding:100px 0 110px; }
 
 .hero-grid{
+  max-width:700px;
+  margin:0 auto;
+  text-align:center;
+}
 
-display:grid;
-grid-template-columns:1.2fr .8fr;
-gap:60px;
-align-items:center;
+.hero .eyebrow{ justify-content:center; }
+.hero p{ margin-left:auto; margin-right:auto; }
+.hero .buttons{ justify-content:center; }
 
+.eyebrow{
+  font-size:12px;
+  font-weight:600;
+  color:var(--teal);
+  text-transform:uppercase;
+  margin-bottom:22px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.eyebrow::before{
+  content:"";
+  width:26px;
+  height:1px;
+  background:var(--teal);
+  display:inline-block;
 }
 
 .hero h1{
-
-font-family:'Poppins',sans-serif;
-font-size:58px;
-line-height:1.1;
-color:var(--primary);
-margin-bottom:25px;
-
+  font-family:'Fraunces',serif;
+  font-size:56px;
+  font-weight:600;
+  line-height:1.12;
+  color:var(--navy);
+  margin-bottom:26px;
+  letter-spacing:-.01em;
 }
 
 .hero p{
-
-font-size:20px;
-margin-bottom:35px;
-
+  font-size:18px;
+  max-width:560px;
+  margin-bottom:38px;
 }
 
 .buttons{
-
-display:flex;
-gap:15px;
-flex-wrap:wrap;
-
+  display:flex;
+  gap:16px;
+  flex-wrap:wrap;
 }
 
 .btn{
-
-padding:16px 34px;
-border-radius:8px;
-font-weight:600;
-text-decoration:none;
-transition:.3s;
-
+  padding:15px 30px;
+  border-radius:6px;
+  font-weight:600;
+  font-size:15px;
+  text-decoration:none;
+  transition:.2s ease;
+  display:inline-block;
 }
 
-.primary{
+.btn.primary{ background:var(--navy); color:white; }
+.btn.primary:hover{ background:#0f2c4a; }
 
-background:var(--primary);
-color:white;
+.btn.secondary{
+  border:1.5px solid var(--navy);
+  color:var(--navy);
+  background:transparent;
+}
+.btn.secondary:hover{ background:var(--navy); color:white; }
 
+/* --- Signature: indicator tracker card --- */
+
+.indicator-card{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:30px 30px 26px;
+  box-shadow:0 20px 40px -24px rgba(22,58,95,.25);
 }
 
-.primary:hover{
-
-background:#0f2c4a;
-
+.indicator-card-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  margin-bottom:22px;
 }
 
-.secondary{
-
-border:2px solid var(--primary);
-color:var(--primary);
-
+.indicator-code{
+  font-size:11px;
+  color:var(--teal);
+  font-weight:600;
 }
 
-.secondary:hover{
-
-background:var(--primary);
-color:white;
-
+.indicator-title{
+  font-size:15px;
+  color:var(--ink);
+  font-weight:600;
+  margin-top:4px;
+  max-width:220px;
 }
 
-.hero-card{
-
-background:var(--section);
-padding:40px;
-border-radius:20px;
-border:1px solid var(--border);
-
+.indicator-delta{
+  text-align:right;
 }
 
-.hero-card h3{
-
-font-family:'Poppins',sans-serif;
-color:var(--heading);
-margin-bottom:20px;
-
+.indicator-delta .val{
+  font-size:22px;
+  font-weight:600;
+  color:var(--navy);
+  font-family:'IBM Plex Mono',monospace;
 }
 
-.hero-card ul{
-
-padding-left:20px;
-
+.indicator-delta .lbl{
+  font-size:11px;
+  color:var(--muted);
 }
 
-.hero-card li{
+.chart-wrap{ position:relative; }
 
-margin-bottom:12px;
+.chart-wrap svg{ width:100%; height:auto; display:block; }
 
+.chart-line{
+  fill:none;
+  stroke:var(--navy);
+  stroke-width:2.5;
+  stroke-linecap:round;
+  stroke-dasharray:400;
+  stroke-dashoffset:400;
+  animation:draw 1.6s ease forwards .3s;
 }
 
-section{
+.chart-target{
+  fill:none;
+  stroke:var(--line);
+  stroke-width:1.5;
+  stroke-dasharray:4 4;
+}
 
-padding:90px 0;
+@keyframes draw{ to{ stroke-dashoffset:0; } }
 
+.chart-axis-labels{
+  display:flex;
+  justify-content:space-between;
+  margin-top:6px;
+  font-size:11px;
+  color:var(--muted);
+  font-family:'IBM Plex Mono',monospace;
+}
+
+.indicator-note{
+  margin-top:18px;
+  padding-top:16px;
+  border-top:1px solid var(--line);
+  font-size:12px;
+  color:var(--muted);
+}
+
+/* ---------- SECTIONS ---------- */
+
+section{ padding:96px 0; }
+
+.section-label{
+  font-size:12px;
+  font-weight:600;
+  color:var(--teal);
+  text-transform:uppercase;
+  margin-bottom:14px;
+  text-align:center;
 }
 
 .section-title{
-
-text-align:center;
-font-family:'Poppins',sans-serif;
-font-size:42px;
-color:var(--heading);
-margin-bottom:15px;
-
+  text-align:center;
+  font-family:'Fraunces',serif;
+  font-weight:600;
+  font-size:38px;
+  color:var(--navy);
+  margin-bottom:16px;
 }
 
 .section-subtitle{
-
-text-align:center;
-max-width:700px;
-margin:auto;
-margin-bottom:55px;
-
+  text-align:center;
+  max-width:640px;
+  margin:0 auto 56px;
+  font-size:16px;
 }
 
+.gray{ background:var(--panel); }
+
 .grid{
-
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:25px;
-
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:24px;
 }
 
 .card{
-
-background:white;
-padding:35px;
-border-radius:15px;
-border:1px solid var(--border);
-transition:.3s;
-
+  background:white;
+  padding:32px 30px;
+  border-radius:12px;
+  border:1px solid var(--line);
+  border-left:3px solid transparent;
+  transition:.25s ease;
 }
+
+.gray .card{ background:white; }
 
 .card:hover{
-
-transform:translateY(-6px);
-
+  transform:translateY(-4px);
+  border-left-color:var(--teal);
+  box-shadow:0 16px 30px -22px rgba(22,58,95,.3);
 }
+
+.card .tag{
+  display:inline-block;
+  font-size:11px;
+  font-weight:600;
+  color:var(--navy);
+  background:var(--panel);
+  padding:4px 10px;
+  border-radius:4px;
+  margin-bottom:16px;
+}
+
+.gray .card .tag{ background:var(--paper); }
 
 .card h3{
-
-font-family:'Poppins',sans-serif;
-margin-bottom:15px;
-color:var(--heading);
-
+  font-family:'Fraunces',serif;
+  font-weight:600;
+  font-size:19px;
+  color:var(--ink);
+  margin-bottom:12px;
 }
 
-.gray{
+.card p{ font-size:15px; }
 
-background:var(--section);
-
+.card ul{
+  list-style:none;
+  font-size:14.5px;
 }
+
+.card ul li{
+  padding:5px 0;
+  border-bottom:1px dashed var(--line);
+}
+
+.card ul li:last-child{ border-bottom:none; }
+
+/* insights placeholder cards */
+
+.card.placeholder{
+  text-align:left;
+  border-style:dashed;
+  color:var(--muted);
+}
+
+.card.placeholder h3{ color:var(--muted); }
+
+/* ---------- CONTACT ---------- */
+
+#contact .section-title{ max-width:640px; margin-left:auto; margin-right:auto; }
+
+/* ---------- FOOTER ---------- */
 
 footer{
+  background:var(--navy);
+  color:#D9E4EE;
+  padding:56px 0 36px;
+}
 
-background:var(--primary);
-color:white;
-padding:60px 0;
-text-align:center;
-
+.footer-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  flex-wrap:wrap;
+  gap:24px;
+  padding-bottom:32px;
+  border-bottom:1px solid rgba(255,255,255,.15);
 }
 
 footer h2{
-
-font-family:'Poppins',sans-serif;
-margin-bottom:15px;
-
+  font-family:'Fraunces',serif;
+  font-weight:600;
+  font-size:22px;
+  color:white;
+  margin-bottom:8px;
 }
 
-footer p{
+footer .tagline{ font-size:14px; color:#B7C6D6; max-width:340px; }
 
-opacity:.9;
-
+.footer-meta{
+  font-size:13px;
+  color:#B7C6D6;
+  text-align:right;
 }
+
+.footer-bottom{
+  margin-top:24px;
+  font-size:12.5px;
+  color:#8FA3B8;
+  font-family:'IBM Plex Mono',monospace;
+  text-align:center;
+}
+
+/* ---------- RESPONSIVE ---------- */
 
 @media(max-width:900px){
-
-.hero-grid{
-
-grid-template-columns:1fr;
-
-}
-
-.hero h1{
-
-font-size:42px;
-
-}
-
-nav{
-
-flex-direction:column;
-gap:20px;
-
-}
-
-nav ul{
-
-flex-wrap:wrap;
-justify-content:center;
-
-}
-
+  .hero-grid{ grid-template-columns:1fr; }
+  .hero h1{ font-size:38px; }
+  .hero p{ max-width:none; }
+  header nav{ flex-direction:column; gap:16px; }
+  nav ul{ flex-wrap:wrap; justify-content:center; gap:20px; }
+  .footer-top{ flex-direction:column; text-align:left; }
+  .footer-meta{ text-align:left; }
 }
 
 </style>
-
 </head>
-
 <body>
 
 <header>
-
-<div class="container">
-
-<nav>
-
-<div class="logo">
-
-Everything <span>Data</span>
-
-</div>
-
-<ul>
-
-<li><a href="#">Home</a></li>
-
-<li><a href="#services">Services</a></li>
-
-<li><a href="#about">About</a></li>
-
-<li><a href="#insights">Insights</a></li>
-
-<li><a href="#contact">Contact</a></li>
-
-</ul>
-
-</nav>
-
-</div>
-
+  <div class="container">
+    <nav>
+      <div class="logo">Everything <span>Data</span></div>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#insights">Insights</a></li>
+      </ul>
+      <a href="#contact" class="nav-cta">Work With Us</a>
+    </nav>
+  </div>
 </header>
 
 <section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-text">
+      <div class="eyebrow">Monitoring · Evaluation · Learning · Analytics</div>
+      <h1>Turning programme data into decisions worth trusting</h1>
+      <p>
+        Everything Data partners with NGOs, foundations, governments and social enterprises to
+        design monitoring, evaluation, learning and analytics systems that hold up under scrutiny,
+        and that teams actually use.
+      </p>
+      <div class="buttons">
+        <a href="#contact" class="btn primary">Work With Us</a>
+        <a href="#services" class="btn secondary">Explore Services</a>
+      </div>
+    </div>
 
-<div class="container hero-grid">
-
-<div>
-
-<h1>
-
-Helping Mission-Driven Organizations Turn Data into Better Decisions
-
-</h1>
-
-<p>
-
-Everything Data partners with NGOs, foundations, governments, development partners and social enterprises to design monitoring, evaluation, learning, research and analytics systems that generate credible evidence, strengthen learning and improve decision-making.
-
-</p>
-
-<div class="buttons">
-
-<a href="#" class="btn primary">
-
-Work With Us
-
-</a>
-
-<a href="#" class="btn secondary">
-
-Explore Insights
-
-</a>
-
-</div>
-
-</div>
-
-<div class="hero-card">
-
-<h3>
-
-What We Do
-
-</h3>
-
-<ul>
-
-<li>Monitoring, Evaluation & Learning</li>
-
-<li>Research & Evaluations</li>
-
-<li>Data Analytics & Dashboards</li>
-
-<li>Training & Capacity Building</li>
-
-<li>Evidence for Better Decisions</li>
-
-</ul>
-
-</div>
-
-</div>
-
+  </div>
 </section>
-<!-- WHO WE HELP -->
 
 <section class="gray" id="about">
+  <div class="container">
+    <div class="section-label">Who We Work With</div>
+    <h2 class="section-title">Built for mission-driven teams</h2>
+    <p class="section-subtitle">
+      Organizations that need evidence they can stand behind, not just reports that sit in a folder.
+    </p>
 
-<div class="container">
-
-<h2 class="section-title">Who We Help</h2>
-
-<p class="section-subtitle">
-
-We partner with organizations that are committed to creating measurable social impact through evidence, learning and data-driven decision-making.
-
-</p>
-
-<div class="grid">
-
-<div class="card">
-
-<h3>🌍 NGOs</h3>
-
-<p>
-
-Helping nonprofit organizations strengthen MEL systems, improve donor reporting and demonstrate programme impact.
-
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>🤝 Development Partners</h3>
-
-<p>
-
-Supporting international development agencies with evaluations, research, learning and evidence generation.
-
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>🏛 Governments</h3>
-
-<p>
-
-Designing practical monitoring and data systems that improve planning, accountability and service delivery.
-
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>🚀 Social Enterprises</h3>
-
-<p>
-
-Helping mission-driven businesses measure outcomes, understand customers and make smarter decisions.
-
-</p>
-
-</div>
-
-</div>
-
-</div>
-
+    <div class="grid">
+      <div class="card">
+        <span class="tag mono">NGO</span>
+        <h3>Nonprofits</h3>
+        <p>Strengthening MEL systems, improving donor reporting and demonstrating programme impact with data that holds up.</p>
+      </div>
+      <div class="card">
+        <span class="tag mono">DEV</span>
+        <h3>Development Partners</h3>
+        <p>Supporting international development agencies with evaluations, research and evidence generation.</p>
+      </div>
+      <div class="card">
+        <span class="tag mono">GOV</span>
+        <h3>Governments</h3>
+        <p>Designing monitoring and data systems that improve planning, accountability and service delivery.</p>
+      </div>
+      <div class="card">
+        <span class="tag mono">ENT</span>
+        <h3>Social Enterprises</h3>
+        <p>Helping mission-driven businesses measure outcomes, understand customers and make sharper decisions.</p>
+      </div>
+    </div>
+  </div>
 </section>
-
-
-
-
-
-<!-- SERVICES -->
 
 <section id="services">
+  <div class="container">
+    <div class="section-label">What We Do</div>
+    <h2 class="section-title">Our Services</h2>
+    <p class="section-subtitle">
+      Practical systems that help organizations collect better data, generate stronger evidence and
+      make more informed decisions.
+    </p>
 
-<div class="container">
-
-<h2 class="section-title">
-
-Our Services
-
-</h2>
-
-<p class="section-subtitle">
-
-Practical solutions that help organizations collect better data, generate stronger evidence and make more informed decisions.
-
-</p>
-
-<div class="grid">
-
-<div class="card">
-
-<h3>📊 Monitoring, Evaluation & Learning</h3>
-
-<p>
-
-• MEL System Design<br>
-
-• Theory of Change<br>
-
-• Results Frameworks<br>
-
-• Indicator Development<br>
-
-• Learning Agendas<br>
-
-• Data Quality Assessments
-
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>🔬 Research & Evaluation</h3>
-
-<p>
-
-• Baseline Studies<br>
-
-• Endline Studies<br>
-
-• Outcome Harvesting<br>
-
-• Mixed Methods Research<br>
-
-• Programme Evaluations
-
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>📈 Data & Analytics</h3>
-
-<p>
-
-• Power BI Dashboards<br>
-
-• Google Sheets<br>
-
-• Excel Automation<br>
-
-• SurveyMonkey<br>
-
-• KoboToolbox & ODK<br>
-
-• Data Visualisation
-
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>🎓 Training & Capacity Building</h3>
-
-<p>
-
-• MEL Training<br>
-
-• Google Sheets Workshops<br>
-
-• Dashboard Training<br>
-
-• Survey Design<br>
-
-• Data Collection<br>
-
-• Evidence Use
-
-</p>
-
-</div>
-
-</div>
-
-</div>
-
+    <div class="grid">
+      <div class="card">
+        <span class="tag mono">MEL</span>
+        <h3>Monitoring, Evaluation & Learning</h3>
+        <ul>
+          <li>MEL system design</li>
+          <li>Theory of change</li>
+          <li>Results frameworks</li>
+          <li>Indicator development</li>
+          <li>Learning agendas</li>
+          <li>Data quality assessments</li>
+        </ul>
+      </div>
+      <div class="card">
+        <span class="tag mono">R&E</span>
+        <h3>Research & Evaluation</h3>
+        <ul>
+          <li>Baseline studies</li>
+          <li>Endline studies</li>
+          <li>Outcome harvesting</li>
+          <li>Mixed methods research</li>
+          <li>Programme evaluations</li>
+        </ul>
+      </div>
+      <div class="card">
+        <span class="tag mono">DATA</span>
+        <h3>Data & Analytics</h3>
+        <ul>
+          <li>Power BI dashboards</li>
+          <li>Google Sheets systems</li>
+          <li>Excel automation</li>
+          <li>SurveyMonkey & KoboToolbox</li>
+          <li>Data visualisation</li>
+        </ul>
+      </div>
+      <div class="card">
+        <span class="tag mono">TRN</span>
+        <h3>Training & Capacity Building</h3>
+        <ul>
+          <li>MEL training</li>
+          <li>Google Sheets workshops</li>
+          <li>Dashboard training</li>
+          <li>Survey design</li>
+          <li>Evidence use</li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </section>
-
-
-
-
-
-<!-- WHY EVERYTHING DATA -->
 
 <section class="gray">
+  <div class="container">
+    <div class="section-label">Approach</div>
+    <h2 class="section-title">Why Everything Data</h2>
+    <p class="section-subtitle">
+      Organizations deserve more than reports. They deserve evidence that leads to better decisions.
+    </p>
 
-<div class="container">
-
-<h2 class="section-title">
-
-Why Everything Data?
-
-</h2>
-
-<p class="section-subtitle">
-
-We believe organizations deserve more than reports—they deserve evidence that leads to better decisions.
-
-</p>
-
-<div class="grid">
-
-<div class="card">
-
-<h3>✔ Practical Solutions</h3>
-
-<p>
-
-We build systems that teams can actually use, not complicated frameworks that sit on a shelf.
-
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>✔ Evidence That Matters</h3>
-
-<p>
-
-Our work focuses on generating credible evidence that improves programmes and demonstrates impact.
-
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>✔ Decision-Focused</h3>
-
-<p>
-
-We help organizations turn data into insights that support confident, evidence-based decisions.
-
-</p>
-
-</div>
-
-</div>
-
-</div>
-
+    <div class="grid">
+      <div class="card">
+        <span class="tag mono">01</span>
+        <h3>Practical Systems</h3>
+        <p>We build tools teams actually use, not frameworks that sit on a shelf.</p>
+      </div>
+      <div class="card">
+        <span class="tag mono">02</span>
+        <h3>Evidence That Holds Up</h3>
+        <p>Our work is built around methods that stay credible under scrutiny, not just numbers that look good in a slide.</p>
+      </div>
+      <div class="card">
+        <span class="tag mono">03</span>
+        <h3>Decision-Focused</h3>
+        <p>We help organizations turn data into insights that support confident, evidence-based decisions.</p>
+      </div>
+    </div>
+  </div>
 </section>
-
-
-
-
-
-<!-- INSIGHTS -->
 
 <section id="insights">
+  <div class="container">
+    <div class="section-label">Reading</div>
+    <h2 class="section-title">Latest Insights</h2>
+    <p class="section-subtitle">
+      Practical guides and lessons from monitoring, evaluation, learning, research and data analytics.
+    </p>
 
-<div class="container">
-
-<h2 class="section-title">
-
-Latest Insights
-
-</h2>
-
-<p class="section-subtitle">
-
-Thoughts, practical guides and lessons from Monitoring, Evaluation, Learning, Research and Data Analytics.
-
-</p>
-
-<div class="grid">
-
-<div class="card">
-
-<h3>📖 Monitoring & Evaluation</h3>
-
-<p>
-
-Coming soon...
-
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>📖 Data Analytics</h3>
-
-<p>
-
-Coming soon...
-
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>📖 Learning & Research</h3>
-
-<p>
-
-Coming soon...
-
-</p>
-
-</div>
-
-</div>
-
-</div>
-
+    <div class="grid">
+      <div class="card placeholder">
+        <span class="tag mono">M&E</span>
+        <h3>Monitoring & Evaluation</h3>
+        <p>Coming soon.</p>
+      </div>
+      <div class="card placeholder">
+        <span class="tag mono">DATA</span>
+        <h3>Data Analytics</h3>
+        <p>Coming soon.</p>
+      </div>
+      <div class="card placeholder">
+        <span class="tag mono">R&L</span>
+        <h3>Learning & Research</h3>
+        <p>Coming soon.</p>
+      </div>
+    </div>
+  </div>
 </section>
-
-
-
-
-
-<!-- CONTACT -->
 
 <section class="gray" id="contact">
-
-<div class="container" style="text-align:center;">
-
-<h2 class="section-title">
-
-Ready to Strengthen Your Evidence Systems?
-
-</h2>
-
-<p class="section-subtitle">
-
-Whether you're designing a new programme, preparing for an evaluation or improving your data systems, we'd love to work with you.
-
-</p>
-
-<div class="buttons" style="justify-content:center;">
-
-<a href="mailto:hello@everythingdata.africa" class="btn primary">
-
-Let's Talk
-
-</a>
-
-</div>
-
-</div>
-
+  <div class="container" style="text-align:center;">
+    <div class="section-label">Get In Touch</div>
+    <h2 class="section-title">Ready to strengthen your evidence systems?</h2>
+    <p class="section-subtitle">
+      Whether you're designing a new programme, preparing for an evaluation, or improving your data
+      systems, we'd like to hear about it.
+    </p>
+    <div class="buttons" style="justify-content:center;">
+      <a href="mailto:hello@everythingdata.africa" class="btn primary">Let's Talk</a>
+    </div>
+  </div>
 </section>
 
-
-
-
-
 <footer>
-
-<div class="container">
-
-<h2>
-
-Everything <span style="color:#4FA9DE;">Data</span>
-
-</h2>
-
-<p>
-
-Helping mission-driven organizations turn data into better decisions.
-
-</p>
-
-<br>
-
-<p>
-
-© 2026 Everything Data • Monitoring, Evaluation, Learning & Analytics
-
-</p>
-
-</div>
-
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <h2>Everything <span style="color:#4FA9DE;">Data</span></h2>
+        <p class="tagline">Helping mission-driven organizations turn data into better decisions.</p>
+      </div>
+      <div class="footer-meta">
+        hello@everythingdata.africa<br>
+        @_everythingdata
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 EVERYTHING DATA — MONITORING · EVALUATION · LEARNING · ANALYTICS</div>
+  </div>
 </footer>
 
 </body>
-
 </html>
