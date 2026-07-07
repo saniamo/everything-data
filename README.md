@@ -1,3 +1,2 @@
-# Everything Data
+# Saniamo Mercy
 
-Business website for Everything Data.
