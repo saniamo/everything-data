@@ -1,1 +1,3 @@
-# everything-data
+# Everything Data
+
+Business website for Everything Data.
