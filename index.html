@@ -1,197 +1,365 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Everything Data | Evidence. Learning. Impact.</title>
+<meta charset="UTF-8">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+<title>Everything Data | Monitoring, Evaluation, Learning & Analytics</title>
 
-    <style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
 
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-        }
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-        body{
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
-            font-family:'Inter',sans-serif;
-            color:#2B2D42;
-            background:#FFFFFF;
+<style>
 
-        }
+:root{
 
-        nav{
+--primary:#163A5F;
+--secondary:#4FA9DE;
+--accent:#2CB1A1;
 
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
+--background:#FFFFFF;
+--section:#F7F9FC;
 
-            padding:25px 8%;
+--heading:#243746;
+--text:#556372;
+--border:#E5EAF0;
 
-            border-bottom:1px solid #ececec;
+}
 
-        }
+*{
 
-        .logo{
+margin:0;
+padding:0;
+box-sizing:border-box;
 
-            font-family:'Poppins',sans-serif;
+}
 
-            font-size:28px;
+html{
 
-            font-weight:700;
+scroll-behavior:smooth;
 
-            color:#12355B;
+}
 
-        }
+body{
 
-        nav ul{
+font-family:'Inter',sans-serif;
+background:var(--background);
+color:var(--text);
+line-height:1.7;
 
-            display:flex;
+}
 
-            list-style:none;
+.container{
 
-            gap:35px;
+width:90%;
+max-width:1200px;
+margin:auto;
 
-        }
+}
 
-        nav a{
+header{
 
-            text-decoration:none;
+background:white;
+border-bottom:1px solid var(--border);
+position:sticky;
+top:0;
+z-index:999;
 
-            color:#2B2D42;
+}
 
-            font-weight:500;
+nav{
 
-        }
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 0;
 
-        nav a:hover{
+}
 
-            color:#4DA8DA;
+.logo{
 
-        }
+font-family:'Poppins',sans-serif;
+font-size:30px;
+font-weight:700;
 
-        .hero{
+}
 
-            display:flex;
+.logo span{
 
-            align-items:center;
+color:var(--secondary);
 
-            justify-content:center;
+}
 
-            min-height:80vh;
+.logo{
 
-            text-align:center;
+color:var(--primary);
 
-            padding:40px;
+}
 
-        }
+nav ul{
 
-        .hero-content{
+display:flex;
+gap:35px;
+list-style:none;
 
-            max-width:850px;
+}
 
-        }
+nav a{
 
-        .hero h1{
+text-decoration:none;
+color:var(--heading);
+font-weight:500;
+transition:.3s;
 
-            font-family:'Poppins',sans-serif;
+}
 
-            font-size:58px;
+nav a:hover{
 
-            line-height:1.15;
+color:var(--secondary);
 
-            color:#12355B;
+}
 
-            margin-bottom:20px;
+.hero{
 
-        }
+padding:90px 0;
 
-        .hero p{
+}
 
-            font-size:22px;
+.hero-grid{
 
-            line-height:1.8;
+display:grid;
+grid-template-columns:1.2fr .8fr;
+gap:60px;
+align-items:center;
 
-            color:#555;
+}
 
-            margin-bottom:40px;
+.hero h1{
 
-        }
+font-family:'Poppins',sans-serif;
+font-size:58px;
+line-height:1.1;
+color:var(--primary);
+margin-bottom:25px;
 
-        .buttons{
+}
 
-            display:flex;
+.hero p{
 
-            justify-content:center;
+font-size:20px;
+margin-bottom:35px;
 
-            gap:20px;
+}
 
-            flex-wrap:wrap;
+.buttons{
 
-        }
+display:flex;
+gap:15px;
+flex-wrap:wrap;
 
-        .btn{
+}
 
-            padding:15px 30px;
+.btn{
 
-            border-radius:8px;
+padding:16px 34px;
+border-radius:8px;
+font-weight:600;
+text-decoration:none;
+transition:.3s;
 
-            text-decoration:none;
+}
 
-            font-weight:600;
+.primary{
 
-            transition:.3s;
+background:var(--primary);
+color:white;
 
-        }
+}
 
-        .primary{
+.primary:hover{
 
-            background:#12355B;
+background:#0f2c4a;
 
-            color:white;
+}
 
-        }
+.secondary{
 
-        .primary:hover{
+border:2px solid var(--primary);
+color:var(--primary);
 
-            background:#0d2947;
+}
 
-        }
+.secondary:hover{
 
-        .secondary{
+background:var(--primary);
+color:white;
 
-            border:2px solid #12355B;
+}
 
-            color:#12355B;
+.hero-card{
 
-        }
+background:var(--section);
+padding:40px;
+border-radius:20px;
+border:1px solid var(--border);
 
-        .secondary:hover{
+}
 
-            background:#12355B;
+.hero-card h3{
 
-            color:white;
+font-family:'Poppins',sans-serif;
+color:var(--heading);
+margin-bottom:20px;
 
-        }
+}
 
-    </style>
+.hero-card ul{
+
+padding-left:20px;
+
+}
+
+.hero-card li{
+
+margin-bottom:12px;
+
+}
+
+section{
+
+padding:90px 0;
+
+}
+
+.section-title{
+
+text-align:center;
+font-family:'Poppins',sans-serif;
+font-size:42px;
+color:var(--heading);
+margin-bottom:15px;
+
+}
+
+.section-subtitle{
+
+text-align:center;
+max-width:700px;
+margin:auto;
+margin-bottom:55px;
+
+}
+
+.grid{
+
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+
+}
+
+.card{
+
+background:white;
+padding:35px;
+border-radius:15px;
+border:1px solid var(--border);
+transition:.3s;
+
+}
+
+.card:hover{
+
+transform:translateY(-6px);
+
+}
+
+.card h3{
+
+font-family:'Poppins',sans-serif;
+margin-bottom:15px;
+color:var(--heading);
+
+}
+
+.gray{
+
+background:var(--section);
+
+}
+
+footer{
+
+background:var(--primary);
+color:white;
+padding:60px 0;
+text-align:center;
+
+}
+
+footer h2{
+
+font-family:'Poppins',sans-serif;
+margin-bottom:15px;
+
+}
+
+footer p{
+
+opacity:.9;
+
+}
+
+@media(max-width:900px){
+
+.hero-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.hero h1{
+
+font-size:42px;
+
+}
+
+nav{
+
+flex-direction:column;
+gap:20px;
+
+}
+
+nav ul{
+
+flex-wrap:wrap;
+justify-content:center;
+
+}
+
+}
+
+</style>
 
 </head>
 
 <body>
 
+<header>
+
+<div class="container">
+
 <nav>
 
 <div class="logo">
 
-Everything Data
+Everything <span>Data</span>
 
 </div>
 
@@ -199,35 +367,37 @@ Everything Data
 
 <li><a href="#">Home</a></li>
 
-<li><a href="#">About</a></li>
+<li><a href="#services">Services</a></li>
 
-<li><a href="#">Services</a></li>
+<li><a href="#about">About</a></li>
 
-<li><a href="#">Insights</a></li>
+<li><a href="#insights">Insights</a></li>
 
-<li><a href="#">Contact</a></li>
+<li><a href="#contact">Contact</a></li>
 
 </ul>
 
 </nav>
 
+</div>
+
+</header>
+
 <section class="hero">
 
-<div class="hero-content">
+<div class="container hero-grid">
+
+<div>
 
 <h1>
 
-Evidence.<br>
-
-Learning.<br>
-
-Impact.
+Helping Mission-Driven Organizations Turn Data into Better Decisions
 
 </h1>
 
 <p>
 
-Helping mission-driven organizations design practical monitoring, evaluation, learning, research and analytics systems that improve decisions and create lasting impact.
+Everything Data partners with NGOs, foundations, governments, development partners and social enterprises to design monitoring, evaluation, learning, research and analytics systems that generate credible evidence, strengthen learning and improve decision-making.
 
 </p>
 
@@ -241,7 +411,7 @@ Work With Us
 
 <a href="#" class="btn secondary">
 
-Read Our Insights
+Explore Insights
 
 </a>
 
@@ -249,8 +419,30 @@ Read Our Insights
 
 </div>
 
+<div class="hero-card">
+
+<h3>
+
+What We Do
+
+</h3>
+
+<ul>
+
+<li>Monitoring, Evaluation & Learning</li>
+
+<li>Research & Evaluations</li>
+
+<li>Data Analytics & Dashboards</li>
+
+<li>Training & Capacity Building</li>
+
+<li>Evidence for Better Decisions</li>
+
+</ul>
+
+</div>
+
+</div>
+
 </section>
-
-</body>
-
-</html>
