@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Saniamo Mercy | MEL, Data Systems & AI for Evaluation</title>
+<meta name="description" content="Saniamo Mercy is an MEL Manager working on monitoring, evaluation and learning, AI for evaluation, outcome harvesting, and evidence and data systems for mission-driven organisations.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
@@ -89,7 +90,23 @@ nav ul a:hover::after{ width:100%; }
 
 /* ---------- HERO ---------- */
 
-.hero{ padding:90px 0 100px; }
+.hero{ padding:90px 0 100px; position:relative; overflow:hidden; }
+
+.hero::before{
+  content:"";
+  position:absolute;
+  top:-10%;
+  right:-8%;
+  width:520px;
+  height:520px;
+  background-image:
+    repeating-radial-gradient(circle at 50% 50%, transparent 0, transparent 34px, var(--line) 35px, transparent 36px);
+  opacity:.55;
+  pointer-events:none;
+  z-index:0;
+}
+
+.hero .container{ position:relative; z-index:1; }
 
 .hero-grid{
   display:grid;
@@ -342,6 +359,17 @@ section{ padding:80px 0; }
   font-style:italic;
 }
 
+.case-block{ margin-top:14px; }
+.case-block:first-of-type{ margin-top:16px; }
+.case-label{
+  font-size:10px;
+  color:var(--accent);
+  display:block;
+  margin-bottom:4px;
+  font-weight:600;
+}
+.case-block p{ font-size:13.5px; color:var(--muted); }
+
 /* ---------- WRITING ---------- */
 
 .writing-card{
@@ -423,6 +451,16 @@ section{ padding:80px 0; }
 @media(max-width:700px){
   .rate-row{ grid-template-columns:1fr; gap:6px; padding:18px; }
   .rate-row.rate-head{ display:none; }
+  .rate-row > div:nth-child(2)::before{
+    content:"Includes: ";
+    font-weight:600;
+    color:var(--ink);
+  }
+  .rate-row > div:nth-child(3)::before{
+    content:"Rate: ";
+    font-weight:600;
+    color:var(--ink);
+  }
 }
 
 /* ---------- CONTACT ---------- */
@@ -490,8 +528,8 @@ footer{ background:var(--navy); color:#DCE1EA; padding:40px 0 28px; }
 
 <section class="hero">
   <div class="container hero-grid">
-    <div class="hero-photo">
-      <img src="saniamo.jpg" alt="Saniamo Mercy">
+    <div class="hero-photo no-photo">
+      <img src="saniamo.jpg" alt="Saniamo Mercy" onerror="this.style.display='none'">
     </div>
 
     <div class="hero-content">
@@ -500,8 +538,10 @@ footer{ background:var(--navy); color:#DCE1EA; padding:40px 0 28px; }
       <div class="hero-meta mono">Nairobi, Kenya</div>
       <p>
         I design the systems that tell organisations whether their work is actually creating
-        change, and help them act on what they find.
+        change — blending rigorous MEL practice with AI-assisted evaluation to help them act
+        faster on what they find.
       </p>
+      <div class="hero-meta mono" style="margin-bottom:28px;">Working with NGOs, foundations, governments &amp; social enterprises</div>
       <div class="buttons">
         <a href="#projects" class="btn primary">See My Work</a>
         <a href="#contact" class="text-link">Get in touch →</a>
@@ -517,24 +557,19 @@ footer{ background:var(--navy); color:#DCE1EA; padding:40px 0 28px; }
 
     <div class="about-body">
       <p>
-        I help organisations design better ways to measure impact, generate evidence, and learn from
-        their work. My expertise spans monitoring, evaluation and learning (MEL), AI for evaluation,
-        outcome harvesting, learning agendas, theories of change, results frameworks, impact measurement,
-        data systems, dashboards, and evidence synthesis. I enjoy turning complex programme data into
-        practical insights that support better decisions.
+        I help organisations design better ways to measure impact, generate evidence, and learn
+        from their work, working at the intersection of established MEL methods and newer,
+        AI-driven evaluation tools — turning complex data into decisions people actually act on.
       </p>
       <p>
-        My background in GIS and spatial analysis shaped the way I approach evaluation today. I think
-        in systems, looking beyond individual indicators to understand the patterns and relationships
-        that drive change. Whether I'm designing an evaluation, building a dashboard, or strengthening
-        an organisation's evidence systems, my goal is to create approaches that are rigorous, practical,
-        and built to be used.
+        My background in GIS and spatial analysis shaped how I think about evaluation. I look past
+        individual indicators to the patterns and relationships driving change, whether I'm
+        designing an evaluation, building a dashboard, or rebuilding an organisation's evidence
+        systems from the ground up.
       </p>
       <p>
-        Beyond consulting, I share insights on data, evaluation, and AI through <strong>@_everythingdata</strong>
-        and am developing an original research concept called <strong>Cognitive Capture</strong>, which
-        explores how AI-driven measurement systems can influence professional judgment, and how we can
-        ensure technology strengthens rather than replaces human expertise.
+        I write about data, evaluation and AI through
+        <a href="https://medium.com/@everythingdata" target="_blank" style="color:var(--navy); font-weight:600; border-bottom:1.5px solid var(--accent); text-decoration:none; padding-bottom:1px;">@_everythingdata</a>.
       </p>
     </div>
   </div>
@@ -551,12 +586,13 @@ footer{ background:var(--navy); color:#DCE1EA; padding:40px 0 28px; }
         <div>
           <div class="timeline-role">MEL Manager</div>
           <div class="timeline-org">African Management Institute</div>
+          <div class="timeline-desc" style="margin-bottom:10px;">Lead the organisation's MEL function, designing the evidence systems that support programme management, donor accountability and organisational learning across a multi-country portfolio.</div>
           <ul class="timeline-list">
-            <li>Own logframe and IPTT design across a multi-country programme portfolio, translating theories of change into measurable results frameworks</li>
-            <li>Build and maintain dashboards in Power BI, Metabase and Google Sheets/Apps Script that give programme teams and funders live visibility into performance</li>
-            <li>Lead impact analyses using matched-pair and outlier-adjusted methodologies to produce evidence that holds up in client-facing reporting</li>
+            <li>Own logframe and IPTT design across a multi-country programme portfolio, turning theories of change into results frameworks leadership and funders rely on</li>
+            <li>Build and maintain dashboards in Power BI, Metabase and Google Sheets/Apps Script, replacing static reporting cycles with live visibility into programme performance</li>
+            <li>Lead impact analyses using matched-pair and outlier-adjusted methodologies, producing evidence that holds up under donor scrutiny</li>
             <li>Manage data collection systems across KoboToolbox and SurveyMonkey, including data protection compliance under Kenya's Data Protection Act</li>
-            <li>Translate evaluation findings into reporting that programme teams, leadership and external funders can act on</li>
+            <li>Turn evaluation findings into reporting that shapes decisions, for programme teams, leadership and funders alike, rather than sitting in an inbox</li>
           </ul>
         </div>
       </div>
@@ -565,11 +601,12 @@ footer{ background:var(--navy); color:#DCE1EA; padding:40px 0 28px; }
         <div>
           <div class="timeline-role">MEL Officer</div>
           <div class="timeline-org">African Management Institute</div>
+          <div class="timeline-desc" style="margin-bottom:10px;">Supported MEL system design during a period of programme growth, laying groundwork that carried into the MEL Manager role.</div>
           <ul class="timeline-list">
-            <li>Developed MEL plans and indicator frameworks for new programme launches, including cohort-based tracking design</li>
-            <li>Designed and administered survey instruments and consent processes for programme participants</li>
-            <li>Led analysis of AMI's Annual Impact Survey (1,392 respondents), distilled into a 12-slide presentation for leadership</li>
-            <li>Ran data quality assurance processes across programme datasets ahead of donor and client reporting</li>
+            <li>Developed MEL plans and indicator frameworks for new programme launches, so teams had a results structure in place from day one instead of retrofitting one later</li>
+            <li>Designed and administered survey instruments and consent processes for programme participants, balancing data quality with participant protection</li>
+            <li>Led analysis of AMI's Annual Impact Survey (1,392 respondents), distilling findings into a 12-slide presentation that informed leadership's programme decisions</li>
+            <li>Ran data quality assurance across programme datasets, catching issues before they reached donors and clients</li>
           </ul>
         </div>
       </div>
@@ -578,7 +615,9 @@ footer{ background:var(--navy); color:#DCE1EA; padding:40px 0 28px; }
         <div>
           <div class="timeline-role">Data Coordinator Consultant (concurrent)</div>
           <div class="timeline-org">UNDP</div>
-          <div class="timeline-desc">Coordinated data systems and reporting alongside my substantive role.</div>
+          <ul class="timeline-list">
+            <li>Coordinated data systems and reporting for UNDP alongside my substantive MEL role at AMI</li>
+          </ul>
         </div>
       </div>
     </div>
@@ -629,34 +668,75 @@ footer{ background:var(--navy); color:#DCE1EA; padding:40px 0 28px; }
     <div class="section-label">Selected Work</div>
     <h2 class="section-title">Projects &amp; case studies</h2>
     <p class="section-subtitle">
-      A few examples of the kind of MEL and data systems work I do. Details below are placeholders —
-      swap in the specifics you're comfortable sharing publicly before this goes live.
+      Real engagements from my work in MEL system design, dashboards and impact analysis.
     </p>
 
     <div class="grid">
       <div class="card">
         <span class="tag mono">MEL DESIGN</span>
-        <h3>Multi-country MEL plan &amp; logframe</h3>
-        <p>Built a logframe, IPTT and cohort tracking structure for a multi-track programme with staggered kickoffs across countries.</p>
-        <div class="placeholder-note">Add programme name / scale if shareable</div>
+        <h3>LIF Double Down Initiative</h3>
+        <div class="case-block">
+          <span class="case-label mono">MY ROLE</span>
+          <p>MEL lead — designed the framework end to end and owned it through rollout.</p>
+        </div>
+        <div class="case-block">
+          <span class="case-label mono">CHALLENGE</span>
+          <p>A programme launching across Kenya, Uganda and Nigeria, running two distinct tracks with staggered kickoffs, needed one coherent way to track progress instead of parallel, disconnected systems.</p>
+        </div>
+        <div class="case-block">
+          <span class="case-label mono">APPROACH</span>
+          <p>Designed the MEL framework, logframe and IPTT, including a dedicated Champions survey instrument, structured for comparability across countries and tracks despite the different timelines.</p>
+        </div>
+        <div class="case-block">
+          <span class="case-label mono">IMPACT</span>
+          <p>Gave the programme team a single, comparable view of performance across three countries and two tracks.</p>
+        </div>
       </div>
       <div class="card">
         <span class="tag mono">DASHBOARD</span>
-        <h3>Stakeholder reporting dashboard rebuild</h3>
-        <p>Rebuilt a reporting dashboard for donor and government stakeholders, moving from static reports to an interactive view of programme indicators.</p>
-        <div class="placeholder-note">Add tool used / stakeholder type if shareable</div>
+        <h3>AFIRR/BRD HATANA Dashboard Rebuild</h3>
+        <div class="case-block">
+          <span class="case-label mono">MY ROLE</span>
+          <p>Led the dashboard rebuild, from requirements through to stakeholder handover.</p>
+        </div>
+        <div class="case-block">
+          <span class="case-label mono">CHALLENGE</span>
+          <p>Reporting for World Bank and BRD stakeholders relied on static reports that were slow to update and hard to interrogate directly.</p>
+        </div>
+        <div class="case-block">
+          <span class="case-label mono">APPROACH</span>
+          <p>Rebuilt the dashboard from the ground up, replacing static exports with a live, interactive view of programme indicators.</p>
+        </div>
+        <div class="case-block">
+          <span class="case-label mono">IMPACT</span>
+          <p>Stakeholders could explore the data themselves instead of waiting on the next static report cycle.</p>
+        </div>
       </div>
       <div class="card">
         <span class="tag mono">ANALYSIS</span>
-        <h3>Matched-pair impact analysis</h3>
-        <p>Designed a matched-pair revenue, profit and employment analysis with outlier handling, for a client-facing impact report.</p>
-        <div class="placeholder-note">Add sector / outcome area if shareable</div>
+        <h3>FIRST+II Impact Analysis — CapPlus &amp; Mastercard Foundation</h3>
+        <div class="case-block">
+          <span class="case-label mono">MY ROLE</span>
+          <p>Designed and ran the analysis that underpinned the report's headline findings.</p>
+        </div>
+        <div class="case-block">
+          <span class="case-label mono">CHALLENGE</span>
+          <p>The annual impact report needed credible, defensible evidence of business growth in revenue, profit and employment that could withstand scrutiny.</p>
+        </div>
+        <div class="case-block">
+          <span class="case-label mono">APPROACH</span>
+          <p>Designed a matched-pair analysis using CAGR methodology with IQR-based outlier removal to keep the comparisons statistically sound.</p>
+        </div>
+        <div class="case-block">
+          <span class="case-label mono">IMPACT</span>
+          <p>Formed the analytical backbone of the FIRST+II Annual Impact Report delivered to CapPlus and Mastercard Foundation.</p>
+        </div>
       </div>
       <div class="card">
         <span class="tag mono">RESEARCH</span>
         <h3>Cognitive Capture</h3>
         <p>An original research concept examining how AI-driven measurement can reshape professional and consumer judgment, and whether that shift can be reversed.</p>
-        <div class="placeholder-note">Link to writing sample once published</div>
+        <a href="https://medium.com/@everythingdata/when-measurement-becomes-surveillance-91a52b53c8c9" target="_blank" class="text-link" style="font-size:13px; margin-top:14px; display:inline-block;">Read the essay →</a>
       </div>
     </div>
   </div>
@@ -667,7 +747,8 @@ footer{ background:var(--navy); color:#DCE1EA; padding:40px 0 28px; }
     <div class="section-label">Writing</div>
     <h2 class="section-title">Insights &amp; essays</h2>
     <p class="section-subtitle">
-      I write about data literacy, evaluation practice and tech policy on @_everythingdata.
+      I write about how evidence systems, AI and data governance are reshaping evaluation practice —
+      explored through @_everythingdata.
     </p>
 
     <div class="writing-card">
@@ -692,8 +773,9 @@ footer{ background:var(--navy); color:#DCE1EA; padding:40px 0 28px; }
     <div class="section-label center">Rates</div>
     <h2 class="section-title center">Working with me</h2>
     <p class="section-subtitle center">
-      Rates vary by scope, timeline and location — these are starting points. Get in touch for a quote
-      tailored to your project.
+      Engagements are scoped around objectives, complexity and timeline. The figures below are
+      starting points based on a $35/hour base rate — get in touch for a proposal tailored to
+      your project.
     </p>
 
     <div class="rate-table">
@@ -705,22 +787,22 @@ footer{ background:var(--navy); color:#DCE1EA; padding:40px 0 28px; }
       <div class="rate-row">
         <div class="rate-service">MEL System Design</div>
         <div>Logframes, IPTTs, theory of change, indicator frameworks</div>
-        <div class="mono">From [insert rate] / project</div>
+        <div class="mono">From $1,250 / project</div>
       </div>
       <div class="rate-row">
         <div class="rate-service">Evaluation Design</div>
         <div>Evaluation planning, outcome harvesting, evidence synthesis</div>
-        <div class="mono">From [insert rate] / day</div>
+        <div class="mono">$250 / day</div>
       </div>
       <div class="rate-row">
         <div class="rate-service">Dashboards &amp; Data Systems</div>
         <div>Power BI, Metabase, Google Sheets/Apps Script builds</div>
-        <div class="mono">From [insert rate] / project</div>
+        <div class="mono">From $1,000 / project</div>
       </div>
       <div class="rate-row">
         <div class="rate-service">Advisory / Hourly Consulting</div>
         <div>Ad hoc MEL, data strategy or AI-for-evaluation advisory</div>
-        <div class="mono">[insert rate] / hour</div>
+        <div class="mono">$35 / hour</div>
       </div>
     </div>
   </div>
@@ -731,7 +813,9 @@ footer{ background:var(--navy); color:#DCE1EA; padding:40px 0 28px; }
     <div class="section-label center">Get In Touch</div>
     <h2 class="section-title center">Let's talk</h2>
     <p class="section-subtitle center">
-      Open to MEL, data systems and research conversations. Reach me directly or find me on these platforms.
+      Whether you're designing a new MEL system, strengthening evaluation practice, or exploring
+      AI for evidence generation, I'd welcome the opportunity to discuss how we can work together —
+      including senior MEL roles.
     </p>
     <div class="contact-links">
       <a href="mailto:saniamomercy@gmail.com">saniamomercy@gmail.com</a>
