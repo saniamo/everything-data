@@ -7,23 +7,20 @@
 <meta name="description" content="Saniamo Mercy is an MEL Manager working on monitoring, evaluation and learning, AI for evaluation, outcome harvesting, and evidence and data systems for mission-driven organisations.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
 
 :root{
-  --bg:#ffffff;
+  --bg:#fafafa;
   --ink:#1a1a1a;
-  --muted:#5a5a5a;
+  --muted:#6b6b6b;
   --card:#ffffff;
-  --line:#e8e8e8;
-  --panel:#f8f8f8;
-  --accent-magenta:#fd02e5;
-  --accent-lime:#e5fd96;
-  --accent-orange:#fd7236;
-  --accent-blue:#4b55f5;
-  --accent-green:#539579;
-  --shadow-soft:0 2px 12px rgba(26,26,26,0.06);
-  --shadow-hover:0 8px 32px rgba(26,26,26,0.1);
+  --line:#e0e0e0;
+  --panel:#f0f0f0;
+  --yellow:#ffe135;
+  --teal:#00b4b4;
+  --soft-yellow:#fff8d6;
+  --soft-teal:#e0f7f7;
 }
 
 *{ margin:0; padding:0; box-sizing:border-box; }
@@ -38,28 +35,30 @@ body{
 }
 
 .mono{ font-family:'IBM Plex Mono',monospace; letter-spacing:.06em; }
+.script{ font-family:'Caveat',cursive; }
 
 .container{ width:90%; max-width:1140px; margin:auto; }
 
 a{ color:inherit; }
-a:focus-visible, button:focus-visible{ outline:2px solid var(--accent-magenta); outline-offset:3px; }
+a:focus-visible, button:focus-visible{ outline:2px solid var(--yellow); outline-offset:4px; border-radius:2px; }
 
 @media (prefers-reduced-motion: reduce){ *{ animation:none !important; transition:none !important; } }
 
 /* ---------- HEADER ---------- */
 
 header{
-  background:rgba(255,255,255,.95);
-  backdrop-filter:blur(12px);
+  background:rgba(250,250,250,.92);
+  backdrop-filter:blur(16px);
   border-bottom:1px solid var(--line);
   position:sticky;
   top:0;
   z-index:999;
-  transition:box-shadow .3s ease;
+  transition:all .3s ease;
 }
 
 header.scrolled{
-  box-shadow:var(--shadow-soft);
+  box-shadow:0 2px 20px rgba(26,26,26,0.06);
+  border-bottom-color:transparent;
 }
 
 header nav{
@@ -72,32 +71,33 @@ header nav{
 .logo{
   font-family:'Fraunces',serif;
   font-size:20px;
-  font-weight:600;
+  font-weight:700;
   color:var(--ink);
   text-decoration:none;
+  letter-spacing:-.02em;
 }
 
 nav ul{ display:flex; gap:32px; list-style:none; align-items:center; }
 
 nav ul a{
   text-decoration:none;
-  color:var(--ink);
+  color:var(--muted);
   font-weight:500;
   font-size:14px;
   position:relative;
   padding-bottom:4px;
-  transition:color .2s ease;
+  transition:color .25s ease;
 }
 
-nav ul a:hover{ color:var(--accent-magenta); }
+nav ul a:hover{ color:var(--ink); }
 
 nav ul a::after{
   content:"";
   position:absolute;
   left:0; bottom:0;
   width:0; height:2px;
-  background:var(--accent-magenta);
-  transition:width .25s ease;
+  background:var(--yellow);
+  transition:width .3s ease;
 }
 
 nav ul a:hover::after{ width:100%; }
@@ -121,13 +121,45 @@ nav ul a:hover::after{ width:100%; }
 
 /* ---------- HERO ---------- */
 
-.hero{ padding:100px 0 120px; position:relative; overflow:hidden; }
+.hero{
+  padding:100px 0 120px;
+  position:relative;
+  overflow:hidden;
+}
+
+.hero::before{
+  content:"";
+  position:absolute;
+  top:-100px;
+  right:-100px;
+  width:400px;
+  height:400px;
+  background:var(--soft-yellow);
+  border-radius:50%;
+  opacity:.6;
+  filter:blur(60px);
+  z-index:0;
+}
+
+.hero::after{
+  content:"";
+  position:absolute;
+  bottom:-80px;
+  left:-60px;
+  width:300px;
+  height:300px;
+  background:var(--soft-teal);
+  border-radius:50%;
+  opacity:.5;
+  filter:blur(50px);
+  z-index:0;
+}
 
 .hero .container{ position:relative; z-index:1; }
 
 .hero-grid{
   display:grid;
-  grid-template-columns:.65fr 1.35fr;
+  grid-template-columns:.55fr 1.45fr;
   gap:72px;
   align-items:center;
 }
@@ -135,12 +167,17 @@ nav ul a:hover::after{ width:100%; }
 .hero-photo{
   width:100%;
   aspect-ratio:3/4;
-  border-radius:16px;
+  border-radius:20px;
   overflow:hidden;
-  border:1px solid var(--line);
   background:var(--panel);
   position:relative;
-  box-shadow:var(--shadow-soft);
+  box-shadow:0 8px 40px rgba(26,26,26,0.1);
+  transition:all .4s ease;
+}
+
+.hero-photo:hover{
+  transform:translateY(-4px);
+  box-shadow:0 16px 48px rgba(26,26,26,0.14);
 }
 
 .hero-photo img{
@@ -148,10 +185,12 @@ nav ul a:hover::after{ width:100%; }
   height:100%;
   object-fit:cover;
   display:block;
-  transition:transform .5s ease;
+  filter:grayscale(30%);
+  transition:all .5s ease;
 }
 
 .hero-photo:hover img{
+  filter:grayscale(0%);
   transform:scale(1.03);
 }
 
@@ -173,24 +212,32 @@ nav ul a:hover::after{ width:100%; }
 .eyebrow{
   font-size:12px;
   font-weight:600;
-  color:var(--accent-magenta);
+  color:var(--ink);
   text-transform:uppercase;
   letter-spacing:.08em;
   margin-bottom:20px;
   display:inline-block;
-  padding:6px 14px;
-  background:var(--accent-lime);
-  border-radius:20px;
+  padding:6px 16px;
+  background:var(--yellow);
+  border-radius:30px;
 }
 
 .hero h1{
   font-family:'Fraunces',serif;
   font-size:52px;
-  font-weight:600;
+  font-weight:700;
   line-height:1.05;
   color:var(--ink);
-  margin-bottom:12px;
-  letter-spacing:-.02em;
+  margin-bottom:8px;
+  letter-spacing:-.03em;
+}
+
+.hero-script{
+  font-family:'Caveat',cursive;
+  font-size:26px;
+  color:var(--muted);
+  margin-bottom:24px;
+  line-height:1.3;
 }
 
 .hero-meta{
@@ -207,14 +254,14 @@ nav ul a:hover::after{ width:100%; }
   display:inline-block;
   width:8px;
   height:8px;
-  background:var(--accent-lime);
+  background:var(--teal);
   border-radius:50%;
   animation:pulse 2s ease infinite;
 }
 
 @keyframes pulse{
   0%,100%{ opacity:1; transform:scale(1); }
-  50%{ opacity:.6; transform:scale(1.2); }
+  50%{ opacity:.5; transform:scale(1.3); }
 }
 
 .hero p{
@@ -225,22 +272,22 @@ nav ul a:hover::after{ width:100%; }
 }
 
 .hero-tagline{
-  font-size:15px;
-  color:var(--accent-orange);
-  font-weight:500;
+  font-family:'Caveat',cursive;
+  font-size:22px;
+  color:var(--ink);
   margin-bottom:36px;
   max-width:540px;
 }
 
-.buttons{ display:flex; align-items:center; gap:20px; flex-wrap:wrap; }
+.buttons{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; }
 
 .btn{
   padding:14px 32px;
-  border-radius:8px;
+  border-radius:12px;
   font-weight:600;
   font-size:15px;
   text-decoration:none;
-  transition:all .2s ease;
+  transition:all .25s ease;
   display:inline-flex;
   align-items:center;
   gap:8px;
@@ -249,24 +296,26 @@ nav ul a:hover::after{ width:100%; }
 .btn.primary{
   background:var(--ink);
   color:var(--card);
-  box-shadow:0 4px 14px rgba(26,26,26,0.25);
+  box-shadow:0 4px 16px rgba(26,26,26,0.2);
 }
 
 .btn.primary:hover{
-  background:var(--accent-magenta);
+  background:var(--yellow);
+  color:var(--ink);
   transform:translateY(-2px);
-  box-shadow:0 6px 20px rgba(253,2,229,0.3);
+  box-shadow:0 6px 24px rgba(255,225,53,0.35);
 }
 
 .btn.secondary{
-  background:var(--accent-lime);
+  background:transparent;
   color:var(--ink);
-  border:none;
+  border:2px solid var(--line);
 }
 
 .btn.secondary:hover{
-  background:var(--accent-orange);
-  color:var(--card);
+  background:var(--soft-teal);
+  border-color:var(--teal);
+  color:var(--ink);
   transform:translateY(-2px);
 }
 
@@ -275,38 +324,54 @@ nav ul a:hover::after{ width:100%; }
   font-weight:600;
   color:var(--ink);
   text-decoration:none;
-  border-bottom:1.5px solid var(--accent-magenta);
+  border-bottom:2px solid var(--yellow);
   padding-bottom:2px;
-  transition:color .2s ease;
+  transition:all .2s ease;
 }
 
-.text-link:hover{ color:var(--accent-magenta); }
+.text-link:hover{
+  color:var(--teal);
+  border-bottom-color:var(--teal);
+}
 
 /* ---------- SECTION SHELL ---------- */
 
-section{ padding:100px 0; }
+section{ padding:100px 0; position:relative; }
 
 .section-label{
   font-size:11px;
   font-weight:700;
-  color:var(--accent-magenta);
+  color:var(--ink);
   text-transform:uppercase;
   letter-spacing:.12em;
   margin-bottom:16px;
+  display:inline-block;
+  padding:6px 14px;
+  background:var(--yellow);
+  border-radius:20px;
 }
 
 .section-label.center{ text-align:center; }
 
 .section-title{
   font-family:'Fraunces',serif;
-  font-weight:600;
-  font-size:36px;
+  font-weight:700;
+  font-size:38px;
   color:var(--ink);
-  margin-bottom:20px;
-  line-height:1.2;
+  margin-bottom:8px;
+  line-height:1.15;
+  letter-spacing:-.02em;
 }
 
 .section-title.center{ text-align:center; }
+
+.section-script{
+  font-family:'Caveat',cursive;
+  font-size:24px;
+  color:var(--muted);
+  margin-bottom:48px;
+  line-height:1.3;
+}
 
 .section-subtitle{
   max-width:640px;
@@ -317,7 +382,30 @@ section{ padding:100px 0; }
 
 .section-subtitle.center{ text-align:center; margin-left:auto; margin-right:auto; }
 
-.gray{ background:var(--panel); }
+.gray{
+  background:var(--panel);
+  position:relative;
+}
+
+.gray::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  height:1px;
+  background:linear-gradient(90deg, transparent, var(--line), transparent);
+}
+
+.gray::after{
+  content:"";
+  position:absolute;
+  bottom:0;
+  left:0;
+  right:0;
+  height:1px;
+  background:linear-gradient(90deg, transparent, var(--line), transparent);
+}
 
 /* ---------- ABOUT ---------- */
 
@@ -334,13 +422,30 @@ section{ padding:100px 0; }
   display:grid;
   grid-template-columns:140px 1fr;
   gap:32px;
-  padding:32px 0;
+  padding:36px 0;
   border-bottom:1px solid var(--line);
   transition:all .3s ease;
+  position:relative;
+}
+
+.timeline-item::before{
+  content:"";
+  position:absolute;
+  left:-20px;
+  top:36px;
+  width:4px;
+  height:0;
+  background:var(--yellow);
+  border-radius:2px;
+  transition:height .4s ease;
+}
+
+.timeline-item:hover::before{
+  height:calc(100% - 72px);
 }
 
 .timeline-item:hover{
-  padding-left:12px;
+  padding-left:8px;
 }
 
 .timeline-item:last-child{ border-bottom:none; }
@@ -348,20 +453,20 @@ section{ padding:100px 0; }
 .timeline-date{
   font-family:'IBM Plex Mono',monospace;
   font-size:12px;
-  color:var(--accent-magenta);
+  color:var(--teal);
   padding-top:4px;
   font-weight:600;
 }
 
 .timeline-role{
   font-family:'Fraunces',serif;
-  font-weight:600;
-  font-size:18px;
+  font-weight:700;
+  font-size:20px;
   color:var(--ink);
-  margin-bottom:6px;
+  margin-bottom:4px;
 }
 
-.timeline-org{ font-size:15px; color:var(--muted); margin-bottom:10px; }
+.timeline-org{ font-size:15px; color:var(--muted); margin-bottom:10px; font-weight:500; }
 
 .timeline-desc{ font-size:15px; line-height:1.7; }
 
@@ -373,7 +478,7 @@ section{ padding:100px 0; }
 
 .timeline-list li{
   position:relative;
-  padding:6px 0 6px 20px;
+  padding:6px 0 6px 22px;
   line-height:1.7;
 }
 
@@ -381,9 +486,9 @@ section{ padding:100px 0; }
   content:"•";
   position:absolute;
   left:0;
-  color:var(--accent-lime);
-  font-size:18px;
-  line-height:1.2;
+  color:var(--yellow);
+  font-size:20px;
+  line-height:1;
 }
 
 /* ---------- PROJECTS ---------- */
@@ -392,10 +497,10 @@ section{ padding:100px 0; }
 
 .card{
   background:var(--card);
-  padding:36px 32px;
-  border-radius:16px;
+  padding:40px 36px;
+  border-radius:20px;
   border:1px solid var(--line);
-  transition:all .35s ease;
+  transition:all .4s ease;
   position:relative;
   overflow:hidden;
 }
@@ -404,17 +509,17 @@ section{ padding:100px 0; }
   content:"";
   position:absolute;
   top:0; left:0;
-  width:100%; height:3px;
-  background:linear-gradient(90deg, var(--accent-magenta), var(--accent-orange));
+  width:100%; height:4px;
+  background:linear-gradient(90deg, var(--yellow), var(--teal));
   transform:scaleX(0);
   transform-origin:left;
-  transition:transform .35s ease;
+  transition:transform .4s ease;
 }
 
 .card:hover{
   transform:translateY(-6px);
-  box-shadow:var(--shadow-hover);
-  border-color:var(--accent-orange);
+  box-shadow:0 20px 48px rgba(26,26,26,0.08);
+  border-color:transparent;
 }
 
 .card:hover::before{
@@ -425,9 +530,9 @@ section{ padding:100px 0; }
   display:inline-block;
   font-size:11px;
   font-weight:700;
-  color:var(--accent-magenta);
-  background:var(--accent-lime);
-  padding:5px 12px;
+  color:var(--ink);
+  background:var(--soft-yellow);
+  padding:5px 14px;
   border-radius:20px;
   margin-bottom:20px;
   text-transform:uppercase;
@@ -436,11 +541,11 @@ section{ padding:100px 0; }
 
 .card h3{
   font-family:'Fraunces',serif;
-  font-weight:600;
-  font-size:20px;
+  font-weight:700;
+  font-size:22px;
   color:var(--ink);
   margin-bottom:16px;
-  line-height:1.3;
+  line-height:1.25;
 }
 
 .card p{ font-size:15px; line-height:1.7; }
@@ -449,7 +554,7 @@ section{ padding:100px 0; }
 .case-block:first-of-type{ margin-top:20px; }
 .case-label{
   font-size:10px;
-  color:var(--accent-orange);
+  color:var(--teal);
   display:block;
   margin-bottom:6px;
   font-weight:700;
@@ -464,7 +569,7 @@ section{ padding:100px 0; }
   background:var(--card);
   border:1px solid var(--line);
   border-radius:16px;
-  padding:32px;
+  padding:36px;
   display:flex;
   justify-content:space-between;
   align-items:center;
@@ -472,20 +577,38 @@ section{ padding:100px 0; }
   flex-wrap:wrap;
   margin-bottom:16px;
   transition:all .3s ease;
+  position:relative;
+}
+
+.writing-card::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:20px;
+  bottom:20px;
+  width:3px;
+  background:var(--yellow);
+  border-radius:2px;
+  opacity:0;
+  transition:opacity .3s ease;
 }
 
 .writing-card:hover{
   transform:translateY(-3px);
-  box-shadow:var(--shadow-soft);
-  border-color:var(--accent-orange);
+  box-shadow:0 12px 32px rgba(26,26,26,0.06);
+  border-color:transparent;
+}
+
+.writing-card:hover::before{
+  opacity:1;
 }
 
 .writing-card:last-child{ margin-bottom:0; }
 
 .writing-card h3{
   font-family:'Fraunces',serif;
-  font-weight:600;
-  font-size:18px;
+  font-weight:700;
+  font-size:20px;
   color:var(--ink);
   margin-bottom:8px;
 }
@@ -494,19 +617,23 @@ section{ padding:100px 0; }
 
 .writing-link{
   font-family:'IBM Plex Mono',monospace;
-  font-size:12.5px;
+  font-size:12px;
   color:var(--ink);
   text-decoration:none;
-  border-bottom:1.5px solid var(--accent-magenta);
-  padding-bottom:2px;
+  border:1.5px solid var(--line);
+  padding:10px 20px;
+  border-radius:8px;
   white-space:nowrap;
-  transition:all .2s ease;
+  transition:all .25s ease;
   font-weight:600;
+  text-transform:uppercase;
+  letter-spacing:.04em;
 }
 
 .writing-link:hover{
-  color:var(--accent-magenta);
-  border-bottom-color:var(--accent-orange);
+  background:var(--yellow);
+  border-color:var(--yellow);
+  color:var(--ink);
 }
 
 /* ---------- SERVICES ---------- */
@@ -519,28 +646,29 @@ section{ padding:100px 0; }
 
 .service-card{
   background:var(--card);
-  padding:32px;
-  border-radius:16px;
+  padding:36px 28px;
+  border-radius:20px;
   border:1px solid var(--line);
-  transition:all .35s ease;
+  transition:all .4s ease;
   position:relative;
+  overflow:hidden;
 }
 
 .service-card::after{
   content:"";
   position:absolute;
   bottom:0; left:0;
-  width:100%; height:3px;
-  background:linear-gradient(90deg, var(--accent-magenta), var(--accent-orange));
+  width:100%; height:4px;
+  background:linear-gradient(90deg, var(--yellow), var(--teal));
   transform:scaleX(0);
   transform-origin:left;
-  transition:transform .35s ease;
+  transition:transform .4s ease;
 }
 
 .service-card:hover{
   transform:translateY(-6px);
-  box-shadow:var(--shadow-hover);
-  border-color:var(--accent-orange);
+  box-shadow:0 20px 48px rgba(26,26,26,0.08);
+  border-color:transparent;
 }
 
 .service-card:hover::after{
@@ -549,8 +677,8 @@ section{ padding:100px 0; }
 
 .service-card h3{
   font-family:'Fraunces',serif;
-  font-weight:600;
-  font-size:18px;
+  font-weight:700;
+  font-size:20px;
   color:var(--ink);
   margin-bottom:12px;
 }
@@ -565,35 +693,38 @@ section{ padding:100px 0; }
 
 .contact-links{
   display:flex;
-  gap:32px;
+  gap:20px;
   justify-content:center;
-  margin-top:16px;
+  margin-top:24px;
   flex-wrap:wrap;
 }
 
 .contact-links a{
   font-family:'IBM Plex Mono',monospace;
-  font-size:14px;
+  font-size:13px;
   color:var(--ink);
   text-decoration:none;
-  border-bottom:1.5px solid var(--line);
-  padding-bottom:4px;
-  transition:all .2s ease;
+  border:1.5px solid var(--line);
+  padding:12px 24px;
+  border-radius:12px;
+  transition:all .25s ease;
   font-weight:600;
 }
 
 .contact-links a:hover{
-  border-bottom-color:var(--accent-magenta);
-  color:var(--accent-magenta);
+  background:var(--yellow);
+  border-color:var(--yellow);
+  transform:translateY(-2px);
+  box-shadow:0 4px 16px rgba(255,225,53,0.25);
 }
 
 /* ---------- FOOTER ---------- */
 
-footer{ background:var(--ink); color:var(--bg); padding:48px 0 32px; }
+footer{ background:var(--ink); color:var(--bg); padding:56px 0 40px; }
 
 .footer-bottom{
   font-size:12px;
-  color:var(--line);
+  color:var(--muted);
   font-family:'IBM Plex Mono',monospace;
   text-align:center;
   letter-spacing:.04em;
@@ -607,8 +738,8 @@ footer{ background:var(--ink); color:var(--bg); padding:48px 0 32px; }
   right:32px;
   width:48px;
   height:48px;
-  background:var(--accent-magenta);
-  color:var(--card);
+  background:var(--yellow);
+  color:var(--ink);
   border:none;
   border-radius:50%;
   cursor:pointer;
@@ -619,7 +750,7 @@ footer{ background:var(--ink); color:var(--bg); padding:48px 0 32px; }
   opacity:0;
   visibility:hidden;
   transition:all .3s ease;
-  box-shadow:0 4px 14px rgba(253,2,229,0.3);
+  box-shadow:0 4px 16px rgba(255,225,53,0.35);
   z-index:998;
 }
 
@@ -630,7 +761,9 @@ footer{ background:var(--ink); color:var(--bg); padding:48px 0 32px; }
 
 .scroll-top:hover{
   transform:translateY(-3px);
-  background:var(--accent-orange);
+  background:var(--teal);
+  color:var(--card);
+  box-shadow:0 6px 20px rgba(0,180,180,0.3);
 }
 
 /* ---------- RESPONSIVE ---------- */
@@ -650,17 +783,21 @@ footer{ background:var(--ink); color:var(--bg); padding:48px 0 32px; }
   nav ul{ flex-wrap:wrap; justify-content:center; gap:20px; }
   .grid{ grid-template-columns:1fr; }
   .timeline-item{ grid-template-columns:1fr; gap:8px; }
+  .timeline-item::before{ display:none; }
 }
 
 @media(max-width:640px){
   .services-grid{ grid-template-columns:1fr; }
   .hero h1{ font-size:32px; }
+  .hero-script{ font-size:22px; }
   section{ padding:64px 0; }
   .section-title{ font-size:28px; }
   .writing-card{ flex-direction:column; align-items:flex-start; }
+  .writing-card::before{ display:none; }
 }
 
 </style>
+<base target="_blank">
 <base target="_blank">
 </head>
 <body>
@@ -694,13 +831,14 @@ footer{ background:var(--ink); color:var(--bg); padding:48px 0 32px; }
     </div>
 
     <div class="hero-content">
-      <div class="eyebrow">MEL Systems | AI-Enabled Evaluation</div>
+      <div class="eyebrow">Monitoring, Evaluation & Learning / AI for Evaluation</div>
       <h1>Saniamo Mercy</h1>
+      <div class="hero-script">Evidence systems that actually work</div>
       <div class="hero-meta mono">Nairobi, Kenya</div>
       <p>
-        I am driven by the belief that organisations create greater impact when they have reliable evidence to guide their decisions. My contribution is building systems that make data more accessible, learning more intentional, and evidence easier to understand and act on.
+        I build evidence systems that actually work. Not the kind that sit in a folder and collect dust, but the kind that help teams make better decisions, defend their results to donors, and learn what is actually moving the needle.
       </p>
-      <div class="hero-tagline">Turning data into evidence, evidence into learning, and learning into action.</div>
+      <div class="hero-tagline">I use AI to speed up the boring parts of evaluation so I can focus on the thinking part.</div>
       <div class="buttons">
         <a href="#projects" class="btn primary">See My Work</a>
         <a href="mailto:saniamomercy@gmail.com" class="btn secondary">Get in touch</a>
@@ -713,6 +851,7 @@ footer{ background:var(--ink); color:var(--bg); padding:48px 0 32px; }
   <div class="container">
     <div class="section-label">About</div>
     <h2 class="section-title">A bit about me</h2>
+    <div class="section-script">From messy data to clear decisions</div>
 
     <div class="about-body">
       <p>
@@ -723,7 +862,7 @@ footer{ background:var(--ink); color:var(--bg); padding:48px 0 32px; }
       </p>
       <p>
         I am based in Nairobi and have worked across Kenya, Uganda, Nigeria, Ghana, Rwanda and Ethiopia. I am comfortable working remotely, independently, and across time zones. I also write about data, evaluation and AI at
-        <a href="https://medium.com/@everythingdata" target="_blank" style="color:var(--ink); font-weight:600; border-bottom:1.5px solid var(--accent-magenta); text-decoration:none; padding-bottom:1px;">@_everythingdata</a>.
+        <a href="https://medium.com/@everythingdata" target="_blank" style="color:var(--ink); font-weight:600; border-bottom:2px solid var(--yellow); text-decoration:none; padding-bottom:1px;">@_everythingdata</a>.
       </p>
     </div>
   </div>
@@ -733,6 +872,7 @@ footer{ background:var(--ink); color:var(--bg); padding:48px 0 32px; }
   <div class="container">
     <div class="section-label">Experience</div>
     <h2 class="section-title">Where I have worked</h2>
+    <div class="section-script">Turning complexity into career clarity</div>
 
     <div class="timeline">
       <div class="timeline-item">
@@ -782,9 +922,7 @@ footer{ background:var(--ink); color:var(--bg); padding:48px 0 32px; }
   <div class="container">
     <div class="section-label">How I Think</div>
     <h2 class="section-title">Frameworks & Methods</h2>
-    <p class="section-subtitle">
-      I match the method to the question, not the tool to the dataset. Sometimes that is a controlled trial. Sometimes it is outcome harvesting. Sometimes it is building a dashboard that makes the question obvious.
-    </p>
+    <div class="section-script">Match the method to the question, not the tool to the dataset</div>
 
     <div class="grid">
       <div class="card">
@@ -847,9 +985,7 @@ footer{ background:var(--ink); color:var(--bg); padding:48px 0 32px; }
   <div class="container">
     <div class="section-label">Selected Work</div>
     <h2 class="section-title">Projects & case studies</h2>
-    <p class="section-subtitle">
-      Real engagements from my work in MEL system design, dashboards and impact analysis across multiple donor-funded programmes.
-    </p>
+    <div class="section-script">Real engagements, real results</div>
 
     <div class="grid">
       <div class="card">
@@ -930,10 +1066,7 @@ footer{ background:var(--ink); color:var(--bg); padding:48px 0 32px; }
   <div class="container">
     <div class="section-label">Writing</div>
     <h2 class="section-title">Insights & essays</h2>
-    <p class="section-subtitle">
-      I write about how evidence systems, AI and data governance are reshaping evaluation practice,
-      explored through @_everythingdata.
-    </p>
+    <div class="section-script">Thinking out loud about evidence, AI and systems</div>
 
     <div class="writing-card">
       <div>
@@ -956,9 +1089,7 @@ footer{ background:var(--ink); color:var(--bg); padding:48px 0 32px; }
   <div class="container">
     <div class="section-label center">Services</div>
     <h2 class="section-title center">What I can do for you</h2>
-    <p class="section-subtitle center">
-      I work with NGOs, foundations, governments and social enterprises who need evidence systems that actually support decision making.
-    </p>
+    <div class="section-script center" style="text-align:center;">Evidence systems that support real decisions</div>
 
     <div class="services-grid">
       <div class="service-card">
@@ -985,10 +1116,7 @@ footer{ background:var(--ink); color:var(--bg); padding:48px 0 32px; }
   <div class="container contact-section">
     <div class="section-label center">Get In Touch</div>
     <h2 class="section-title center">Let us talk</h2>
-    <p class="section-subtitle center">
-      Whether you are designing a new MEL system, strengthening evaluation practice, or exploring
-      AI for evidence generation, I would welcome the opportunity to discuss how we can work together.
-    </p>
+    <div class="section-script center" style="text-align:center;">Designing a new MEL system? Let us figure it out together</div>
     <div class="contact-links">
       <a href="mailto:saniamomercy@gmail.com">saniamomercy@gmail.com</a>
       <a href="https://www.linkedin.com/in/saniamomercy/" target="_blank">LinkedIn</a>
