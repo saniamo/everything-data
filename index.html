@@ -3,24 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Saniamo Mercy | MEL, Data Systems & AI for Evaluation</title>
-<meta name="description" content="Saniamo Mercy is an MEL Manager working on monitoring, evaluation and learning, AI for evaluation, outcome harvesting, and evidence and data systems for mission-driven organisations.">
+<title>Saniamo Mercy: MEL, Data Systems & AI for Evaluation</title>
+<meta name="description" content="Saniamo Mercy is a MERL Manager working on monitoring, evaluation, research and learning, evidence systems, and AI for evaluation across Africa.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
 <style>
 
 :root{
-  --bg:#fafafa;
-  --ink:#1a1a1a;
-  --muted:#6b6b6b;
-  --card:#ffffff;
-  --line:#e0e0e0;
-  --panel:#f0f0f0;
-  --yellow:#ffe135;
-  --teal:#00b4b4;
-  --soft-yellow:#fff8d6;
-  --soft-teal:#e0f7f7;
+  --bg:#f3efe5;
+  --ink:#2a2621;
+  --muted:#8c8477;
+  --line:#ddd5c5;
+  --accent:#b5763e;
+  --accent-soft:#f1e5d4;
 }
 
 *{ margin:0; padding:0; box-sizing:border-box; }
@@ -29,1158 +25,580 @@ html{ scroll-behavior:smooth; }
 body{
   font-family:'Inter',sans-serif;
   background:var(--bg);
-  color:var(--muted);
-  line-height:1.7;
+  color:var(--ink);
+  line-height:1.6;
+  font-size:16px;
   -webkit-font-smoothing:antialiased;
 }
 
-.mono{ font-family:'IBM Plex Mono',monospace; letter-spacing:.06em; }
-.script{ font-family:'Caveat',cursive; }
+.serif{ font-family:'Playfair Display',serif; }
+.mono{ font-family:'IBM Plex Mono',monospace; }
 
-.container{ width:90%; max-width:1140px; margin:auto; }
-
-a{ color:inherit; }
-a:focus-visible, button:focus-visible{ outline:2px solid var(--yellow); outline-offset:4px; border-radius:2px; }
+a{ color:inherit; text-decoration:none; }
+a:focus-visible, button:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; }
 
 @media (prefers-reduced-motion: reduce){ *{ animation:none !important; transition:none !important; } }
 
-/* ---------- HEADER ---------- */
+.wrap{ width:90%; max-width:1080px; margin:0 auto; }
+.wrap-wide{ width:92%; max-width:1320px; margin:0 auto; }
 
-header{
-  background:rgba(250,250,250,.92);
-  backdrop-filter:blur(16px);
-  border-bottom:1px solid var(--line);
-  position:sticky;
-  top:0;
-  z-index:999;
-  transition:all .3s ease;
-}
+/* ---------- header ---------- */
 
-header.scrolled{
-  box-shadow:0 2px 20px rgba(26,26,26,0.06);
-  border-bottom-color:transparent;
-}
+header{ border-bottom:1px solid var(--line); padding:26px 0; }
 
-header nav{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:20px 0;
-}
+header .wrap{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; }
 
 .logo{
-  font-family:'Fraunces',serif;
-  font-size:20px;
+  font-family:'Inter',sans-serif;
   font-weight:700;
-  color:var(--ink);
-  text-decoration:none;
-  letter-spacing:-.02em;
+  font-size:15px;
+  letter-spacing:.1em;
+  text-transform:uppercase;
 }
 
-nav ul{ display:flex; gap:32px; list-style:none; align-items:center; }
+header nav{ display:flex; gap:32px; }
 
-nav ul a{
-  text-decoration:none;
+header nav a{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:12px;
+  font-weight:600;
+  letter-spacing:.08em;
+  text-transform:uppercase;
   color:var(--muted);
-  font-weight:500;
-  font-size:14px;
-  position:relative;
-  padding-bottom:4px;
-  transition:color .25s ease;
+  border-bottom:1px solid transparent;
+  padding-bottom:3px;
+  transition:color .2s ease, border-color .2s ease;
 }
 
-nav ul a:hover{ color:var(--ink); }
+header nav a:hover{ color:var(--ink); border-color:var(--accent); }
 
-nav ul a::after{
-  content:"";
-  position:absolute;
-  left:0; bottom:0;
-  width:0; height:2px;
-  background:var(--yellow);
-  transition:width .3s ease;
-}
+/* ---------- home grid (hero + sidebar) ---------- */
 
-nav ul a:hover::after{ width:100%; }
+main{ padding-top:72px; }
 
-.mobile-menu-btn{
-  display:none;
-  background:none;
-  border:none;
-  cursor:pointer;
-  padding:8px;
-}
-
-.mobile-menu-btn span{
-  display:block;
-  width:24px;
-  height:2px;
-  background:var(--ink);
-  margin:5px 0;
-  transition:.3s ease;
-}
-
-/* ---------- HERO ---------- */
-
-.hero{
-  padding:100px 0 120px;
-  position:relative;
-  overflow:hidden;
-}
-
-.hero::before{
-  content:"";
-  position:absolute;
-  top:-100px;
-  right:-100px;
-  width:400px;
-  height:400px;
-  background:var(--soft-yellow);
-  border-radius:50%;
-  opacity:.6;
-  filter:blur(60px);
-  z-index:0;
-}
-
-.hero::after{
-  content:"";
-  position:absolute;
-  bottom:-80px;
-  left:-60px;
-  width:300px;
-  height:300px;
-  background:var(--soft-teal);
-  border-radius:50%;
-  opacity:.5;
-  filter:blur(50px);
-  z-index:0;
-}
-
-.hero .container{ position:relative; z-index:1; }
-
-.hero-grid{
+.home-grid{
   display:grid;
-  grid-template-columns:.55fr 1.45fr;
-  gap:72px;
-  align-items:center;
+  grid-template-columns:1.05fr .95fr;
+  gap:80px;
+  padding-bottom:88px;
+  border-bottom:1px solid var(--line);
+  margin-bottom:64px;
+}
+
+/* left column */
+
+.eyebrow-block{ margin-bottom:34px; }
+
+.eyebrow-tag{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:13px;
+  color:var(--accent);
+  border-bottom:1px solid var(--accent);
+  display:inline-block;
+  padding-bottom:4px;
+  margin-bottom:8px;
+}
+
+.eyebrow-sub{ font-size:14px; color:var(--muted); }
+
+.name-block{ margin-bottom:30px; }
+
+.name-block .l1{
+  font-family:'Playfair Display',serif;
+  font-weight:500;
+  font-size:74px;
+  line-height:1.02;
+  color:var(--ink);
+  letter-spacing:-.01em;
+  display:block;
+}
+
+.name-block .l2{
+  font-family:'Playfair Display',serif;
+  font-weight:400;
+  font-style:italic;
+  font-size:74px;
+  line-height:1.02;
+  color:var(--muted);
+  letter-spacing:-.01em;
+  display:block;
+}
+
+.formula{
+  font-family:'Playfair Display',serif;
+  font-style:italic;
+  font-size:19px;
+  color:var(--muted);
+  margin-bottom:36px;
+}
+.formula .accent{ color:var(--accent); }
+
+blockquote.pull{
+  border-left:2px solid var(--accent);
+  padding-left:22px;
+  margin-bottom:34px;
+}
+
+blockquote.pull p{
+  font-family:'Playfair Display',serif;
+  font-style:italic;
+  font-size:19px;
+  line-height:1.5;
+  color:var(--ink);
+  margin-bottom:10px;
+}
+
+blockquote.pull cite{
+  font-style:normal;
+  font-size:12.5px;
+  color:var(--muted);
 }
 
 .hero-photo{
   width:100%;
-  aspect-ratio:3/4;
-  border-radius:20px;
+  aspect-ratio:16/11;
+  background:var(--line);
   overflow:hidden;
-  background:var(--panel);
-  position:relative;
-  box-shadow:0 8px 40px rgba(26,26,26,0.1);
-  transition:all .4s ease;
-}
-
-.hero-photo:hover{
-  transform:translateY(-4px);
-  box-shadow:0 16px 48px rgba(26,26,26,0.14);
+  border-radius:2px;
 }
 
 .hero-photo img{
-  width:100%;
-  height:100%;
+  width:100%; height:100%;
   object-fit:cover;
   display:block;
-  filter:grayscale(30%);
-  transition:all .5s ease;
+  filter:grayscale(65%);
 }
 
-.hero-photo:hover img{
-  filter:grayscale(0%);
-  transform:scale(1.03);
-}
-
-.hero-photo.no-photo::after{
-  content:"Add your photo";
-  position:absolute;
-  inset:0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  padding:24px;
-  font-family:'IBM Plex Mono',monospace;
-  font-size:11px;
+.open-for{
+  margin-top:28px;
+  font-size:12.5px;
   color:var(--muted);
-  letter-spacing:.03em;
 }
+.open-for span.label{ color:var(--ink); font-weight:600; margin-right:8px; }
 
-.eyebrow{
-  font-size:12px;
+/* right column (sidebar) */
+
+.side-block{ margin-bottom:44px; }
+.side-block:last-child{ margin-bottom:0; }
+
+.side-head{
+  font-family:'Inter',sans-serif;
   font-weight:600;
+  font-size:16px;
   color:var(--ink);
-  text-transform:uppercase;
-  letter-spacing:.08em;
-  margin-bottom:20px;
-  display:inline-block;
-  padding:6px 16px;
-  background:var(--yellow);
-  border-radius:30px;
-}
-
-.hero h1{
-  font-family:'Fraunces',serif;
-  font-size:52px;
-  font-weight:700;
-  line-height:1.05;
-  color:var(--ink);
-  margin-bottom:8px;
-  letter-spacing:-.03em;
-}
-
-.hero-script{
-  font-family:'Caveat',cursive;
-  font-size:26px;
-  color:var(--muted);
-  margin-bottom:24px;
-  line-height:1.3;
-}
-
-.hero-meta{
-  font-size:13px;
-  color:var(--muted);
-  margin-bottom:28px;
-  display:flex;
-  align-items:center;
-  gap:12px;
-}
-
-.hero-meta::before{
-  content:"";
-  display:inline-block;
-  width:8px;
-  height:8px;
-  background:var(--teal);
-  border-radius:50%;
-  animation:pulse 2s ease infinite;
-}
-
-@keyframes pulse{
-  0%,100%{ opacity:1; transform:scale(1); }
-  50%{ opacity:.5; transform:scale(1.3); }
-}
-
-.hero p{
-  font-size:18px;
-  max-width:540px;
-  margin-bottom:20px;
-  line-height:1.7;
-}
-
-.hero-tagline{
-  font-family:'Caveat',cursive;
-  font-size:22px;
-  color:var(--ink);
-  margin-bottom:36px;
-  max-width:540px;
-}
-
-.buttons{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; }
-
-.btn{
-  padding:14px 32px;
-  border-radius:12px;
-  font-weight:600;
-  font-size:15px;
-  text-decoration:none;
-  transition:all .25s ease;
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-}
-
-.btn.primary{
-  background:var(--ink);
-  color:var(--card);
-  box-shadow:0 4px 16px rgba(26,26,26,0.2);
-}
-
-.btn.primary:hover{
-  background:var(--yellow);
-  color:var(--ink);
-  transform:translateY(-2px);
-  box-shadow:0 6px 24px rgba(255,225,53,0.35);
-}
-
-.btn.secondary{
-  background:transparent;
-  color:var(--ink);
-  border:2px solid var(--line);
-}
-
-.btn.secondary:hover{
-  background:var(--soft-teal);
-  border-color:var(--teal);
-  color:var(--ink);
-  transform:translateY(-2px);
-}
-
-.text-link{
-  font-size:14.5px;
-  font-weight:600;
-  color:var(--ink);
-  text-decoration:none;
-  border-bottom:2px solid var(--yellow);
-  padding-bottom:2px;
-  transition:all .2s ease;
-}
-
-.text-link:hover{
-  color:var(--teal);
-  border-bottom-color:var(--teal);
-}
-
-/* ---------- SECTION SHELL ---------- */
-
-section{ padding:100px 0; position:relative; }
-
-.section-label{
-  font-size:11px;
-  font-weight:700;
-  color:var(--ink);
-  text-transform:uppercase;
-  letter-spacing:.12em;
-  margin-bottom:16px;
-  display:inline-block;
-  padding:6px 14px;
-  background:var(--yellow);
-  border-radius:20px;
-}
-
-.section-label.center{ text-align:center; }
-
-.section-title{
-  font-family:'Fraunces',serif;
-  font-weight:700;
-  font-size:38px;
-  color:var(--ink);
-  margin-bottom:8px;
-  line-height:1.15;
-  letter-spacing:-.02em;
-}
-
-.section-title.center{ text-align:center; }
-
-.section-script{
-  font-family:'Caveat',cursive;
-  font-size:24px;
-  color:var(--muted);
-  margin-bottom:48px;
-  line-height:1.3;
-}
-
-.section-subtitle{
-  max-width:640px;
-  font-size:17px;
-  margin-bottom:56px;
-  line-height:1.7;
-}
-
-.section-subtitle.center{ text-align:center; margin-left:auto; margin-right:auto; }
-
-.gray{
-  background:var(--panel);
-  position:relative;
-}
-
-.gray::before{
-  content:"";
-  position:absolute;
-  top:0;
-  left:0;
-  right:0;
-  height:1px;
-  background:linear-gradient(90deg, transparent, var(--line), transparent);
-}
-
-.gray::after{
-  content:"";
-  position:absolute;
-  bottom:0;
-  left:0;
-  right:0;
-  height:1px;
-  background:linear-gradient(90deg, transparent, var(--line), transparent);
-}
-
-/* ---------- ABOUT ---------- */
-
-.about-body{ max-width:720px; }
-.about-body p{ font-size:17px; margin-bottom:24px; color:var(--ink); line-height:1.8; }
-.about-body p:last-child{ margin-bottom:0; }
-.about-body strong{ color:var(--ink); font-weight:600; }
-
-/* ---------- EXPERIENCE ---------- */
-
-.timeline{ max-width:800px; }
-
-.timeline-item{
-  display:grid;
-  grid-template-columns:140px 1fr;
-  gap:32px;
-  padding:36px 0;
   border-bottom:1px solid var(--line);
-  transition:all .3s ease;
-  position:relative;
-}
-
-.timeline-item::before{
-  content:"";
-  position:absolute;
-  left:-20px;
-  top:36px;
-  width:4px;
-  height:0;
-  background:var(--yellow);
-  border-radius:2px;
-  transition:height .4s ease;
-}
-
-.timeline-item:hover::before{
-  height:calc(100% - 72px);
-}
-
-.timeline-item:hover{
-  padding-left:8px;
-}
-
-.timeline-item:last-child{ border-bottom:none; }
-
-.timeline-date{
-  font-family:'IBM Plex Mono',monospace;
-  font-size:12px;
-  color:var(--teal);
-  padding-top:4px;
-  font-weight:600;
-}
-
-.timeline-role{
-  font-family:'Fraunces',serif;
-  font-weight:700;
-  font-size:20px;
-  color:var(--ink);
-  margin-bottom:4px;
-}
-
-.timeline-org{ font-size:15px; color:var(--muted); margin-bottom:10px; font-weight:500; }
-
-.timeline-desc{ font-size:15px; line-height:1.7; }
-
-.timeline-list{
-  list-style:none;
-  font-size:14.5px;
-  margin-top:12px;
-}
-
-.timeline-list li{
-  position:relative;
-  padding:6px 0 6px 22px;
-  line-height:1.7;
-}
-
-.timeline-list li::before{
-  content:"•";
-  position:absolute;
-  left:0;
-  color:var(--yellow);
-  font-size:20px;
-  line-height:1;
-}
-
-/* ---------- PROJECTS ---------- */
-
-.grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:28px; }
-
-.card{
-  background:var(--card);
-  padding:40px 36px;
-  border-radius:20px;
-  border:1px solid var(--line);
-  transition:all .4s ease;
-  position:relative;
-  overflow:hidden;
-}
-
-.card::before{
-  content:"";
-  position:absolute;
-  top:0; left:0;
-  width:100%; height:4px;
-  background:linear-gradient(90deg, var(--yellow), var(--teal));
-  transform:scaleX(0);
-  transform-origin:left;
-  transition:transform .4s ease;
-}
-
-.card:hover{
-  transform:translateY(-6px);
-  box-shadow:0 20px 48px rgba(26,26,26,0.08);
-  border-color:transparent;
-}
-
-.card:hover::before{
-  transform:scaleX(1);
-}
-
-.card .tag{
-  display:inline-block;
-  font-size:11px;
-  font-weight:700;
-  color:var(--ink);
-  background:var(--soft-yellow);
-  padding:5px 14px;
-  border-radius:20px;
-  margin-bottom:20px;
-  text-transform:uppercase;
-  letter-spacing:.06em;
-}
-
-.card h3{
-  font-family:'Fraunces',serif;
-  font-weight:700;
-  font-size:22px;
-  color:var(--ink);
+  padding-bottom:8px;
   margin-bottom:16px;
-  line-height:1.25;
 }
 
-.card p{ font-size:15px; line-height:1.7; }
+.side-list{ list-style:none; }
 
-.case-block{ margin-top:18px; }
-.case-block:first-of-type{ margin-top:20px; }
-.case-label{
-  font-size:10px;
-  color:var(--teal);
-  display:block;
-  margin-bottom:6px;
-  font-weight:700;
-  text-transform:uppercase;
-  letter-spacing:.08em;
-}
-.case-block p{ font-size:14px; color:var(--muted); line-height:1.7; }
-
-/* ---------- WRITING ---------- */
-
-.writing-card{
-  background:var(--card);
-  border:1px solid var(--line);
-  border-radius:16px;
-  padding:36px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:24px;
-  flex-wrap:wrap;
-  margin-bottom:16px;
-  transition:all .3s ease;
-  position:relative;
-}
-
-.writing-card::before{
-  content:"";
-  position:absolute;
-  left:0;
-  top:20px;
-  bottom:20px;
-  width:3px;
-  background:var(--yellow);
-  border-radius:2px;
-  opacity:0;
-  transition:opacity .3s ease;
-}
-
-.writing-card:hover{
-  transform:translateY(-3px);
-  box-shadow:0 12px 32px rgba(26,26,26,0.06);
-  border-color:transparent;
-}
-
-.writing-card:hover::before{
-  opacity:1;
-}
-
-.writing-card:last-child{ margin-bottom:0; }
-
-.writing-card h3{
-  font-family:'Fraunces',serif;
-  font-weight:700;
-  font-size:20px;
-  color:var(--ink);
-  margin-bottom:8px;
-}
-
-.writing-card p{ font-size:15px; line-height:1.6; }
-
-.writing-link{
-  font-family:'IBM Plex Mono',monospace;
-  font-size:12px;
-  color:var(--ink);
-  text-decoration:none;
-  border:1.5px solid var(--line);
-  padding:10px 20px;
-  border-radius:8px;
-  white-space:nowrap;
-  transition:all .25s ease;
-  font-weight:600;
-  text-transform:uppercase;
-  letter-spacing:.04em;
-}
-
-.writing-link:hover{
-  background:var(--yellow);
-  border-color:var(--yellow);
-  color:var(--ink);
-}
-
-/* ---------- SERVICES ---------- */
-
-.services-grid{
+.side-list li{
   display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:24px;
+  grid-template-columns:120px 1fr;
+  gap:16px;
+  padding:9px 0;
+  font-size:13.5px;
 }
 
-.service-card{
-  background:var(--card);
-  padding:36px 28px;
-  border-radius:20px;
-  border:1px solid var(--line);
-  transition:all .4s ease;
-  position:relative;
-  overflow:hidden;
-}
-
-.service-card::after{
-  content:"";
-  position:absolute;
-  bottom:0; left:0;
-  width:100%; height:4px;
-  background:linear-gradient(90deg, var(--yellow), var(--teal));
-  transform:scaleX(0);
-  transform-origin:left;
-  transition:transform .4s ease;
-}
-
-.service-card:hover{
-  transform:translateY(-6px);
-  box-shadow:0 20px 48px rgba(26,26,26,0.08);
-  border-color:transparent;
-}
-
-.service-card:hover::after{
-  transform:scaleX(1);
-}
-
-.service-card h3{
-  font-family:'Fraunces',serif;
-  font-weight:700;
-  font-size:20px;
-  color:var(--ink);
-  margin-bottom:12px;
-}
-
-.service-card p{ font-size:14.5px; color:var(--muted); line-height:1.7; }
-
-/* ---------- CONTACT ---------- */
-
-.contact-section{
-  text-align:center;
-}
-
-.contact-links{
-  display:flex;
-  gap:20px;
-  justify-content:center;
-  margin-top:24px;
-  flex-wrap:wrap;
-}
-
-.contact-links a{
+.side-list .slabel{
   font-family:'IBM Plex Mono',monospace;
-  font-size:13px;
-  color:var(--ink);
-  text-decoration:none;
-  border:1.5px solid var(--line);
-  padding:12px 24px;
-  border-radius:12px;
-  transition:all .25s ease;
+  font-size:11px;
   font-weight:600;
+  color:var(--accent);
+  text-align:right;
+  letter-spacing:.02em;
+  padding-top:1px;
 }
 
-.contact-links a:hover{
-  background:var(--yellow);
-  border-color:var(--yellow);
-  transform:translateY(-2px);
-  box-shadow:0 4px 16px rgba(255,225,53,0.25);
-}
+.side-list .svalue a{ transition:color .2s ease; }
+.side-list .svalue a:hover{ color:var(--accent); }
+.side-list .svalue strong{ font-weight:600; }
+.side-list .svalue .org{ color:var(--muted); }
+.side-list .svalue .note{ display:block; color:var(--muted); font-size:12.5px; margin-top:3px; }
 
-/* ---------- FOOTER ---------- */
-
-footer{ background:var(--ink); color:var(--bg); padding:56px 0 40px; }
-
-.footer-bottom{
-  font-size:12px;
+.side-more{
+  font-family:'Inter',sans-serif;
+  font-size:13px;
   color:var(--muted);
-  font-family:'IBM Plex Mono',monospace;
-  text-align:center;
-  letter-spacing:.04em;
+  margin-top:14px;
+  display:inline-block;
+}
+.side-more:hover{ color:var(--accent); }
+
+/* ---------- lower full-width sections ---------- */
+
+section.full{ padding-bottom:72px; }
+
+.section-head-full{ display:flex; align-items:baseline; justify-content:space-between; margin-bottom:26px; }
+.section-head-full h2{ font-family:'Playfair Display',serif; font-weight:500; font-size:30px; color:var(--ink); }
+.section-head-full a{ font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--muted); border-bottom:1px solid var(--line); text-transform:uppercase; letter-spacing:.05em; }
+.section-head-full a:hover{ color:var(--accent); border-color:var(--accent); }
+
+.hl{ color:var(--accent); font-weight:600; }
+
+.narrative{ display:flex; gap:48px; align-items:flex-start; flex-wrap:wrap-reverse; }
+.narrative-text{ flex:1 1 380px; min-width:0; }
+.narrative-text p{ font-size:16px; margin-bottom:16px; max-width:60ch; color:var(--ink); }
+.narrative-text p:last-child{ margin-bottom:0; }
+.narrative-photo{ width:190px; flex-shrink:0; aspect-ratio:3/4; background:var(--line); overflow:hidden; border-radius:2px; }
+.narrative-photo img{ width:100%; height:100%; object-fit:cover; display:block; filter:grayscale(60%); }
+
+.timeline-list{ list-style:none; margin-top:18px; }
+.timeline-list li{ padding:16px 0; border-top:1px solid var(--line); font-size:14.5px; }
+.timeline-list li:first-child{ border-top:none; padding-top:0; }
+.timeline-head{ display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; }
+.timeline-head .tlabel{ font-family:'IBM Plex Mono',monospace; font-size:11.5px; font-weight:600; color:var(--accent); }
+.timeline-head strong{ font-weight:600; }
+.timeline-head .org{ color:var(--muted); }
+.timeline-list .note{ display:block; color:var(--muted); font-size:13.5px; margin-top:5px; max-width:60ch; }
+.role-subs{ margin-top:10px; display:grid; grid-template-columns:1fr 1fr; gap:14px 40px; }
+.role-sub h4{ font-family:'IBM Plex Mono',monospace; font-size:10.5px; font-weight:600; color:var(--accent); text-transform:uppercase; letter-spacing:.04em; margin-bottom:4px; }
+.role-sub ul{ list-style:none; }
+.role-sub li{ font-size:13.5px; color:var(--muted); line-height:1.5; padding-left:14px; position:relative; margin-bottom:3px; max-width:none; border:none; padding-top:0; padding-bottom:0; }
+.role-sub li:last-child{ margin-bottom:0; }
+.role-sub li::before{ content:"–"; position:absolute; left:0; color:var(--accent); }
+@media(max-width:760px){ .role-subs{ grid-template-columns:1fr; } }
+
+.writing-list{ list-style:none; }
+.writing-list li{ padding:18px 0; border-top:1px solid var(--line); }
+.writing-list li:first-child{ border-top:none; padding-top:0; }
+.writing-list a{ display:flex; gap:20px; align-items:baseline; width:100%; }
+.writing-list .wtitle{ font-size:16.5px; transition:color .2s ease; font-weight:500; }
+.writing-list a:hover .wtitle{ color:var(--accent); }
+.writing-list .wmeta{ font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:600; color:var(--accent); white-space:nowrap; margin-left:auto; text-transform:uppercase; letter-spacing:.05em; }
+.writing-list .wdesc{ font-size:14px; color:var(--muted); margin-top:6px; max-width:56ch; }
+
+.offer-grid{ list-style:none; display:grid; grid-template-columns:1fr 1fr; gap:0 40px; }
+.offer-grid li{ padding:22px 0; border-top:1px solid var(--line); }
+.offer-grid li:nth-child(-n+2){ padding-top:0; border-top:none; }
+.offer-grid h3{ font-family:'Playfair Display',serif; font-weight:500; font-size:18px; margin-bottom:6px; }
+.offer-grid p{ font-size:14.5px; color:var(--muted); max-width:none; }
+
+.plain-list{ list-style:none; display:grid; grid-template-columns:1fr 1fr 1fr; gap:0 32px; }
+.plain-list li{ font-size:14.5px; padding:9px 0; border-top:1px solid var(--line); }
+.plain-list li:nth-child(-n+3){ border-top:none; padding-top:0; }
+@media(max-width:760px){
+  .offer-grid{ grid-template-columns:1fr; }
+  .offer-grid li:nth-child(-n+2){ padding-top:22px; border-top:1px solid var(--line); }
+  .offer-grid li:first-child{ padding-top:0; border-top:none; }
+  .plain-list{ grid-template-columns:1fr; }
+  .plain-list li:nth-child(-n+3){ padding-top:9px; border-top:1px solid var(--line); }
+  .plain-list li:first-child{ border-top:none; padding-top:0; }
 }
 
-/* ---------- SCROLL TO TOP ---------- */
+.cta-block{ margin-top:8px; padding:26px; background:var(--accent-soft); border-radius:2px; }
+.cta-block p{ font-size:14.5px; margin-bottom:14px; }
+.cta-block p:last-child{ margin-bottom:0; }
+.cta-block a.btn-link{ font-size:13.5px; font-weight:600; color:var(--accent); border-bottom:1px solid var(--accent); padding-bottom:2px; }
 
-.scroll-top{
-  position:fixed;
-  bottom:32px;
-  right:32px;
-  width:48px;
-  height:48px;
-  background:var(--yellow);
-  color:var(--ink);
-  border:none;
-  border-radius:50%;
-  cursor:pointer;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:18px;
-  opacity:0;
-  visibility:hidden;
-  transition:all .3s ease;
-  box-shadow:0 4px 16px rgba(255,225,53,0.35);
-  z-index:998;
+/* ---------- footer ---------- */
+
+footer{ border-top:1px solid var(--line); padding:36px 0 48px; }
+footer .wrap{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; }
+.footer-loc{ font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--muted); }
+.footer-links{ display:flex; gap:22px; }
+.footer-links a{ font-size:13px; color:var(--muted); border-bottom:1px solid transparent; padding-bottom:2px; transition:color .2s ease, border-color .2s ease; }
+.footer-links a:hover{ color:var(--ink); border-color:var(--accent); }
+.copyright{ font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--muted); margin-top:20px; }
+
+/* ---------- responsive ---------- */
+
+@media(max-width:860px){
+  .home-grid{ grid-template-columns:1fr; gap:48px; }
+  .name-block .l1, .name-block .l2{ font-size:56px; }
 }
 
-.scroll-top.visible{
-  opacity:1;
-  visibility:visible;
-}
-
-.scroll-top:hover{
-  transform:translateY(-3px);
-  background:var(--teal);
-  color:var(--card);
-  box-shadow:0 6px 20px rgba(0,180,180,0.3);
-}
-
-/* ---------- RESPONSIVE ---------- */
-
-@media(max-width:1024px){
-  .services-grid{ grid-template-columns:repeat(2,1fr); }
-}
-
-@media(max-width:900px){
-  .hero-grid{ grid-template-columns:1fr; text-align:center; }
-  .hero-photo{ max-width:280px; margin:0 auto; aspect-ratio:3/4; }
-  .hero h1{ font-size:40px; }
-  .hero p{ margin-left:auto; margin-right:auto; }
-  .hero-tagline{ margin-left:auto; margin-right:auto; }
-  .buttons{ justify-content:center; }
-  header nav{ flex-direction:column; gap:16px; }
-  nav ul{ flex-wrap:wrap; justify-content:center; gap:20px; }
-  .grid{ grid-template-columns:1fr; }
-  .timeline-item{ grid-template-columns:1fr; gap:8px; }
-  .timeline-item::before{ display:none; }
-}
-
-@media(max-width:640px){
-  .services-grid{ grid-template-columns:1fr; }
-  .hero h1{ font-size:32px; }
-  .hero-script{ font-size:22px; }
-  section{ padding:64px 0; }
-  .section-title{ font-size:28px; }
-  .writing-card{ flex-direction:column; align-items:flex-start; }
-  .writing-card::before{ display:none; }
+@media(max-width:560px){
+  .name-block .l1, .name-block .l2{ font-size:42px; }
+  .narrative{ flex-direction:column-reverse; }
+  .narrative-photo{ width:120px; }
+  .side-list li{ grid-template-columns:1fr; gap:3px; }
+  .side-list .slabel{ text-align:left; }
+  .timeline-head{ gap:8px; }
+  header .wrap{ flex-direction:column; align-items:flex-start; }
+  header nav{ gap:18px; flex-wrap:wrap; }
 }
 
 </style>
-<base target="_blank">
-<base target="_blank">
 </head>
 <body>
 
-<header id="main-header">
-  <div class="container">
+<header>
+  <div class="wrap">
+    <a href="#top" class="logo">Saniamo Mercy</a>
     <nav>
-      <a href="#" class="logo">Saniamo Mercy</a>
-      <ul id="nav-menu">
-        <li><a href="#about">About</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#approach">Approach</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#writing">Writing</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-      <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
+      <a href="#writing">Writing</a>
+      <a href="#about">Who I Am</a>
+      <a href="#services">Services</a>
     </nav>
   </div>
 </header>
 
-<section class="hero">
-  <div class="container hero-grid">
-    <div class="hero-photo">
-      <img src="saniamo.jpg" alt="Saniamo Mercy" onerror="this.style.display='none'">
-    </div>
+<main id="top">
+  <div class="wrap">
 
-    <div class="hero-content">
-      <div class="eyebrow">Monitoring, Evaluation & Learning / AI for Evaluation</div>
-      <h1>Saniamo Mercy</h1>
-      <div class="hero-script">Evidence systems that actually work</div>
-      <div class="hero-meta mono">Nairobi, Kenya</div>
-      <p>
-        I build evidence systems that actually work. Not the kind that sit in a folder and collect dust, but the kind that help teams make better decisions, defend their results to donors, and learn what is actually moving the needle.
-      </p>
-      <div class="hero-tagline">I use AI to speed up the boring parts of evaluation so I can focus on the thinking part.</div>
-      <div class="buttons">
-        <a href="#projects" class="btn primary">See My Work</a>
-        <a href="mailto:saniamomercy@gmail.com" class="btn secondary">Get in touch</a>
+    <div class="home-grid">
+
+      <div class="hero-left">
+        <div class="eyebrow-block">
+          <span class="eyebrow-tag mono">(MEL + data systems)</span>
+        </div>
+
+        <div class="name-block">
+          <span class="l1">Saniamo</span>
+          <span class="l2">Mercy</span>
+        </div>
+
+        <p class="formula">(evaluation + learning) <span class="accent">×</span> research</p>
+
+        <blockquote class="pull">
+          <p>"How do we know we're actually making a difference?"</p>
+          <cite>— the question behind all of this work</cite>
+        </blockquote>
+
+        <div class="hero-photo">
+          <img src="saniamo.jpg" alt="Saniamo Mercy" onerror="this.style.display='none'">
+        </div>
+
+        <div class="who-i-am" style="margin-top:34px;">
+          <h2 style="font-family:'Playfair Display',serif; font-weight:500; font-size:24px; color:var(--ink); margin-bottom:16px;">Who I am</h2>
+          <p style="font-size:15px; margin-bottom:14px; max-width:52ch;">I work in monitoring, <span class="hl">evaluation</span>, <span class="hl">research</span> and <span class="hl">learning</span> because I'm interested in one thing: understanding whether programmes are actually making a difference.</p>
+          <p style="font-size:15px; margin-bottom:14px; max-width:52ch;">I enjoy asking questions, looking for patterns, and turning evidence into something people can use. Good evaluation isn't about proving success. It's about understanding what happened, why it happened, and what to do next.</p>
+          <p style="font-size:15px; margin-bottom:0; max-width:52ch;">More recently, I've been exploring how AI fits into that process. I don't think it replaces evaluators. I think it helps us spend less time cleaning data, writing the same reports, and repeating routine tasks, leaving more time to think, learn, and make better decisions.</p>
+        </div>
       </div>
-    </div>
-  </div>
-</section>
 
-<section id="about">
-  <div class="container">
-    <div class="section-label">About</div>
-    <h2 class="section-title">A bit about me</h2>
-    <div class="section-script">From messy data to clear decisions</div>
+      <div class="hero-right">
 
-    <div class="about-body">
-      <p>
-        I got into this work because I was tired of seeing good programmes struggle to prove they were working. Too many organisations collect data because someone told them to, not because they have a real question they are trying to answer. I help fix that.
-      </p>
-      <p>
-        My background is in GIS and spatial analysis, which taught me to look past single numbers and see the patterns underneath. Whether I am designing a theory of change, running a matched pair impact analysis, or rebuilding a dashboard that has not been touched in two years, I am always asking: what decision will this evidence actually change?
-      </p>
-      <p>
-        I am based in Nairobi and have worked across Kenya, Uganda, Nigeria, Ghana, Rwanda and Ethiopia. I am comfortable working remotely, independently, and across time zones. I also write about data, evaluation and AI at
-        <a href="https://medium.com/@everythingdata" target="_blank" style="color:var(--ink); font-weight:600; border-bottom:2px solid var(--yellow); text-decoration:none; padding-bottom:1px;">@_everythingdata</a>.
-      </p>
-    </div>
-  </div>
-</section>
+        <div class="side-block">
+          <div class="side-head">Latest</div>
+          <ul class="side-list">
+            <li>
+              <span class="slabel mono">MEASUREMENT</span>
+              <span class="svalue"><a href="https://medium.com/@everythingdata/when-measurement-becomes-surveillance-91a52b53c8c9" target="_blank">When Measurement Becomes Surveillance</a></span>
+            </li>
+            <li>
+              <span class="slabel mono">STRATEGY</span>
+              <span class="svalue"><a href="https://medium.com/@everythingdata/why-adaptive-management-is-not-optional-a617231ca0f4" target="_blank">Why Adaptive Management Is Not Optional</a></span>
+            </li>
+          </ul>
+          <a href="#writing" class="side-more">All writing →</a>
+        </div>
 
-<section class="gray" id="experience">
-  <div class="container">
-    <div class="section-label">Experience</div>
-    <h2 class="section-title">Where I have worked</h2>
-    <div class="section-script">Turning complexity into career clarity</div>
-
-    <div class="timeline">
-      <div class="timeline-item">
-        <div class="timeline-date mono">CURRENT</div>
-        <div>
-          <div class="timeline-role">MEL Manager</div>
-          <div class="timeline-org">African Management Institute</div>
-          <div class="timeline-desc">Lead the organisation's MEL function across a multi-country portfolio funded by Mastercard Foundation, Argidius Foundation, and other bilateral donors.</div>
-          <ul class="timeline-list">
-            <li>Design and manage MEL frameworks for programmes reaching over 40,000 entrepreneurs across 39 countries, ensuring donor accountability and organisational learning</li>
-            <li>Build and maintain live dashboards in Power BI, Metabase and Google Sheets/Apps Script, replacing static reporting with real-time visibility into programme performance</li>
-            <li>Lead impact analyses using matched-pair and outlier-adjusted methodologies, producing evidence that holds up under scrutiny from donors like Mastercard Foundation and the World Bank</li>
-            <li>Manage data collection systems across KoboToolbox, ODK, SurveyMonkey and Google Forms, including data protection compliance under Kenya's Data Protection Act</li>
-            <li>Turn evaluation findings into reporting that shapes decisions for programme teams, leadership and donors, rather than sitting in an inbox</li>
+        <div class="side-block">
+          <div class="side-head">Now</div>
+          <ul class="side-list">
+            <li>
+              <span class="slabel mono">MERL MANAGER</span>
+              <span class="svalue"><strong>African Management Institute</strong><span class="note">Multi-country portfolio for Mastercard Foundation, Argidius Foundation and other donors.</span></span>
+            </li>
+            <li>
+              <span class="slabel mono">WRITING</span>
+              <span class="svalue"><strong>@_everythingdata</strong><span class="note">Data literacy, evaluation and tech policy.</span></span>
+            </li>
           </ul>
         </div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-date mono">PRIOR</div>
-        <div>
-          <div class="timeline-role">MEL Officer</div>
-          <div class="timeline-org">African Management Institute</div>
-          <div class="timeline-desc">Supported MEL system design during a period of rapid programme growth, laying groundwork that carried into the MEL Manager role.</div>
-          <ul class="timeline-list">
-            <li>Developed MEL plans and indicator frameworks for new programme launches, so teams had a results structure in place from day one instead of retrofitting one later</li>
-            <li>Designed and administered survey instruments and consent processes for programme participants, balancing data quality with participant protection</li>
-            <li>Led analysis of AMI's Annual Impact Survey (1,392 respondents), distilling findings into a 12-slide presentation that informed leadership's programme decisions</li>
-            <li>Ran data quality assurance across programme datasets, catching issues before they reached donors and clients</li>
+
+        <div class="side-block">
+          <div class="side-head">Before</div>
+          <ul class="side-list">
+            <li>
+              <span class="slabel mono">MEL OFFICER</span>
+              <span class="svalue"><strong>African Management Institute</strong></span>
+            </li>
+            <li>
+              <span class="slabel mono">DATA COORD.</span>
+              <span class="svalue"><strong>UNDP</strong></span>
+            </li>
+            <li>
+              <span class="slabel mono">RESEARCH OFFICER</span>
+              <span class="svalue"><strong>Kenya Forest Service</strong></span>
+            </li>
           </ul>
         </div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-date mono">2021</div>
-        <div>
-          <div class="timeline-role">Data Coordinator Consultant (concurrent)</div>
-          <div class="timeline-org">UNDP</div>
-          <ul class="timeline-list">
-            <li>Coordinated data systems and reporting for UNDP alongside my substantive MEL role at AMI</li>
+
+        <div class="side-block">
+          <div class="side-head">Education</div>
+          <ul class="side-list">
+            <li>
+              <span class="slabel mono">BSC</span>
+              <span class="svalue"><strong>Environmental Planning &amp; Management</strong><span class="org">Kenyatta University</span></span>
+            </li>
           </ul>
         </div>
+
       </div>
     </div>
+
   </div>
-</section>
 
-<section id="approach">
-  <div class="container">
-    <div class="section-label">How I Think</div>
-    <h2 class="section-title">Frameworks & Methods</h2>
-    <div class="section-script">Match the method to the question, not the tool to the dataset</div>
+  <div class="wrap wrap-wide">
+    <section class="full" id="about">
+      <div class="section-head-full">
+        <h2>The timeline</h2>
+      </div>
+      <ul class="timeline-list">
+        <li>
+          <div class="timeline-head">
+            <span class="tlabel">2024–</span>
+            <span><strong>African Management Institute</strong> <span class="org">— MERL Manager</span></span>
+          </div>
+          <div class="role-subs">
+            <div class="role-sub">
+              <h4>Leadership</h4>
+              <ul>
+                <li>Lead the organisation's MERL function across a multi-country portfolio funded by the Mastercard Foundation, Argidius Foundation, and other development partners.</li>
+                <li>Support programmes reaching 40,000+ entrepreneurs across 10+ African countries.</li>
+              </ul>
+            </div>
+            <div class="role-sub">
+              <h4>Research &amp; Evaluation</h4>
+              <ul>
+                <li>Design MERL frameworks, theories of change, indicators, and evaluation plans.</li>
+                <li>Lead research, data analysis, and synthesis to understand programme outcomes and impact.</li>
+              </ul>
+            </div>
+            <div class="role-sub">
+              <h4>Data &amp; Systems</h4>
+              <ul>
+                <li>Build live dashboards and automated reporting systems using Power BI, Metabase, Google Sheets, and Apps Script.</li>
+                <li>Oversee data collection across KoboToolbox, ODK, SurveyMonkey, and Google Forms while ensuring data quality and data protection compliance.</li>
+              </ul>
+            </div>
+            <div class="role-sub">
+              <h4>Learning &amp; Impact</h4>
+              <ul>
+                <li>Lead donor impact reporting and evidence synthesis.</li>
+                <li>Produce learning briefs and evaluation reports that inform programme decisions and organisational strategy.</li>
+              </ul>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="timeline-head">
+            <span class="tlabel">2023–24</span>
+            <span><strong>African Management Institute</strong> <span class="org">— MEL Officer</span></span>
+          </div>
+        </li>
+        <li>
+          <div class="timeline-head">
+            <span class="tlabel">2021–23</span>
+            <span><strong>UNDP</strong> <span class="org">— Data Coordinator Consultant</span></span>
+          </div>
+        </li>
+        <li>
+          <div class="timeline-head">
+            <span class="tlabel">Before</span>
+            <span><strong>Kenya Forest Service</strong> <span class="org">— Research Officer</span></span>
+          </div>
+        </li>
+      </ul>
 
-    <div class="grid">
-      <div class="card">
-        <span class="tag mono">THEORY & DESIGN</span>
-        <h3>Planning Frameworks</h3>
-        <div class="case-block">
-          <span class="case-label mono">WHAT I USE</span>
-          <p>Theory of Change (DCED standards), Results Frameworks, Logframes, IPTTs, Learning Agendas, and Contribution Analysis (Mayne).</p>
-        </div>
-        <div class="case-block">
-          <span class="case-label mono">WHEN I USE THEM</span>
-          <p>At programme design or mid-course review, when teams need to articulate how change happens, define what success looks like, and build a shared language before data collection begins.</p>
-        </div>
+      <div class="section-head-full" style="margin-top:44px;">
+        <h2 style="font-size:22px; font-style:italic; font-weight:500;">Education</h2>
       </div>
-      <div class="card">
-        <span class="tag mono">EVALUATION</span>
-        <h3>Evaluation Methods</h3>
-        <div class="case-block">
-          <span class="case-label mono">WHAT I USE</span>
-          <p>Outcome Harvesting (Wilson-Grau), Process Tracing (Beach & Pedersen), Contribution Analysis, Quasi-experimental designs (matched pairs, difference-in-differences), and OECD DAC criteria.</p>
-        </div>
-        <div class="case-block">
-          <span class="case-label mono">WHEN I USE THEM</span>
-          <p>When programmes need credible evidence of contribution or attribution, balancing rigour with the practical constraints of real-world implementation.</p>
-        </div>
-      </div>
-      <div class="card">
-        <span class="tag mono">DATA & SYSTEMS</span>
-        <h3>Data Quality & Systems</h3>
-        <div class="case-block">
-          <span class="case-label mono">WHAT I USE</span>
-          <p>OECD DAC data quality standards (validity, reliability, precision, integrity, timeliness), data protection frameworks (Kenya Data Protection Act, GDPR principles), and systems thinking for M&E architecture.</p>
-        </div>
-        <div class="case-block">
-          <span class="case-label mono">WHEN I USE THEM</span>
-          <p>When building or rebuilding evidence systems, ensuring data is not just collected, but trustworthy, protected, and structured to answer the questions stakeholders actually ask.</p>
-        </div>
-      </div>
-      <div class="card">
-        <span class="tag mono">TOOLS & PLATFORMS</span>
-        <h3>Technical Stack</h3>
-        <div class="case-block">
-          <span class="case-label mono">VISUALISATION & DASHBOARDS</span>
-          <p>Power BI, Metabase, Google Sheets / Apps Script, Tableau</p>
-        </div>
-        <div class="case-block">
-          <span class="case-label mono">DATA COLLECTION</span>
-          <p>KoboToolbox, ODK, SurveyMonkey, Google Forms</p>
-        </div>
-        <div class="case-block">
-          <span class="case-label mono">ANALYSIS & AUTOMATION</span>
-          <p>Python, R, SQL, GIS / Spatial Analysis, AI-assisted reporting workflows</p>
-        </div>
-      </div>
-    </div>
+      <ul class="timeline-list">
+        <li>
+          <div class="timeline-head">
+            <span class="tlabel">BSc</span>
+            <span><strong>Environmental Planning &amp; Management</strong> <span class="org">— Kenyatta University</span></span>
+          </div>
+        </li>
+        <li>
+          <div class="timeline-head">
+            <span class="tlabel">2022</span>
+            <span><strong>Tech4Dev</strong> <span class="org">— Data Science and AI</span></span>
+          </div>
+        </li>
+      </ul>
+    </section>
   </div>
-</section>
 
-<section class="gray" id="projects">
-  <div class="container">
-    <div class="section-label">Selected Work</div>
-    <h2 class="section-title">Projects & case studies</h2>
-    <div class="section-script">Real engagements, real results</div>
-
-    <div class="grid">
-      <div class="card">
-        <span class="tag mono">MEL DESIGN</span>
-        <h3>MSME Empowerment Programme</h3>
-        <div class="case-block">
-          <span class="case-label mono">MY ROLE</span>
-          <p>MEL lead. Designed the framework end to end and owned it through rollout for a programme supporting MSMEs across multiple African markets.</p>
-        </div>
-        <div class="case-block">
-          <span class="case-label mono">CHALLENGE</span>
-          <p>The programme needed to demonstrate job creation, revenue growth and access to finance outcomes for underserved entrepreneurs, with donors requiring rigorous evidence of development impact alongside financial returns.</p>
-        </div>
-        <div class="case-block">
-          <span class="case-label mono">APPROACH</span>
-          <p>Designed a results framework tracking employment, revenue and finance access indicators, with a dedicated survey instrument structured for comparability across countries and aligned with donor impact reporting requirements.</p>
-        </div>
-        <div class="case-block">
-          <span class="case-label mono">IMPACT</span>
-          <p>Gave the programme team and donor stakeholders a single, comparable view of performance across markets, with evidence structured for donor reporting and internal learning.</p>
-        </div>
+  <div class="wrap">
+    <section class="full" id="writing">
+      <div class="section-head-full">
+        <h2>Writing</h2>
       </div>
-      <div class="card">
-        <span class="tag mono">ACCESS TO FINANCE</span>
-        <h3>Youth Finance Programme / Rwanda</h3>
-        <div class="case-block">
-          <span class="case-label mono">MY ROLE</span>
-          <p>MEL lead for a youth-focused access to finance initiative in rural Rwanda, designing monitoring systems and tracking finance uptake among young entrepreneurs.</p>
-        </div>
-        <div class="case-block">
-          <span class="case-label mono">CHALLENGE</span>
-          <p>Youth in rural Rwanda faced significant barriers accessing formal financial services. The programme needed to track not just loan disbursements but actual business outcomes and repayment behaviour among first-time borrowers.</p>
-        </div>
-        <div class="case-block">
-          <span class="case-label mono">APPROACH</span>
-          <p>Built a monitoring framework tracking finance access, business performance and youth employment outcomes. Designed survey instruments capturing both quantitative uptake data and qualitative barriers faced by young entrepreneurs in hard-to-reach areas.</p>
-        </div>
-        <div class="case-block">
-          <span class="case-label mono">IMPACT</span>
-          <p>Provided the programme team and stakeholders with evidence on what worked for youth finance access in rural settings, informing adjustments to product design and outreach strategy.</p>
-        </div>
-      </div>
-      <div class="card">
-        <span class="tag mono">ANALYSIS</span>
-        <h3>FIRST+II Impact Analysis / CapPlus & Mastercard Foundation</h3>
-        <div class="case-block">
-          <span class="case-label mono">MY ROLE</span>
-          <p>Designed and ran the analysis that underpinned the report's headline findings.</p>
-        </div>
-        <div class="case-block">
-          <span class="case-label mono">CHALLENGE</span>
-          <p>The annual impact report needed credible, defensible evidence of business growth in revenue, profit and employment that could withstand scrutiny.</p>
-        </div>
-        <div class="case-block">
-          <span class="case-label mono">APPROACH</span>
-          <p>Selected a matched-pair design over simple pre-post comparison to control for selection bias. Used CAGR methodology with IQR-based outlier removal to keep comparisons statistically sound and guard against skew from extreme values.</p>
-        </div>
-        <div class="case-block">
-          <span class="case-label mono">WHY THIS METHOD</span>
-          <p>Pre-post comparisons risk confounding from external economic shocks. Matched pairs isolate programme effect by comparing similar beneficiaries and non-beneficiaries, strengthening causal claims under donor scrutiny.</p>
-        </div>
-        <div class="case-block">
-          <span class="case-label mono">IMPACT</span>
-          <p>Formed the analytical backbone of the FIRST+II Annual Impact Report delivered to CapPlus and Mastercard Foundation.</p>
-        </div>
-      </div>
-      <div class="card">
-        <span class="tag mono">RESEARCH</span>
-        <h3>When Measurement Becomes Surveillance</h3>
-        <p>On how tracking systems reshape the behaviour they were meant to observe. When people know they are being measured, they adjust. Over time, what is measured becomes what is optimized, and what is optimized becomes what is valued. External measures begin to replace internal judgment. This is cognitive capture.</p>
-        <a href="https://medium.com/@everythingdata/when-measurement-becomes-surveillance-91a52b53c8c9" target="_blank" class="text-link" style="font-size:13px; margin-top:14px; display:inline-block;">Read the essay</a>
-      </div>
-    </div>
+      <ul class="writing-list">
+        <li>
+          <a href="https://medium.com/@everythingdata/when-measurement-becomes-surveillance-91a52b53c8c9" target="_blank">
+            <span class="wtitle">When Measurement Becomes Surveillance</span>
+            <span class="wmeta">Measurement</span>
+          </a>
+          <div class="wdesc">On how tracking systems reshape the behaviour they were meant to observe, and what happens when external measures start to replace internal judgment.</div>
+        </li>
+        <li>
+          <a href="https://medium.com/@everythingdata/why-adaptive-management-is-not-optional-a617231ca0f4" target="_blank">
+            <span class="wtitle">Why Adaptive Management Is Not Optional</span>
+            <span class="wmeta">Strategy</span>
+          </a>
+          <div class="wdesc">Strategy is a hypothesis, not a contract with the future. Every strategy rests on assumptions, and assumptions have a shelf life.</div>
+        </li>
+      </ul>
+      <p style="font-size:14.5px; color:var(--muted); margin-top:22px;">More at <a href="https://medium.com/@everythingdata" target="_blank" style="border-bottom:1px solid var(--line); color:var(--ink);">@_everythingdata</a> on Medium.</p>
+    </section>
   </div>
-</section>
 
-<section id="writing">
-  <div class="container">
-    <div class="section-label">Writing</div>
-    <h2 class="section-title">Insights & essays</h2>
-    <div class="section-script">Thinking out loud about evidence, AI and systems</div>
+  <div class="wrap wrap-wide">
 
-    <div class="writing-card">
-      <div>
-        <h3>Why Adaptive Management Is Not Optional</h3>
-        <p>Strategy is a hypothesis, not a contract with the future. Every strategy is built on assumptions, and assumptions have a shelf life. Adaptive management is the discipline of responding to that reality.</p>
+    <section class="full" id="services">
+      <div class="section-head-full">
+        <h2>How I Can Help</h2>
       </div>
-      <a href="https://medium.com/@everythingdata/why-adaptive-management-is-not-optional-a617231ca0f4" target="_blank" class="writing-link">Read on Medium</a>
-    </div>
-    <div class="writing-card">
-      <div>
-        <h3>@_everythingdata</h3>
-        <p>Ongoing writing on data literacy, evaluation and tech policy.</p>
+      <p style="font-size:16px; max-width:70ch; margin-bottom:28px;">I help organisations build evidence they can trust and use. Whether you're designing a new programme, evaluating an existing one, or exploring how AI fits into your MERL practice, my focus is the same: build systems that produce better evidence and make it easier for people to act on it.</p>
+      <ul class="offer-grid">
+        <li>
+          <h3>Build MERL Systems</h3>
+          <p>From theories of change and logframes to indicator frameworks and learning agendas, I design MERL systems that support accountability without becoming paperwork exercises.</p>
+        </li>
+        <li>
+          <h3>Design Evaluations</h3>
+          <p>I design evaluations that answer meaningful questions. My work includes evaluation planning, outcome harvesting, mixed-methods research, evidence synthesis, and impact analysis that helps organisations understand what is changing and why.</p>
+        </li>
+        <li>
+          <h3>Turn Data Into Decisions</h3>
+          <p>I build dashboards and reporting systems that make evidence easier to understand. Instead of static reports, teams get live insights they can use to monitor progress, identify challenges, and support better decisions.</p>
+        </li>
+        <li>
+          <h3>Apply AI to Evaluation</h3>
+          <p>AI should reduce repetitive work, not replace professional judgement. I help organisations integrate AI into their evaluation workflows to improve evidence synthesis, automate routine tasks, strengthen reporting, and give teams more time for learning and analysis.</p>
+        </li>
+      </ul>
+
+      <div class="section-head-full" style="margin-top:44px;">
+        <h2 style="font-size:22px; font-style:italic; font-weight:500;">Typical Engagements</h2>
       </div>
-      <a href="https://medium.com/@everythingdata" target="_blank" class="writing-link">More on Medium</a>
-    </div>
+      <ul class="plain-list">
+        <li>Designing MERL systems for new programmes</li>
+        <li>Independent evaluations and evidence synthesis</li>
+        <li>Dashboard and reporting system development</li>
+        <li>AI strategy for monitoring, evaluation, research, and learning</li>
+        <li>Strengthening existing MERL systems</li>
+      </ul>
+
+      <div class="cta-block" style="margin-top:32px;">
+        <p>If something here is a fit, send a note with a line or two about what you're working on.</p>
+        <a href="mailto:saniamomercy@gmail.com" class="btn-link">saniamomercy@gmail.com →</a>
+      </div>
+    </section>
+
   </div>
-</section>
+</main>
 
-<section class="gray" id="services">
-  <div class="container">
-    <div class="section-label center">Services</div>
-    <h2 class="section-title center">What I can do for you</h2>
-    <div class="section-script center" style="text-align:center;">Evidence systems that support real decisions</div>
-
-    <div class="services-grid">
-      <div class="service-card">
-        <h3>MEL System Design</h3>
-        <p>Logframes, IPTTs, theory of change, indicator frameworks, and learning agendas built from the ground up for programmes that need to show results and actually learn from them.</p>
-      </div>
-      <div class="service-card">
-        <h3>Evaluation Design</h3>
-        <p>Evaluation planning, outcome harvesting, evidence synthesis, and impact analysis designed to answer the question stakeholders are actually asking, not just tick a box.</p>
-      </div>
-      <div class="service-card">
-        <h3>Dashboards & Data Systems</h3>
-        <p>Power BI, Metabase, Google Sheets/Apps Script builds that replace static reporting with live, interactive views programme teams and donors can actually use.</p>
-      </div>
-      <div class="service-card">
-        <h3>Advisory & Consulting</h3>
-        <p>Ad hoc MEL, data strategy or AI-for-evaluation advisory for teams that need an external eye on their evidence systems or help making sense of messy programme data.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="contact">
-  <div class="container contact-section">
-    <div class="section-label center">Get In Touch</div>
-    <h2 class="section-title center">Let us talk</h2>
-    <div class="section-script center" style="text-align:center;">Designing a new MEL system? Let us figure it out together</div>
-    <div class="contact-links">
-      <a href="mailto:saniamomercy@gmail.com">saniamomercy@gmail.com</a>
+<footer>
+  <div class="wrap">
+    <span class="footer-loc">Nairobi, Kenya</span>
+    <div class="footer-links">
+      <a href="mailto:saniamomercy@gmail.com">Email</a>
       <a href="https://www.linkedin.com/in/saniamomercy/" target="_blank">LinkedIn</a>
       <a href="https://www.instagram.com/_everythingdata/" target="_blank">Instagram</a>
     </div>
   </div>
-</section>
-
-<footer>
-  <div class="container">
-    <div class="footer-bottom">&copy; 2026 SANIAMO MERCY — MEL &middot; DATA SYSTEMS &middot; EVALUATION</div>
+  <div class="wrap">
+    <div class="copyright">SANIAMO MERCY © 2026</div>
   </div>
 </footer>
-
-<button class="scroll-top" id="scroll-top" aria-label="Scroll to top">&#8593;</button>
-
-<script>
-// Header shadow on scroll
-const header = document.getElementById('main-header');
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 20) {
-    header.classList.add('scrolled');
-  } else {
-    header.classList.remove('scrolled');
-  }
-});
-
-// Scroll to top button
-const scrollTopBtn = document.getElementById('scroll-top');
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 500) {
-    scrollTopBtn.classList.add('visible');
-  } else {
-    scrollTopBtn.classList.remove('visible');
-  }
-});
-scrollTopBtn.addEventListener('click', () => {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-});
-
-// Smooth scroll for nav links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function(e) {
-    const href = this.getAttribute('href');
-    if (href === '#') return;
-    e.preventDefault();
-    const target = document.querySelector(href);
-    if (target) {
-      const headerHeight = header.offsetHeight;
-      const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight - 20;
-      window.scrollTo({ top: targetPosition, behavior: 'smooth' });
-    }
-  });
-});
-
-// Mobile menu toggle
-const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-const navMenu = document.getElementById('nav-menu');
-if (mobileMenuBtn) {
-  mobileMenuBtn.addEventListener('click', () => {
-    navMenu.classList.toggle('mobile-open');
-  });
-}
-</script>
 
 </body>
 </html>
