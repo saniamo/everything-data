@@ -288,9 +288,17 @@ section.full{ padding-bottom:72px; }
 .offer-grid li{ padding:22px 0; border-top:1px solid var(--line); }
 .offer-grid li:nth-child(-n+2){ padding-top:0; border-top:none; }
 .offer-grid h3{ font-family:'Playfair Display',serif; font-weight:500; font-size:18px; margin-bottom:6px; }
+.offer-grid h3 a.project-link{ color:inherit; border-bottom:1px solid transparent; transition:color .2s ease, border-color .2s ease; }
+.offer-grid h3 a.project-link:hover{ color:var(--accent); border-color:var(--accent); }
 .offer-grid p{ font-size:14.5px; color:var(--muted); max-width:none; }
 
 .plain-list{ list-style:none; display:grid; grid-template-columns:1fr 1fr 1fr; gap:0 32px; }
+
+.stat-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:32px; }
+.stat-card{ padding-top:20px; border-top:2px solid var(--accent); }
+.stat-num{ font-family:'Playfair Display',serif; font-weight:500; font-size:44px; color:var(--ink); line-height:1; margin-bottom:10px; display:block; }
+.stat-label{ font-size:13.5px; color:var(--muted); line-height:1.55; display:block; }
+@media(max-width:760px){ .stat-grid{ grid-template-columns:1fr 1fr; } }
 .plain-list li{ font-size:14.5px; padding:9px 0; border-top:1px solid var(--line); }
 .plain-list li:nth-child(-n+3){ border-top:none; padding-top:0; }
 @media(max-width:760px){
@@ -365,7 +373,7 @@ footer .wrap{ display:flex; justify-content:space-between; align-items:center; f
           <span class="l2">Mercy</span>
         </div>
 
-        <p class="formula">(evaluation + learning) <span class="accent">×</span> research</p>
+        <p class="formula">Evaluation, research and AI <span class="accent">for</span> better evidence.</p>
 
         <blockquote class="pull">
           <p>"How do we know we're actually making a difference?"</p>
@@ -419,7 +427,11 @@ footer .wrap{ display:flex; justify-content:space-between; align-items:center; f
           <div class="side-head">Before</div>
           <ul class="side-list">
             <li>
-              <span class="slabel mono">MEL OFFICER</span>
+              <span class="slabel mono">MERL OFFICER</span>
+              <span class="svalue"><strong>African Management Institute</strong></span>
+            </li>
+            <li>
+              <span class="slabel mono">DATA ANALYST</span>
               <span class="svalue"><strong>African Management Institute</strong></span>
             </li>
             <li>
@@ -427,7 +439,7 @@ footer .wrap{ display:flex; justify-content:space-between; align-items:center; f
               <span class="svalue"><strong>UNDP</strong></span>
             </li>
             <li>
-              <span class="slabel mono">RESEARCH OFFICER</span>
+              <span class="slabel mono">RESEARCH ASST.</span>
               <span class="svalue"><strong>Kenya Forest Service</strong></span>
             </li>
           </ul>
@@ -463,29 +475,28 @@ footer .wrap{ display:flex; justify-content:space-between; align-items:center; f
             <div class="role-sub">
               <h4>Leadership</h4>
               <ul>
-                <li>Lead the organisation's MERL function across a multi-country portfolio funded by the Mastercard Foundation, Argidius Foundation, and other development partners.</li>
-                <li>Support programmes reaching 40,000+ entrepreneurs across 10+ African countries.</li>
+                <li>Lead the MERL function across a multi-country portfolio funded by the Mastercard Foundation, Argidius Foundation, and other development partners, supporting programmes reaching 40,000+ entrepreneurs across 10+ African countries.</li>
+                <li>Lead and mentor the MERL team, strengthening analytical capability and promoting consistent use of evidence across programmes.</li>
               </ul>
             </div>
             <div class="role-sub">
               <h4>Research &amp; Evaluation</h4>
               <ul>
-                <li>Design MERL frameworks, theories of change, indicators, and evaluation plans.</li>
-                <li>Lead research, data analysis, and synthesis to understand programme outcomes and impact.</li>
+                <li>Design and strengthen MERL frameworks, including theories of change, results frameworks, indicators, and evaluation plans.</li>
+                <li>Lead research, qualitative and quantitative analysis, and evidence synthesis to assess programme outcomes.</li>
               </ul>
             </div>
             <div class="role-sub">
               <h4>Data &amp; Systems</h4>
               <ul>
-                <li>Build live dashboards and automated reporting systems using Power BI, Metabase, Google Sheets, and Apps Script.</li>
-                <li>Oversee data collection across KoboToolbox, ODK, SurveyMonkey, and Google Forms while ensuring data quality and data protection compliance.</li>
+                <li>Build and maintain live dashboards and automated reporting systems using Power BI, Metabase, Google Sheets, and Apps Script.</li>
+                <li>Oversee data collection across KoboToolbox, ODK, SurveyMonkey, and Google Forms, strengthening data quality, governance, and compliance.</li>
               </ul>
             </div>
             <div class="role-sub">
               <h4>Learning &amp; Impact</h4>
               <ul>
-                <li>Lead donor impact reporting and evidence synthesis.</li>
-                <li>Produce learning briefs and evaluation reports that inform programme decisions and organisational strategy.</li>
+                <li>Produce donor impact reports, evaluation reports, and learning briefs that inform programme improvement and organisational strategy.</li>
               </ul>
             </div>
           </div>
@@ -493,20 +504,60 @@ footer .wrap{ display:flex; justify-content:space-between; align-items:center; f
         <li>
           <div class="timeline-head">
             <span class="tlabel">2023–24</span>
-            <span><strong>African Management Institute</strong> <span class="org">, MEL Officer</span></span>
+            <span><strong>African Management Institute</strong> <span class="org">, MERL Officer</span></span>
+          </div>
+          <div class="role-subs">
+            <div class="role-sub">
+              <h4>Dashboards &amp; Data Quality</h4>
+              <ul>
+                <li>Developed and maintained dashboards supporting more than 40 programmes, improving visibility of portfolio reporting.</li>
+                <li>Strengthened data quality through validation processes, routine checks, and data cleaning.</li>
+              </ul>
+            </div>
+            <div class="role-sub">
+              <h4>Monitoring &amp; Capacity Building</h4>
+              <ul>
+                <li>Designed and improved monitoring tools to track progress against indicators and inform adaptive management.</li>
+                <li>Delivered training and technical support to programme teams on data collection, analysis, and reporting.</li>
+              </ul>
+            </div>
           </div>
         </li>
         <li>
           <div class="timeline-head">
             <span class="tlabel">2021–23</span>
-            <span><strong>UNDP</strong> <span class="org">, Data Coordinator Consultant</span></span>
+            <span><strong>African Management Institute</strong> <span class="org">, Data Analyst</span></span>
+          </div>
+          <div class="role-subs">
+            <div class="role-sub">
+              <h4>Analysis &amp; Reporting</h4>
+              <ul>
+                <li>Analysed programme data to support impact reporting across entrepreneurship and business development programmes.</li>
+                <li>Contributed to annual impact reports by synthesising quantitative findings into actionable insights.</li>
+              </ul>
+            </div>
+            <div class="role-sub">
+              <h4>Data &amp; Tools</h4>
+              <ul>
+                <li>Developed and maintained data tracking tools and reporting templates.</li>
+                <li>Produced dashboards and routine analyses; cleaned, validated, and consolidated data from multiple sources.</li>
+              </ul>
+            </div>
           </div>
         </li>
         <li>
           <div class="timeline-head">
-            <span class="tlabel">Before</span>
-            <span><strong>Kenya Forest Service</strong> <span class="org">, Research Officer</span></span>
+            <span class="tlabel">2020–21</span>
+            <span><strong>UNDP</strong> <span class="org">, Data Coordinator Consultant (Internship)</span></span>
           </div>
+          <span class="note">Cleaned and managed programme data in line with UNDP Results-Based Management standards; conducted descriptive statistical analysis in Excel and SPSS and updated monitoring dashboards for donor and internal reporting.</span>
+        </li>
+        <li>
+          <div class="timeline-head">
+            <span class="tlabel">2018–20</span>
+            <span><strong>Kenya Forest Service</strong> <span class="org">, Research Assistant (Volunteer)</span></span>
+          </div>
+          <span class="note">Supported environmental research through field data collection, entry, and quality assurance; assisted with analysis for conservation and natural resource management initiatives.</span>
         </li>
       </ul>
 
@@ -528,6 +579,55 @@ footer .wrap{ display:flex; justify-content:space-between; align-items:center; f
         </li>
       </ul>
     </section>
+
+    <section class="full" id="numbers">
+      <div class="section-head-full sub">
+        <h2>By the Numbers</h2>
+      </div>
+      <p style="font-size:15px; color:var(--muted); margin-bottom:24px; max-width:60ch;">Four years and eight months of MERL work at African Management Institute, in numbers:</p>
+      <div class="stat-grid">
+        <div class="stat-card">
+          <span class="stat-num">40,000+</span>
+          <span class="stat-label">Entrepreneurs reached through supported programmes</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num">10+</span>
+          <span class="stat-label">African countries covered by the current portfolio</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num">40+</span>
+          <span class="stat-label">Programmes supported through dashboards and reporting</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num">5+</span>
+          <span class="stat-label">Donor and client portfolios, including Mastercard Foundation, Argidius Foundation, CapPlus, World Bank/BRD and BFA Global</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="full" id="projects">
+      <div class="section-head-full sub">
+        <h2>Selected Projects</h2>
+      </div>
+      <ul class="offer-grid">
+        <li>
+          <h3><a href="https://www.africanmanagers.com/abeep" target="_blank" class="project-link">LIF Double Down M&amp;E System ↗</a></h3>
+          <p>Built the M&amp;E plan, logframe, IPTT and Champions Application Survey, plus the STO baseline survey and consent form design under Kenya's Data Protection Act.</p>
+        </li>
+        <li>
+          <h3><a href="https://hatana.brd.rw/" target="_blank" class="project-link">BRD AFIRR / HATANA Dashboard ↗</a></h3>
+          <p>Rebuilt the reporting dashboard used by World Bank and BRD stakeholders to track programme performance.</p>
+        </li>
+        <li>
+          <h3><a href="https://first.capplus.org/" target="_blank" class="project-link">FIRST+II Impact Analysis ↗</a></h3>
+          <p>Designed and ran a matched-pair impact analysis using CAGR methodology with IQR-based outlier removal, forming the analytical backbone of the FIRST+II Annual Impact Report for CapPlus and Mastercard Foundation.</p>
+        </li>
+        <li>
+          <h3><a href="https://www.africanmanagers.com/programmes-open/grow-your-business-pan-african" target="_blank" class="project-link">GYB / Hustler Fund Theory of Change ↗</a></h3>
+          <p>Built a standalone Theory of Change for AMI's Financial Inclusion Fund programme for client BFA Global, building on earlier RCT data analysis for GYB cohorts.</p>
+        </li>
+      </ul>
+    </section>
   </div>
 
   <div class="wrap">
@@ -539,7 +639,7 @@ footer .wrap{ display:flex; justify-content:space-between; align-items:center; f
         <li>
           <a href="https://medium.com/@everythingdata/when-measurement-becomes-surveillance-91a52b53c8c9" target="_blank">
             <span class="wtitle">When Measurement Becomes Surveillance</span>
-            <span class="wmeta">Measurement</span>
+            <span class="wmeta">AI &amp; Evaluation</span>
           </a>
           <div class="wdesc">On how tracking systems reshape the behaviour they were meant to observe, and what happens when external measures start to replace internal judgment.</div>
         </li>
@@ -549,6 +649,13 @@ footer .wrap{ display:flex; justify-content:space-between; align-items:center; f
             <span class="wmeta">Strategy</span>
           </a>
           <div class="wdesc">Strategy is a hypothesis, not a contract with the future. Every strategy rests on assumptions, and assumptions have a shelf life.</div>
+        </li>
+        <li>
+          <a href="https://medium.com/@everythingdata/why-approaches-and-methods-matter-in-m-e-fbff658dacf0" target="_blank">
+            <span class="wtitle">Why Approaches and Methods Matter in M&amp;E</span>
+            <span class="wmeta">Research Methods</span>
+          </a>
+          <div class="wdesc">On the question every programme eventually has to answer: how do you actually know it made a difference?</div>
         </li>
       </ul>
       <p class="note-line">More at <a href="https://medium.com/@everythingdata" target="_blank" class="inline-link">@_everythingdata</a> on Medium.</p>
@@ -564,37 +671,26 @@ footer .wrap{ display:flex; justify-content:space-between; align-items:center; f
       <p class="lede-full">I help organisations build evidence they can trust and use. Whether you're designing a new programme, evaluating an existing one, or exploring how AI fits into your MERL practice, my focus is the same: build systems that produce better evidence and make it easier for people to act on it.</p>
       <ul class="offer-grid">
         <li>
-          <h3>Build MERL Systems</h3>
+          <h3>Need a MERL system that actually works?</h3>
           <p>From theories of change and logframes to indicator frameworks and learning agendas, I design MERL systems that support accountability without becoming paperwork exercises.</p>
         </li>
         <li>
-          <h3>Design Evaluations</h3>
+          <h3>Need to know if your programme is working?</h3>
           <p>I design evaluations that answer meaningful questions. My work includes evaluation planning, outcome harvesting, mixed-methods research, evidence synthesis, and impact analysis that helps organisations understand what is changing and why.</p>
         </li>
         <li>
-          <h3>Turn Data Into Decisions</h3>
+          <h3>Struggling to use the data you already collect?</h3>
           <p>I build dashboards and reporting systems that make evidence easier to understand. Instead of static reports, teams get live insights they can use to monitor progress, identify challenges, and support better decisions.</p>
         </li>
         <li>
-          <h3>Apply AI to Evaluation</h3>
+          <h3>Curious how AI fits into evaluation?</h3>
           <p>AI should reduce repetitive work, not replace professional judgement. I help organisations integrate AI into their evaluation workflows to improve evidence synthesis, automate routine tasks, strengthen reporting, and give teams more time for learning and analysis.</p>
         </li>
       </ul>
 
-      <div class="section-head-full sub">
-        <h2>Typical Engagements</h2>
-      </div>
-      <ul class="plain-list">
-        <li>Designing MERL systems for new programmes</li>
-        <li>Independent evaluations and evidence synthesis</li>
-        <li>Dashboard and reporting system development</li>
-        <li>AI strategy for monitoring, evaluation, research, and learning</li>
-        <li>Strengthening existing MERL systems</li>
-      </ul>
-
       <div class="cta-block">
         <p>If something here is a fit, send a note with a line or two about what you're working on.</p>
-        <a href="mailto:saniamomercy@gmail.com" class="btn-link">saniamomercy@gmail.com →</a>
+        <a href="mailto:saniamomercy@gmail.com" class="btn-link">Email me →</a>
       </div>
     </section>
 
