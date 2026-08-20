@@ -1,715 +1,376 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Saniamo Mercy: MEL, Data Systems & AI for Evaluation</title>
-<meta name="description" content="Saniamo Mercy is a MERL Manager working on monitoring, evaluation, research and learning, evidence systems, and AI for evaluation across Africa.">
+<title>Saniamo Mercy — Monitoring, Evaluation, Research and Learning</title>
+<meta name="description" content="Saniamo Mercy works at the intersection of programme implementation and data: measurement and evaluation, data systems, analysis and learning across African programmes.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-
 :root{
-  --bg:#f3efe5;
-  --ink:#2a2621;
-  --muted:#8c8477;
-  --line:#ddd5c5;
-  --accent:#b5763e;
-  --accent-soft:#f1e5d4;
+  --bg:#FBFAF7;
+  --ink:#12233F;
+  --navy:#1D3557;
+  --sky:#5B9DD9;
+  --pale:#EDF3F9;
+  --grey:#5F6B7A;
+  --line:#E1E5EB;
+  --link:#1D4E89;
+  --max:1080px;
 }
-
-*{ margin:0; padding:0; box-sizing:border-box; }
-html{ scroll-behavior:smooth; }
-
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
 body{
-  font-family:'Inter',sans-serif;
-  background:var(--bg);
-  color:var(--ink);
-  line-height:1.6;
-  font-size:16px;
-  -webkit-font-smoothing:antialiased;
+  background:var(--bg); color:var(--ink);
+  font-family:'Inter',system-ui,-apple-system,sans-serif;
+  font-size:16.5px; line-height:1.55; -webkit-font-smoothing:antialiased;
 }
+.wrap{max-width:var(--max); margin:0 auto; padding:0 28px}
+a{color:var(--link); text-decoration:none}
+a:hover{text-decoration:underline}
 
-.serif{ font-family:'Playfair Display',serif; }
-.mono{ font-family:'IBM Plex Mono',monospace; }
-
-a{ color:inherit; text-decoration:none; }
-a:focus-visible, button:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; }
-
-@media (prefers-reduced-motion: reduce){ *{ animation:none !important; transition:none !important; } }
-
-.wrap{ width:90%; max-width:1080px; margin:0 auto; }
-.wrap-wide{ width:92%; max-width:1320px; margin:0 auto; }
-
-/* ---------- header ---------- */
-
-header{ border-bottom:1px solid var(--line); padding:26px 0; }
-
-header .wrap{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; }
-
-.logo{
-  font-family:'Inter',sans-serif;
-  font-weight:700;
-  font-size:15px;
-  letter-spacing:.1em;
-  text-transform:uppercase;
-}
-
-header nav{ display:flex; gap:32px; }
-
-header nav a{
-  font-family:'IBM Plex Mono',monospace;
-  font-size:12px;
-  font-weight:600;
-  letter-spacing:.08em;
-  text-transform:uppercase;
-  color:var(--muted);
-  border-bottom:1px solid transparent;
-  padding-bottom:3px;
-  transition:color .2s ease, border-color .2s ease;
-}
-
-header nav a:hover{ color:var(--ink); border-color:var(--accent); }
-
-/* ---------- home grid (hero + sidebar) ---------- */
-
-main{ padding-top:72px; }
-
-.home-grid{
-  display:grid;
-  grid-template-columns:1.05fr .95fr;
-  gap:80px;
-  padding-bottom:88px;
+/* ---------- nav ---------- */
+nav{
+  position:sticky; top:0; z-index:50;
+  background:rgba(251,250,247,.92); backdrop-filter:blur(8px);
   border-bottom:1px solid var(--line);
-  margin-bottom:64px;
 }
+nav .wrap{display:flex; align-items:baseline; justify-content:space-between; padding-top:16px; padding-bottom:16px; gap:24px}
+.brand{font-family:'Source Serif 4',Georgia,serif; font-size:19px; font-weight:600; color:var(--ink)}
+.navlinks{display:flex; gap:22px; font-size:14px}
+.navlinks a{color:var(--grey)}
+.navlinks a:hover{color:var(--ink); text-decoration:none}
 
-/* left column */
-
-.eyebrow-block{ margin-bottom:34px; }
-
-.eyebrow-tag{
-  font-family:'IBM Plex Mono',monospace;
-  font-size:13px;
-  color:var(--accent);
-  border-bottom:1px solid var(--accent);
-  display:inline-block;
-  padding-bottom:4px;
-  margin-bottom:8px;
+/* ---------- hero ---------- */
+header{padding:52px 0 0}
+.hero{display:grid; grid-template-columns:1.35fr .65fr; gap:46px; align-items:start}
+h1{
+  font-family:'Source Serif 4',Georgia,serif;
+  font-size:clamp(38px,5.2vw,58px); font-weight:600; line-height:1.04;
+  letter-spacing:-.5px;
 }
-
-.eyebrow-sub{ font-size:14px; color:var(--muted); }
-
-.name-block{ margin-bottom:30px; }
-
-.name-block .l1{
-  font-family:'Playfair Display',serif;
-  font-weight:500;
-  font-size:74px;
-  line-height:1.02;
-  color:var(--ink);
-  letter-spacing:-.01em;
-  display:block;
+.lede{
+  font-family:'Source Serif 4',Georgia,serif;
+  font-size:clamp(21px,2.5vw,27px); line-height:1.35; color:var(--navy);
+  margin-top:22px; max-width:23ch;
 }
-
-.name-block .l2{
-  font-family:'Playfair Display',serif;
-  font-weight:400;
-  font-style:italic;
-  font-size:74px;
-  line-height:1.02;
-  color:var(--muted);
-  letter-spacing:-.01em;
-  display:block;
+.hero p.sub{margin-top:20px; color:var(--grey); font-size:17px; max-width:52ch}
+.question{
+  margin-top:28px; padding-left:18px; border-left:3px solid var(--sky);
+  font-family:'Source Serif 4',Georgia,serif; font-size:19px; color:var(--ink);
 }
-
-.formula{
-  font-family:'Playfair Display',serif;
-  font-style:italic;
-  font-size:19px;
-  color:var(--muted);
-  margin-bottom:36px;
+.portrait{width:100%; border-radius:2px; display:block; filter:saturate(.95)}
+.motif{
+  margin-top:40px; padding:16px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  font-size:13px; letter-spacing:.16em; text-transform:uppercase; color:var(--grey);
 }
-.formula .accent{ color:var(--accent); }
+.motif b{color:var(--sky); font-weight:600; padding:0 6px}
 
-blockquote.pull{
-  border-left:2px solid var(--accent);
-  padding-left:22px;
-  margin-bottom:34px;
+/* ---------- sections ---------- */
+section{padding:46px 0}
+section + section{border-top:1px solid var(--line)}
+h2{
+  font-family:'Source Serif 4',Georgia,serif;
+  font-size:13px; font-weight:700; letter-spacing:.18em; text-transform:uppercase;
+  color:var(--sky); margin-bottom:20px;
 }
+h3{font-family:'Source Serif 4',Georgia,serif; font-size:24px; font-weight:600; line-height:1.25}
+.body-lg p{font-size:17.5px; max-width:68ch; margin-bottom:15px}
+.body-lg p:last-child{margin-bottom:0}
 
-blockquote.pull p{
-  font-family:'Playfair Display',serif;
-  font-style:italic;
-  font-size:19px;
-  line-height:1.5;
-  color:var(--ink);
-  margin-bottom:10px;
+/* ---------- at a glance ---------- */
+.stats{display:grid; grid-template-columns:repeat(4,1fr); gap:28px}
+.stat .n{font-family:'Source Serif 4',Georgia,serif; font-size:42px; font-weight:600; color:var(--navy); line-height:1}
+.stat .l{font-size:14px; color:var(--grey); margin-top:8px; line-height:1.4}
+
+/* ---------- work ---------- */
+.project{padding:26px 0; border-top:1px solid var(--line)}
+.project:first-of-type{border-top:none; padding-top:0}
+.project .kicker{font-size:13px; letter-spacing:.12em; text-transform:uppercase; color:var(--grey); margin-bottom:7px}
+.pgrid{display:grid; grid-template-columns:1fr 1fr; gap:15px 40px; margin-top:16px}
+.pblock .h{font-size:13px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:var(--sky); margin-bottom:5px}
+.pblock p{font-size:15.5px; color:var(--ink)}
+.tags{margin-top:20px; display:flex; flex-wrap:wrap; gap:8px}
+.tag{font-size:12.5px; color:var(--navy); background:var(--pale); padding:4px 11px; border-radius:2px}
+.plink{display:inline-block; margin-top:16px; font-size:15px}
+
+/* ---------- experience ---------- */
+.role{padding:20px 0; border-top:1px solid var(--line); display:grid; grid-template-columns:210px 1fr; gap:32px}
+.role:first-of-type{border-top:none; padding-top:0}
+.role .when{font-size:14px; color:var(--grey)}
+.role .what{font-family:'Source Serif 4',Georgia,serif; font-size:20px; font-weight:600}
+.role .org{font-size:15px; color:var(--grey); margin-top:2px}
+.group{margin-top:16px}
+.group .g{font-size:12.5px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--sky); margin-bottom:5px}
+.role ul{list-style:none; margin:0}
+.role li{position:relative; padding-left:16px; margin-bottom:5px; font-size:15.5px}
+.role li:before{content:''; position:absolute; left:0; top:11px; width:6px; height:1px; background:var(--grey)}
+.edu{margin-top:34px; padding-top:22px; border-top:1px solid var(--line); font-size:16px; color:var(--ink)}
+.edu span{color:var(--grey)}
+
+/* ---------- writing ---------- */
+.piece{padding:18px 0; border-top:1px solid var(--line)}
+.piece:first-of-type{border-top:none; padding-top:0}
+.piece .cat{font-size:12.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--sky); margin-bottom:6px}
+.piece h3{font-size:21px}
+.piece p{font-size:16px; color:var(--grey); margin-top:6px; max-width:64ch}
+.more{margin-top:26px; font-size:16px}
+
+/* ---------- contact ---------- */
+#contact{background:var(--pale); border-top:1px solid var(--line)}
+.contact-lede{font-family:'Source Serif 4',Georgia,serif; font-size:25px; max-width:34ch; line-height:1.35}
+.contact-sub{margin-top:14px; color:var(--grey); max-width:56ch}
+.cta{display:inline-block; margin-top:26px; background:var(--navy); color:#fff; padding:13px 26px; font-size:16px; border-radius:2px}
+.cta:hover{background:var(--ink); text-decoration:none}
+.elsewhere{margin-top:22px; font-size:15px; color:var(--grey)}
+
+footer{border-top:1px solid var(--line); padding:26px 0; font-size:13.5px; color:var(--grey)}
+footer .wrap{display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap}
+
+@media (max-width:860px){
+  body{font-size:15.5px}
+  .hero{grid-template-columns:1fr; gap:32px}
+  .portrait{max-width:260px}
+  .stats{grid-template-columns:repeat(2,1fr); gap:26px}
+  .pgrid{grid-template-columns:1fr}
+  .role{grid-template-columns:1fr; gap:10px}
+  .navlinks{gap:15px; font-size:13px}
+  section{padding:38px 0}
 }
-
-blockquote.pull cite{
-  font-style:normal;
-  font-size:12.5px;
-  color:var(--muted);
+@media (max-width:560px){
+  .navlinks a:nth-child(4),.navlinks a:nth-child(5){display:none}
+  .motif{font-size:11px}
 }
-
-.hero-photo{
-  width:100%;
-  aspect-ratio:16/11;
-  background:var(--line);
-  overflow:hidden;
-  border-radius:2px;
-}
-
-.hero-photo img{
-  width:100%; height:100%;
-  object-fit:cover;
-  display:block;
-  filter:grayscale(65%);
-}
-
-.open-for{
-  margin-top:28px;
-  font-size:12.5px;
-  color:var(--muted);
-}
-.open-for span.label{ color:var(--ink); font-weight:600; margin-right:8px; }
-
-/* right column (sidebar) */
-
-.side-block{ margin-bottom:44px; }
-.side-block:last-child{ margin-bottom:0; }
-
-.side-head{
-  font-family:'Inter',sans-serif;
-  font-weight:600;
-  font-size:16px;
-  color:var(--ink);
-  border-bottom:1px solid var(--line);
-  padding-bottom:8px;
-  margin-bottom:16px;
-}
-
-.side-list{ list-style:none; }
-
-.side-list li{
-  display:grid;
-  grid-template-columns:120px 1fr;
-  gap:16px;
-  padding:9px 0;
-  font-size:13.5px;
-}
-
-.side-list .slabel{
-  font-family:'IBM Plex Mono',monospace;
-  font-size:11px;
-  font-weight:600;
-  color:var(--accent);
-  text-align:right;
-  letter-spacing:.02em;
-  padding-top:1px;
-}
-
-.side-list .svalue a{ transition:color .2s ease; }
-.side-list .svalue a:hover{ color:var(--accent); }
-.side-list .svalue strong{ font-weight:600; }
-.side-list .svalue .org{ color:var(--muted); }
-.side-list .svalue .note{ display:block; color:var(--muted); font-size:12.5px; margin-top:3px; }
-
-.side-more{
-  font-family:'Inter',sans-serif;
-  font-size:13px;
-  color:var(--muted);
-  margin-top:14px;
-  display:inline-block;
-}
-.side-more:hover{ color:var(--accent); }
-
-/* ---------- lower full-width sections ---------- */
-
-section.full{ padding-bottom:72px; }
-
-.section-head-full{ display:flex; align-items:baseline; justify-content:space-between; margin-bottom:26px; }
-.section-head-full h2{ font-family:'Playfair Display',serif; font-weight:500; font-size:30px; color:var(--ink); }
-.section-head-full a{ font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--muted); border-bottom:1px solid var(--line); text-transform:uppercase; letter-spacing:.05em; }
-.section-head-full a:hover{ color:var(--accent); border-color:var(--accent); }
-
-.hl{ color:var(--accent); font-weight:600; }
-
-.who-i-am{ margin-top:34px; }
-.who-i-am h2{ font-family:'Playfair Display',serif; font-weight:500; font-size:22px; color:var(--ink); margin-bottom:16px; }
-.who-i-am p{ font-size:15px; margin-bottom:14px; max-width:52ch; }
-.who-i-am p:last-child{ margin-bottom:0; }
-
-.section-head-full.sub{ margin-top:44px; }
-.section-head-full.sub h2{ font-size:22px; font-style:italic; font-weight:500; }
-
-.lede-full{ font-size:16px; max-width:70ch; margin-bottom:28px; }
-
-.inline-link{ border-bottom:1px solid var(--line); color:var(--ink); }
-.inline-link:hover{ border-color:var(--accent); color:var(--accent); }
-
-.note-line{ font-size:14.5px; color:var(--muted); margin-top:22px; }
-
-.narrative{ display:flex; gap:48px; align-items:flex-start; flex-wrap:wrap-reverse; }
-.narrative-text{ flex:1 1 380px; min-width:0; }
-.narrative-text p{ font-size:16px; margin-bottom:16px; max-width:60ch; color:var(--ink); }
-.narrative-text p:last-child{ margin-bottom:0; }
-.narrative-photo{ width:190px; flex-shrink:0; aspect-ratio:3/4; background:var(--line); overflow:hidden; border-radius:2px; }
-.narrative-photo img{ width:100%; height:100%; object-fit:cover; display:block; filter:grayscale(60%); }
-
-.timeline-list{ list-style:none; margin-top:18px; }
-.timeline-list li{ padding:16px 0; border-top:1px solid var(--line); font-size:14.5px; }
-.timeline-list li:first-child{ border-top:none; padding-top:0; }
-.timeline-head{ display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; }
-.timeline-head .tlabel{ font-family:'IBM Plex Mono',monospace; font-size:11.5px; font-weight:600; color:var(--accent); }
-.timeline-head strong{ font-weight:600; }
-.timeline-head .org{ color:var(--muted); }
-.timeline-list .note{ display:block; color:var(--muted); font-size:13.5px; margin-top:5px; max-width:60ch; }
-.role-subs{ margin-top:10px; display:grid; grid-template-columns:1fr 1fr; gap:14px 40px; }
-.role-sub h4{ font-family:'IBM Plex Mono',monospace; font-size:10.5px; font-weight:600; color:var(--accent); text-transform:uppercase; letter-spacing:.04em; margin-bottom:4px; }
-.role-sub ul{ list-style:none; }
-.role-sub li{ font-size:13.5px; color:var(--muted); line-height:1.5; padding-left:14px; position:relative; margin-bottom:3px; max-width:none; border:none; padding-top:0; padding-bottom:0; }
-.role-sub li:last-child{ margin-bottom:0; }
-.role-sub li::before{ content:"–"; position:absolute; left:0; color:var(--accent); }
-@media(max-width:760px){ .role-subs{ grid-template-columns:1fr; } }
-
-.writing-list{ list-style:none; }
-.writing-list li{ padding:18px 0; border-top:1px solid var(--line); }
-.writing-list li:first-child{ border-top:none; padding-top:0; }
-.writing-list a{ display:flex; gap:20px; align-items:baseline; width:100%; }
-.writing-list .wtitle{ font-size:16.5px; transition:color .2s ease; font-weight:500; }
-.writing-list a:hover .wtitle{ color:var(--accent); }
-.writing-list .wmeta{ font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:600; color:var(--accent); white-space:nowrap; margin-left:auto; text-transform:uppercase; letter-spacing:.05em; }
-.writing-list .wdesc{ font-size:14px; color:var(--muted); margin-top:6px; max-width:56ch; }
-
-.offer-grid{ list-style:none; display:grid; grid-template-columns:1fr 1fr; gap:0 40px; }
-.offer-grid li{ padding:22px 0; border-top:1px solid var(--line); }
-.offer-grid li:nth-child(-n+2){ padding-top:0; border-top:none; }
-.offer-grid h3{ font-family:'Playfair Display',serif; font-weight:500; font-size:18px; margin-bottom:6px; }
-.project-link{ display:inline-block; margin-top:10px; font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:var(--accent); border-bottom:1px solid var(--accent); padding-bottom:2px; text-transform:uppercase; letter-spacing:.04em; transition:opacity .2s ease; }
-.project-link:hover{ opacity:.7; }
-.offer-grid p{ font-size:14.5px; color:var(--muted); max-width:none; }
-
-.plain-list{ list-style:none; display:grid; grid-template-columns:1fr 1fr 1fr; gap:0 32px; }
-
-.stat-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:32px; }
-.stat-card{ padding-top:20px; border-top:2px solid var(--accent); }
-.stat-num{ font-family:'Playfair Display',serif; font-weight:500; font-size:44px; color:var(--ink); line-height:1; margin-bottom:10px; display:block; }
-.stat-label{ font-size:13.5px; color:var(--muted); line-height:1.55; display:block; }
-@media(max-width:760px){ .stat-grid{ grid-template-columns:1fr 1fr; } }
-.plain-list li{ font-size:14.5px; padding:9px 0; border-top:1px solid var(--line); }
-.plain-list li:nth-child(-n+3){ border-top:none; padding-top:0; }
-@media(max-width:760px){
-  .offer-grid{ grid-template-columns:1fr; }
-  .offer-grid li:nth-child(-n+2){ padding-top:22px; border-top:1px solid var(--line); }
-  .offer-grid li:first-child{ padding-top:0; border-top:none; }
-  .plain-list{ grid-template-columns:1fr; }
-  .plain-list li:nth-child(-n+3){ padding-top:9px; border-top:1px solid var(--line); }
-  .plain-list li:first-child{ border-top:none; padding-top:0; }
-}
-
-.cta-block{ margin-top:32px; padding:26px; background:var(--accent-soft); border-radius:2px; }
-.cta-block p{ font-size:14.5px; margin-bottom:14px; }
-.cta-block p:last-child{ margin-bottom:0; }
-.cta-block a.btn-link{ font-size:13.5px; font-weight:600; color:var(--accent); border-bottom:1px solid var(--accent); padding-bottom:2px; }
-
-/* ---------- footer ---------- */
-
-footer{ border-top:1px solid var(--line); padding:36px 0 48px; }
-footer .wrap{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; }
-.footer-loc{ font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--muted); }
-.footer-links{ display:flex; gap:22px; }
-.footer-links a{ font-size:13px; color:var(--muted); border-bottom:1px solid transparent; padding-bottom:2px; transition:color .2s ease, border-color .2s ease; }
-.footer-links a:hover{ color:var(--ink); border-color:var(--accent); }
-.copyright{ font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--muted); margin-top:20px; }
-
-/* ---------- responsive ---------- */
-
-@media(max-width:860px){
-  .home-grid{ grid-template-columns:1fr; gap:48px; }
-  .name-block .l1, .name-block .l2{ font-size:56px; }
-}
-
-@media(max-width:560px){
-  .name-block .l1, .name-block .l2{ font-size:42px; }
-  .narrative{ flex-direction:column-reverse; }
-  .narrative-photo{ width:120px; }
-  .side-list li{ grid-template-columns:1fr; gap:3px; }
-  .side-list .slabel{ text-align:left; }
-  .timeline-head{ gap:8px; }
-  header .wrap{ flex-direction:column; align-items:flex-start; }
-  header nav{ gap:18px; flex-wrap:wrap; }
-}
-
 </style>
 </head>
 <body>
 
+<nav>
+  <div class="wrap">
+    <span class="brand">Saniamo Mercy</span>
+    <span class="navlinks">
+      <a href="#about">About</a>
+      <a href="#work">Work</a>
+      <a href="#experience">Experience</a>
+      <a href="#writing">Writing</a>
+      <a href="#contact">Contact</a>
+    </span>
+  </div>
+</nav>
+
 <header>
   <div class="wrap">
-    <a href="#top" class="logo">Saniamo Mercy</a>
-    <nav>
-      <a href="#writing">Writing</a>
-      <a href="#about">Who I Am</a>
-      <a href="#services">Services</a>
-    </nav>
+    <div class="hero">
+      <div>
+        <h1>Saniamo&nbsp;Mercy</h1>
+        <p class="lede">I work at the intersection of programme implementation and data.</p>
+        <p class="sub">I design and use the systems organisations rely on to understand whether their work is creating change, from measurement and evaluation through to data systems, analysis and learning.</p>
+        <p class="question">How do we know we're actually making a difference?</p>
+      </div>
+      <div>
+        <img class="portrait" src="saniamo.jpg" alt="Saniamo Mercy">
+      </div>
+    </div>
+    <div class="motif">Question <b>→</b> Data <b>→</b> Interpretation <b>→</b> Decision</div>
   </div>
 </header>
 
-<main id="top">
+<section id="about">
+  <div class="wrap body-lg">
+    <h2>About</h2>
+    <p>My work sits between programme implementation and data. I design measurement and learning systems, analyse programme data, and use evaluation to understand what is changing, why it is changing, and what should happen next.</p>
+    <p>I am particularly interested in what happens between collecting evidence and actually using it: the quality of the data, the assumptions behind the measurement, and the decisions the evidence is meant to inform. Where evidence does not support a claim, the measurement function has to be willing to challenge it, even when the result is inconvenient.</p>
+    <p>More recently I have been exploring how AI changes this work, particularly where it reduces routine effort without replacing professional judgement.</p>
+  </div>
+</section>
+
+<section id="glance">
   <div class="wrap">
+    <h2>At a glance</h2>
+    <div class="stats">
+      <div class="stat"><div class="n">4.5</div><div class="l">years in monitoring, evaluation and learning</div></div>
+      <div class="stat"><div class="n">20,000+</div><div class="l">entrepreneurs reached through supported programmes</div></div>
+      <div class="stat"><div class="n">10+</div><div class="l">African countries</div></div>
+      <div class="stat"><div class="n">10+</div><div class="l">programmes supported</div></div>
+    </div>
+  </div>
+</section>
 
-    <div class="home-grid">
+<section id="work">
+  <div class="wrap">
+    <h2>Selected work</h2>
 
-      <div class="hero-left">
-        <div class="eyebrow-block">
-          <span class="eyebrow-tag mono">(MEL + data systems)</span>
-        </div>
-
-        <div class="name-block">
-          <span class="l1">Saniamo</span>
-          <span class="l2">Mercy</span>
-        </div>
-
-        <p class="formula">Evaluation, research and AI <span class="accent">for</span> better evidence.</p>
-
-        <blockquote class="pull">
-          <p>"How do we know we're actually making a difference?"</p>
-          <cite>– the question behind all of this work</cite>
-        </blockquote>
-
-        <div class="hero-photo">
-          <img src="saniamo.jpg" alt="Saniamo Mercy" onerror="this.style.display='none'">
-        </div>
-
-        <div class="who-i-am">
-          <h2>Who I am</h2>
-          <p>I work in monitoring, <span class="hl">evaluation</span>, <span class="hl">research</span> and <span class="hl">learning</span> because I'm interested in one thing: understanding whether programmes are actually making a difference.</p>
-          <p>I enjoy asking questions, looking for patterns, and turning evidence into something people can use. Good evaluation isn't about proving success. It's about understanding what happened, why it happened, and what to do next.</p>
-          <p>More recently, I've been exploring how AI fits into that process. I don't think it replaces evaluators. I think it helps us spend less time cleaning data, writing the same reports, and repeating routine tasks, leaving more time to think, learn, and make better decisions.</p>
-        </div>
+    <div class="project">
+      <div class="kicker">Measurement system design</div>
+      <h3>LIF Double Down</h3>
+      <div class="pgrid">
+        <div class="pblock"><div class="h">The problem</div><p>The programme wanted to concentrate additional support on the businesses most likely to create jobs, but there was no agreed way to identify them or to test whether the extra support actually worked.</p></div>
+        <div class="pblock"><div class="h">My role</div><p>M&amp;E lead: theory of change, measurement approach, indicator framework and baseline design.</p></div>
+        <div class="pblock"><div class="h">What I did</div><p>Worked backwards from the intended outcomes to map the causal pathways, made the assumptions explicit, and connected each pathway to indicators and data sources. Designed the M&amp;E plan, logframe and indicator performance tracking table, and built the application and baseline surveys used to collect standardised data, including consent design compliant with Kenya's Data Protection Act.</p></div>
+        <div class="pblock"><div class="h">What it produced</div><p>A programme hypothesis that could actually be tested, and a measurement system that told the team where the evidence was strong enough to support a conclusion and where it was not.</p></div>
       </div>
+      <div class="tags"><span class="tag">Theory of Change</span><span class="tag">Logframe &amp; IPTT</span><span class="tag">Survey design</span><span class="tag">Data protection</span></div>
+    </div>
 
-      <div class="hero-right">
-
-        <div class="side-block">
-          <div class="side-head">Latest</div>
-          <ul class="side-list">
-            <li>
-              <span class="slabel mono">MEASUREMENT</span>
-              <span class="svalue"><a href="https://medium.com/@everythingdata/when-measurement-becomes-surveillance-91a52b53c8c9" target="_blank">When Measurement Becomes Surveillance</a></span>
-            </li>
-            <li>
-              <span class="slabel mono">STRATEGY</span>
-              <span class="svalue"><a href="https://medium.com/@everythingdata/why-adaptive-management-is-not-optional-a617231ca0f4" target="_blank">Why Adaptive Management Is Not Optional</a></span>
-            </li>
-          </ul>
-          <a href="#writing" class="side-more">All writing →</a>
-        </div>
-
-        <div class="side-block">
-          <div class="side-head">Now</div>
-          <ul class="side-list">
-            <li>
-              <span class="slabel mono">MERL MANAGER</span>
-              <span class="svalue"><strong>African Management Institute</strong><span class="note">Multi-country portfolio for Mastercard Foundation, Argidius Foundation and other donors.</span></span>
-            </li>
-            <li>
-              <span class="slabel mono">WRITING</span>
-              <span class="svalue"><strong>@_everythingdata</strong><span class="note">Data literacy, evaluation and tech policy.</span></span>
-            </li>
-          </ul>
-        </div>
-
-        <div class="side-block">
-          <div class="side-head">Before</div>
-          <ul class="side-list">
-            <li>
-              <span class="slabel mono">MERL OFFICER</span>
-              <span class="svalue"><strong>African Management Institute</strong></span>
-            </li>
-            <li>
-              <span class="slabel mono">DATA ANALYST</span>
-              <span class="svalue"><strong>African Management Institute</strong></span>
-            </li>
-            <li>
-              <span class="slabel mono">DATA COORD.</span>
-              <span class="svalue"><strong>UNDP</strong></span>
-            </li>
-            <li>
-              <span class="slabel mono">RESEARCH ASST.</span>
-              <span class="svalue"><strong>Kenya Forest Service</strong></span>
-            </li>
-          </ul>
-        </div>
-
-        <div class="side-block">
-          <div class="side-head">Education</div>
-          <ul class="side-list">
-            <li>
-              <span class="slabel mono">BSC</span>
-              <span class="svalue"><strong>Environmental Planning &amp; Management </strong><span class="org">Kenyatta University</span></span>
-            </li>
-          </ul>
-        </div>
-
+    <div class="project">
+      <div class="kicker">Reporting systems</div>
+      <h3>BRD AFIRR / HATANA dashboard</h3>
+      <div class="pgrid">
+        <div class="pblock"><div class="h">The problem</div><p>A Rwandan development bank's SME finance programme was producing plenty of data, but stakeholders could not see progress against targets without manual work each reporting round.</p></div>
+        <div class="pblock"><div class="h">My role</div><p>Rebuilt the M&amp;E reporting dashboard used by World Bank and BRD stakeholders.</p></div>
+        <div class="pblock"><div class="h">What I did</div><p>Restructured how SME performance indicators were defined, collected and consolidated, then rebuilt the reporting layer so the underlying data and the reported figures stayed in step.</p></div>
+        <div class="pblock"><div class="h">What it produced</div><p>A reliable, decision-ready view of programme progress that stakeholders could interrogate themselves rather than request.</p></div>
       </div>
+      <div class="tags"><span class="tag">Indicator definition</span><span class="tag">Dashboard design</span><span class="tag">Data quality</span></div>
+      <a class="plink" href="https://hatana.brd.rw/" target="_blank" rel="noopener">View the programme ↗</a>
+    </div>
+
+    <div class="project">
+      <div class="kicker">Impact analysis</div>
+      <h3>FIRST+II impact analysis</h3>
+      <div class="pgrid">
+        <div class="pblock"><div class="h">The problem</div><p>The programme needed evidence of business growth that would hold up to donor scrutiny, from data with the uneven quality typical of self-reported business figures.</p></div>
+        <div class="pblock"><div class="h">My role</div><p>Designed and ran the analysis behind the annual impact report for CapPlus and the Mastercard Foundation.</p></div>
+        <div class="pblock"><div class="h">What I did</div><p>Built a matched-pair analysis using compound annual growth rate methodology with interquartile-range outlier removal, so that a handful of extreme values could not carry the headline result.</p></div>
+        <div class="pblock"><div class="h">What it produced</div><p>Growth findings the programme could defend, alongside a clear account of what the data could and could not establish.</p></div>
+      </div>
+      <div class="tags"><span class="tag">Matched-pair analysis</span><span class="tag">CAGR</span><span class="tag">Outlier treatment</span><span class="tag">Impact reporting</span></div>
+      <a class="plink" href="https://first.capplus.org/" target="_blank" rel="noopener">View the programme ↗</a>
+    </div>
+
+    <div class="project">
+      <div class="kicker">Theory of change</div>
+      <h3>Financial inclusion fund, theory of change</h3>
+      <div class="pgrid">
+        <div class="pblock"><div class="h">The problem</div><p>A financial inclusion programme had activities and indicators but no explicit account of how the intervention was expected to produce change, or what had to be true for it to work.</p></div>
+        <div class="pblock"><div class="h">My role</div><p>Built the theory of change as a standalone deliverable for the client, BFA Global.</p></div>
+        <div class="pblock"><div class="h">What I did</div><p>Mapped the causal pathways and surfaced the assumptions sitting underneath them, drawing on earlier randomised-trial impact analysis of previous cohorts rather than starting from scratch.</p></div>
+        <div class="pblock"><div class="h">What it produced</div><p>A shared account of how the programme expected change to happen, and a basis for deciding what was worth measuring.</p></div>
+      </div>
+      <div class="tags"><span class="tag">Causal pathways</span><span class="tag">Assumptions</span><span class="tag">Evidence review</span></div>
     </div>
 
   </div>
+</section>
 
-  <div class="wrap wrap-wide">
-    <section class="full" id="about">
-      <div class="section-head-full">
-        <h2>The timeline</h2>
-      </div>
-      <ul class="timeline-list">
-        <li>
-          <div class="timeline-head">
-            <span class="tlabel">2024– Present</span>
-            <span><strong>African Management Institute</strong> <span class="org">, MERL Manager</span></span>
-          </div>
-          <div class="role-subs">
-            <div class="role-sub">
-              <h4>Leadership</h4>
-              <ul>
-                <li>Lead the MERL function across a multi-country portfolio funded by the Mastercard Foundation, Argidius Foundation, and other development partners, supporting programmes reaching 40,000+ entrepreneurs across 10+ African countries.</li>
-                <li>Lead and mentor the MERL team, strengthening analytical capability and promoting consistent use of evidence across programmes.</li>
-              </ul>
-            </div>
-            <div class="role-sub">
-              <h4>Research &amp; Evaluation</h4>
-              <ul>
-                <li>Design and strengthen MERL frameworks, including theories of change, results frameworks, indicators, and evaluation plans.</li>
-                <li>Lead research, qualitative and quantitative analysis, and evidence synthesis to assess programme outcomes.</li>
-              </ul>
-            </div>
-            <div class="role-sub">
-              <h4>Data &amp; Systems</h4>
-              <ul>
-                <li>Build and maintain live dashboards and automated reporting systems using Power BI, Metabase, Google Sheets, and Apps Script.</li>
-                <li>Oversee data collection across KoboToolbox, ODK, SurveyMonkey, and Google Forms, strengthening data quality, governance, and compliance.</li>
-              </ul>
-            </div>
-            <div class="role-sub">
-              <h4>Learning &amp; Impact</h4>
-              <ul>
-                <li>Produce donor impact reports, evaluation reports, and learning briefs that inform programme improvement and organisational strategy.</li>
-              </ul>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="timeline-head">
-            <span class="tlabel">2023–24</span>
-            <span><strong>African Management Institute</strong> <span class="org">, MERL Officer</span></span>
-          </div>
-          <div class="role-subs">
-            <div class="role-sub">
-              <h4>Dashboards &amp; Data Quality</h4>
-              <ul>
-                <li>Developed and maintained dashboards supporting more than 40 programmes, improving visibility of portfolio reporting.</li>
-                <li>Strengthened data quality through validation processes, routine checks, and data cleaning.</li>
-              </ul>
-            </div>
-            <div class="role-sub">
-              <h4>Monitoring &amp; Capacity Building</h4>
-              <ul>
-                <li>Designed and improved monitoring tools to track progress against indicators and inform adaptive management.</li>
-                <li>Delivered training and technical support to programme teams on data collection, analysis, and reporting.</li>
-              </ul>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="timeline-head">
-            <span class="tlabel">2021–23</span>
-            <span><strong>African Management Institute</strong> <span class="org">, Data Analyst</span></span>
-          </div>
-          <div class="role-subs">
-            <div class="role-sub">
-              <h4>Analysis &amp; Reporting</h4>
-              <ul>
-                <li>Analysed programme data to support impact reporting across entrepreneurship and business development programmes.</li>
-                <li>Contributed to annual impact reports by synthesising quantitative findings into actionable insights.</li>
-              </ul>
-            </div>
-            <div class="role-sub">
-              <h4>Data &amp; Tools</h4>
-              <ul>
-                <li>Developed and maintained data tracking tools and reporting templates.</li>
-                <li>Produced dashboards and routine analyses; cleaned, validated, and consolidated data from multiple sources.</li>
-              </ul>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="timeline-head">
-            <span class="tlabel">2020–21</span>
-            <span><strong>UNDP</strong> <span class="org">, Data Coordinator Consultant (Internship)</span></span>
-          </div>
-          <span class="note">Cleaned and managed programme data in line with UNDP Results-Based Management standards; conducted descriptive statistical analysis in Excel and SPSS and updated monitoring dashboards for donor and internal reporting.</span>
-        </li>
-        <li>
-          <div class="timeline-head">
-            <span class="tlabel">2018–20</span>
-            <span><strong>Kenya Forest Service</strong> <span class="org">, Research Assistant (Volunteer)</span></span>
-          </div>
-          <span class="note">Supported environmental research through field data collection, entry, and quality assurance; assisted with analysis for conservation and natural resource management initiatives.</span>
-        </li>
-      </ul>
-
-      <div class="section-head-full sub">
-        <h2>Education</h2>
-      </div>
-      <ul class="timeline-list">
-        <li>
-          <div class="timeline-head">
-            <span class="tlabel">BSc</span>
-            <span><strong>Environmental Planning &amp; Management</strong> <span class="org">, Kenyatta University</span></span>
-          </div>
-        </li>
-        <li>
-          <div class="timeline-head">
-            <span class="tlabel">2022</span>
-            <span><strong>Tech4Dev</strong> <span class="org">, Data Science and AI</span></span>
-          </div>
-        </li>
-      </ul>
-    </section>
-
-    <section class="full" id="numbers">
-      <div class="section-head-full sub">
-        <h2>By the Numbers</h2>
-      </div>
-      <p style="font-size:15px; color:var(--muted); margin-bottom:24px; max-width:60ch;">Four years and eight months of MERL work at African Management Institute, in numbers:</p>
-      <div class="stat-grid">
-        <div class="stat-card">
-          <span class="stat-num">40,000+</span>
-          <span class="stat-label">Entrepreneurs reached through supported programmes</span>
-        </div>
-        <div class="stat-card">
-          <span class="stat-num">10+</span>
-          <span class="stat-label">African countries covered by the current portfolio</span>
-        </div>
-        <div class="stat-card">
-          <span class="stat-num">40+</span>
-          <span class="stat-label">Programmes supported through dashboards and reporting</span>
-        </div>
-        <div class="stat-card">
-          <span class="stat-num">5+</span>
-          <span class="stat-label">Donor and client portfolios, including Mastercard Foundation, Argidius Foundation, CapPlus, World Bank/BRD and BFA Global</span>
-        </div>
-      </div>
-    </section>
-
-    <section class="full" id="projects">
-      <div class="section-head-full sub">
-        <h2>Selected Projects</h2>
-      </div>
-      <ul class="offer-grid">
-        <li>
-          <h3>LIF Double Down M&amp;E System</h3>
-          <p>Designed the M&amp;E plan, logframe and indicator performance tracking table (IPTT) defining what the programme would measure and how. Built the Champions Application and STO baseline surveys used to collect standardised applicant data, including consent design compliant with Kenya's Data Protection Act.</p>
-        </li>
-        <li>
-          <h3>BRD AFIRR / HATANA Dashboard</h3>
-          <p>Rebuilt the M&amp;E reporting dashboard tracking SME performance indicators for World Bank and BRD stakeholders, turning raw programme data into a reliable, decision-ready view of progress against targets.</p>
-          <a href="https://hatana.brd.rw/" target="_blank" class="project-link">View the programme ↗</a>
-        </li>
-        <li>
-          <h3>FIRST+II Impact Analysis</h3>
-          <p>Designed and ran the matched-pair impact analysis behind the FIRST+II Annual Impact Report, using CAGR methodology with IQR-based outlier removal to produce donor-defensible evidence of business growth for CapPlus and Mastercard Foundation.</p>
-          <a href="https://first.capplus.org/" target="_blank" class="project-link">View the programme ↗</a>
-        </li>
-        <li>
-          <h3>GYB / Hustler Fund Theory of Change</h3>
-          <p>Built the Theory of Change mapping assumptions and causal pathways for AMI's Financial Inclusion Fund (GYB/Hustler Fund) programme for client BFA Global, drawing on earlier RCT-based impact analysis of GYB cohorts.</p>
-        </li>
-      </ul>
-    </section>
-  </div>
-
+<section id="experience">
   <div class="wrap">
-    <section class="full" id="writing">
-      <div class="section-head-full">
-        <h2>Writing</h2>
+    <h2>Experience</h2>
+
+    <div class="role">
+      <div class="when">2024 – 2026<br>Nairobi, Kenya</div>
+      <div>
+        <div class="what">MERL Manager</div>
+        <div class="org">African Management Institute</div>
+        <ul style="margin-top:14px">
+          <li>Led the MERL function across a multi-country portfolio funded by and delivered with partners including the Mastercard Foundation, Argidius Foundation, GIZ, USAID, AGRA and the Dutch Good Growth Fund.</li>
+          <li>Designed and strengthened MERL frameworks, theories of change, results frameworks, indicators and evaluation plans, and used outcome harvesting to identify intended and unintended change.</li>
+          <li>Set learning agendas around the questions programmes needed answered, and led the reflection sessions where teams reviewed findings and agreed changes to implementation.</li>
+          <li>Built dashboards and automated reporting in Power BI, Metabase, Google Sheets and Apps Script, and strengthened data quality, validation and governance across collection tools.</li>
+          <li>Produced donor impact reports, evaluations and learning briefs, contributed measurement content to proposals, and mentored MERL colleagues.</li>
+        </ul>
       </div>
-      <ul class="writing-list">
-        <li>
-          <a href="https://medium.com/@everythingdata/when-measurement-becomes-surveillance-91a52b53c8c9" target="_blank">
-            <span class="wtitle">When Measurement Becomes Surveillance</span>
-            <span class="wmeta">AI &amp; Evaluation</span>
-          </a>
-          <div class="wdesc">On how tracking systems reshape the behaviour they were meant to observe, and what happens when external measures start to replace internal judgment.</div>
-        </li>
-        <li>
-          <a href="https://medium.com/@everythingdata/why-adaptive-management-is-not-optional-a617231ca0f4" target="_blank">
-            <span class="wtitle">Why Adaptive Management Is Not Optional</span>
-            <span class="wmeta">Strategy</span>
-          </a>
-          <div class="wdesc">Strategy is a hypothesis, not a contract with the future. Every strategy rests on assumptions, and assumptions have a shelf life.</div>
-        </li>
-        <li>
-          <a href="https://medium.com/@everythingdata/why-approaches-and-methods-matter-in-m-e-fbff658dacf0" target="_blank">
-            <span class="wtitle">Why Approaches and Methods Matter in M&amp;E</span>
-            <span class="wmeta">Research Methods</span>
-          </a>
-          <div class="wdesc">On the question every programme eventually has to answer: how do you actually know it made a difference?</div>
-        </li>
-      </ul>
-      <p class="note-line">More at <a href="https://medium.com/@everythingdata" target="_blank" class="inline-link">@_everythingdata</a> on Medium.</p>
-    </section>
+    </div>
+
+    <div class="role">
+      <div class="when">2023 – 2024<br>Nairobi, Kenya</div>
+      <div>
+        <div class="what">MERL Officer</div>
+        <div class="org">African Management Institute</div>
+        <ul style="margin-top:14px">
+          <li>Supported measurement implementation across programmes: monitoring tools, collection processes, dashboards and reporting systems.</li>
+          <li>Designed surveys and collection tools across different countries and languages, strengthened data quality through validation and cleaning, and trained programme teams on collection, analysis and reporting.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="role">
+      <div class="when">2021 – 2023<br>Nairobi, Kenya</div>
+      <div>
+        <div class="what">Data Analyst</div>
+        <div class="org">African Management Institute</div>
+        <ul style="margin-top:14px">
+          <li>Analysed programme and participant data to understand reach, participation, engagement and outcomes.</li>
+          <li>Built dashboards and analytical tools in Excel, Google Sheets, Power BI and Metabase, and consolidated data from multiple sources into insights for programme teams and reporting.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="role">
+      <div class="when">2020 – 2021</div>
+      <div>
+        <div class="what">Data Coordinator, Consultant</div>
+        <div class="org">UNDP</div>
+        <ul style="margin-top:14px">
+          <li>Managed programme data in line with results-based management standards, ran descriptive analysis in Excel and SPSS, and updated monitoring dashboards for donor and internal reporting.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="role">
+      <div class="when">2018 – 2020</div>
+      <div>
+        <div class="what">Research Assistant, Volunteer</div>
+        <div class="org">Kenya Forest Service</div>
+        <ul style="margin-top:14px">
+          <li>Collected field data with communities and at forest stations, and supported analysis for conservation and natural resource management work. My first exposure to environmental governance, and to how rarely the people affected by a decision are in the room when it is made.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="edu">
+      <strong>Education and training</strong><br>
+      BSc Environmental Planning and Management <span>— Kenyatta University, 2022</span><br>
+      Data Science and AI Fellowship <span>— Women Techsters, Tech4Dev, 2022</span>
+    </div>
   </div>
+</section>
 
-  <div class="wrap wrap-wide">
+<section id="writing">
+  <div class="wrap">
+    <h2>Writing</h2>
 
-    <section class="full" id="services">
-      <div class="section-head-full">
-        <h2>How I Can Help</h2>
-      </div>
-      <p class="lede-full">I help organisations build evidence they can trust and use. Whether you're designing a new programme, evaluating an existing one, or exploring how AI fits into your MERL practice, my focus is the same: build systems that produce better evidence and make it easier for people to act on it.</p>
-      <ul class="offer-grid">
-        <li>
-          <h3>Need a MERL system that actually works?</h3>
-          <p>From theories of change and logframes to indicator frameworks and learning agendas, I design MERL systems that support accountability without becoming paperwork exercises.</p>
-        </li>
-        <li>
-          <h3>Need to know if your programme is working?</h3>
-          <p>I design evaluations that answer meaningful questions. My work includes evaluation planning, outcome harvesting, mixed-methods research, evidence synthesis, and impact analysis that helps organisations understand what is changing and why.</p>
-        </li>
-        <li>
-          <h3>Struggling to use the data you already collect?</h3>
-          <p>I build dashboards and reporting systems that make evidence easier to understand. Instead of static reports, teams get live insights they can use to monitor progress, identify challenges, and support better decisions.</p>
-        </li>
-        <li>
-          <h3>Curious how AI fits into evaluation?</h3>
-          <p>AI should reduce repetitive work, not replace professional judgement. I help organisations integrate AI into their evaluation workflows to improve evidence synthesis, automate routine tasks, strengthen reporting, and give teams more time for learning and analysis.</p>
-        </li>
-      </ul>
+    <div class="piece">
+      <div class="cat">Measurement</div>
+      <h3><a href="https://medium.com/@everythingdata/when-measurement-becomes-surveillance-91a52b53c8c9" target="_blank" rel="noopener">When measurement becomes surveillance</a></h3>
+      <p>On how tracking systems reshape the behaviour they were meant to observe, and what happens when external measures start to replace internal judgment.</p>
+    </div>
 
-      <div class="cta-block">
-        <p>If something here is a fit, send a note with a line or two about what you're working on.</p>
-        <a href="mailto:saniamomercy@gmail.com" class="btn-link">Email me →</a>
-      </div>
-    </section>
+    <div class="piece">
+      <div class="cat">Strategy</div>
+      <h3><a href="https://medium.com/@everythingdata/why-adaptive-management-is-not-optional-a617231ca0f4" target="_blank" rel="noopener">Why adaptive management is not optional</a></h3>
+      <p>Strategy is a hypothesis, not a contract with the future. Every strategy rests on assumptions, and assumptions have a shelf life.</p>
+    </div>
 
+    <div class="piece">
+      <div class="cat">Research methods</div>
+      <h3><a href="https://medium.com/@everythingdata/why-approaches-and-methods-matter-in-m-e-fbff658dacf0" target="_blank" rel="noopener">Why approaches and methods matter in M&amp;E</a></h3>
+      <p>On the question every programme eventually has to answer: how do you actually know it made a difference?</p>
+    </div>
+
+    <p class="more">More at <a href="https://medium.com/@everythingdata" target="_blank" rel="noopener">@everythingdata</a> on Medium.</p>
   </div>
-</main>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <h2>Contact</h2>
+    <p class="contact-lede">For evaluation work, research, data systems, or an interesting question about how organisations measure change.</p>
+    <p class="contact-sub">Send a note with a line or two about what you're working on.</p>
+    <a class="cta" href="mailto:saniamomercy@gmail.com">Email me →</a>
+    <p class="elsewhere">
+      <a href="https://www.linkedin.com/in/saniamomercy/" target="_blank" rel="noopener">LinkedIn</a> ·
+      <a href="https://medium.com/@everythingdata" target="_blank" rel="noopener">Medium</a>
+    </p>
+  </div>
+</section>
 
 <footer>
   <div class="wrap">
-    <span class="footer-loc">Nairobi, Kenya</span>
-    <div class="footer-links">
-      <a href="mailto:saniamomercy@gmail.com">Email</a>
-      <a href="https://www.linkedin.com/in/saniamomercy/" target="_blank">LinkedIn</a>
-      <a href="https://www.instagram.com/_everythingdata/" target="_blank">Instagram</a>
-    </div>
-  </div>
-  <div class="wrap">
-    <div class="copyright">SANIAMO MERCY © 2026</div>
+    <span>Saniamo Mercy © 2026</span>
+    <span>Nairobi, Kenya</span>
   </div>
 </footer>
 
