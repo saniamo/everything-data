@@ -54,10 +54,10 @@ h1{
 .eyebrow{font-size:13.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--grey); margin-top:14px}
 .lede{
   font-family:'Source Serif 4',Georgia,serif;
-  font-size:clamp(21px,2.5vw,27px); line-height:1.35; color:var(--navy);
-  margin-top:20px; max-width:30ch;
+  font-size:clamp(22px,2.6vw,29px); line-height:1.34; color:var(--navy);
+  margin-top:22px; max-width:32ch;
 }
-.herolinks{margin-top:26px; font-size:16px}
+.herolinks{margin-top:30px; font-size:16px}
 .hero p.sub{margin-top:20px; color:var(--grey); font-size:17px; max-width:52ch}
 .portrait{width:100%; border-radius:2px; display:block; filter:saturate(.95)}
 
@@ -81,7 +81,7 @@ h3{font-family:'Source Serif 4',Georgia,serif; font-size:24px; font-weight:600; 
 /* ---------- work ---------- */
 .project{padding:26px 0; border-top:1px solid var(--line)}
 .project:first-of-type{border-top:none; padding-top:0}
-.project .kicker{font-size:13px; letter-spacing:.12em; text-transform:uppercase; color:var(--grey); margin-bottom:7px}
+.project .kicker{font-size:14px; color:var(--grey); margin-top:5px}
 .pgrid{display:grid; grid-template-columns:1fr 1fr; gap:15px 40px; margin-top:16px}
 .pblock .h{font-size:13px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:var(--sky); margin-bottom:5px}
 .pblock p{font-size:15.5px; color:var(--ink)}
@@ -105,6 +105,7 @@ h3{font-family:'Source Serif 4',Georgia,serif; font-size:24px; font-weight:600; 
 .edu span{color:var(--grey)}
 
 /* ---------- writing ---------- */
+.secintro{font-size:17px; color:var(--grey); max-width:62ch; margin-bottom:26px}
 .piece{padding:18px 0; border-top:1px solid var(--line)}
 .piece:first-of-type{border-top:none; padding-top:0}
 .piece .cat{font-size:12.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--sky); margin-bottom:6px}
@@ -157,7 +158,6 @@ footer .wrap{display:flex; justify-content:space-between; gap:20px; flex-wrap:wr
         <h1>Saniamo&nbsp;Mercy</h1>
         <p class="eyebrow">Monitoring, Evaluation, Research and Learning</p>
         <p class="lede">I design measurement and learning systems that help programmes use evidence to improve implementation.</p>
-        <p class="sub">My work covers evaluation design, data systems, analysis, reporting and learning, with experience across programmes in Africa.</p>
         <p class="herolinks"><a href="#work">View my work →</a> &nbsp;&nbsp; <a href="#contact">Contact →</a></p>
       </div>
       <div>
@@ -170,9 +170,72 @@ footer .wrap{display:flex; justify-content:space-between; gap:20px; flex-wrap:wr
 <section id="about">
   <div class="wrap body-lg">
     <h2>About</h2>
-    <p>My work sits between programme implementation and data. I design measurement and learning systems, analyse programme data, and use evaluation to understand what is changing, why, and what teams may need to do differently.</p>
-    <p>I am particularly interested in the point between collecting evidence and using it: whether the data is good enough to support a decision, whether the assumptions behind the programme still hold, and what teams can learn while implementation is still underway. Where evidence does not support a claim, the measurement function has to be willing to challenge it, even when the result is inconvenient.</p>
-    <p>More recently I have been exploring how AI changes this work, particularly where it reduces routine effort without replacing professional judgement.</p>
+    <p>I design measurement and learning systems for programmes, and use data and evaluation to understand what is changing, what is not, and what teams may need to do differently.</p>
+    <p>I am interested in how evidence gets used during implementation, not only what gets reported at the end. That means asking whether the data is good enough to support a decision, whether the assumptions behind a programme still hold, and what the evidence suggests should change.</p>
+    <p>Good measurement should make clear what the evidence can support, what it cannot, and where the uncertainty matters for a decision.</p>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <h2>Selected work</h2>
+    <!-- To show real evidence, drop an image inside any .project block, e.g.
+         <img class="shot" src="dashboard.png" alt="Dashboard view">
+         Upload the file to the repo root first. -->
+
+    <div class="project">
+      <h3>LIF Double Down</h3>
+      <div class="kicker">Measurement system design</div>
+      <div class="pgrid">
+        <div class="pblock"><div class="h">The problem</div><p>The programme wanted to concentrate additional support on the businesses most likely to create jobs, but there was no agreed way to identify them or to test whether the extra support actually worked.</p></div>
+        <div class="pblock"><div class="h">My role</div><p>Led the M&amp;E design: theory of change, measurement approach, indicator framework and baseline design.</p></div>
+        <div class="pblock"><div class="h">What I did</div><p>Worked backwards from the intended outcomes to map the causal pathways, made the assumptions explicit, and connected each pathway to indicators and data sources. Designed the M&amp;E plan, logframe and indicator performance tracking table, and built the application and baseline surveys used to collect standardised data, including consent design compliant with Kenya's Data Protection Act.</p></div>
+        <div class="pblock"><div class="h">What it produced</div><p>A programme hypothesis that could be tested, with a measurement system designed to distinguish between what the data could establish and what it could not.</p></div>
+        <div class="pblock"><div class="h">What the team learned</div><p>The system let the programme test its assumptions about who benefits from additional support, rather than waiting until the end to find out. It also surfaced response-rate limitations and duplicate records beneath the headline results, which changed how the programme reported the findings and collected data in the following cycle.</p></div>
+      </div>
+      <div class="tags"><span class="tag">Theory of Change</span><span class="tag">Logframe &amp; IPTT</span><span class="tag">Survey design</span><span class="tag">Data protection</span></div>
+    </div>
+
+    <div class="project">
+      <h3>BRD AFIRR / HATANA dashboard</h3>
+      <div class="kicker">Reporting systems</div>
+      <div class="pgrid">
+        <div class="pblock"><div class="h">The problem</div><p>A Rwandan development bank's SME finance programme was producing plenty of data, but stakeholders could not see progress against targets without manual work each reporting round.</p></div>
+        <div class="pblock"><div class="h">My role</div><p>Rebuilt the M&amp;E reporting dashboard used by World Bank and BRD stakeholders.</p></div>
+        <div class="pblock"><div class="h">What I did</div><p>Restructured how SME performance indicators were defined, collected and consolidated, then rebuilt the reporting layer so the underlying data and the reported figures stayed in step.</p></div>
+        <div class="pblock"><div class="h">What it produced</div><p>A reliable, decision-ready view of programme progress that stakeholders could interrogate themselves rather than request.</p></div>
+        <div class="pblock"><div class="h">What changed</div><p>Teams could see progress against targets during implementation, spot issues earlier and ask their own questions of the data instead of waiting for the next reporting cycle.</p></div>
+      </div>
+      <div class="tags"><span class="tag">Indicator definition</span><span class="tag">Dashboard design</span><span class="tag">Data quality</span></div>
+      <a class="plink" href="https://hatana.brd.rw/" target="_blank" rel="noopener">View the programme ↗</a>
+    </div>
+
+    <div class="project">
+      <h3>FIRST+II</h3>
+      <div class="kicker">Impact analysis</div>
+      <div class="pgrid">
+        <div class="pblock"><div class="h">The problem</div><p>The programme needed evidence of business growth that would hold up to donor scrutiny, from data with the uneven quality typical of self-reported business figures.</p></div>
+        <div class="pblock"><div class="h">My role</div><p>Designed and ran the analysis behind the annual impact report for CapPlus and the Mastercard Foundation.</p></div>
+        <div class="pblock"><div class="h">What I did</div><p>Built a matched-pair analysis using compound annual growth rate methodology with interquartile-range outlier removal, so that a handful of extreme values could not carry the headline result.</p></div>
+        <div class="pblock"><div class="h">What it produced</div><p>Growth findings the programme could defend, alongside a clear account of what the data could and could not establish.</p></div>
+        <div class="pblock"><div class="h">What the evidence showed</div><p>A more defensible basis for interpreting business growth, with the limitations of the evidence made explicit alongside the findings.</p></div>
+      </div>
+      <div class="tags"><span class="tag">Matched-pair analysis</span><span class="tag">CAGR</span><span class="tag">Outlier treatment</span><span class="tag">Impact reporting</span></div>
+      <a class="plink" href="https://first.capplus.org/" target="_blank" rel="noopener">View the programme ↗</a>
+    </div>
+
+    <div class="project">
+      <h3>Financial inclusion fund</h3>
+      <div class="kicker">Theory of change</div>
+      <div class="pgrid">
+        <div class="pblock"><div class="h">The problem</div><p>A financial inclusion programme had activities and indicators but no explicit account of how the intervention was expected to produce change, or what had to be true for it to work.</p></div>
+        <div class="pblock"><div class="h">My role</div><p>Built the theory of change as a standalone deliverable for the client, BFA Global.</p></div>
+        <div class="pblock"><div class="h">What I did</div><p>Mapped the causal pathways and surfaced the assumptions sitting underneath them, drawing on earlier randomised-trial impact analysis of previous cohorts rather than starting from scratch.</p></div>
+        <div class="pblock"><div class="h">What it produced</div><p>A clear account of how the programme expected change to happen, the assumptions that needed to hold, and what was worth measuring during implementation.</p></div>
+      </div>
+      <div class="tags"><span class="tag">Causal pathways</span><span class="tag">Assumptions</span><span class="tag">Evidence review</span></div>
+    </div>
+
   </div>
 </section>
 
@@ -188,68 +251,6 @@ footer .wrap{display:flex; justify-content:space-between; gap:20px; flex-wrap:wr
   </div>
 </section>
 
-<section id="work">
-  <div class="wrap">
-    <h2>Selected work</h2>
-    <!-- To show real evidence, drop an image inside any .project block, e.g.
-         <img class="shot" src="dashboard.png" alt="Dashboard view">
-         Upload the file to the repo root first. -->
-
-    <div class="project">
-      <div class="kicker">Measurement system design</div>
-      <h3>LIF Double Down</h3>
-      <div class="pgrid">
-        <div class="pblock"><div class="h">The problem</div><p>The programme wanted to concentrate additional support on the businesses most likely to create jobs, but there was no agreed way to identify them or to test whether the extra support actually worked.</p></div>
-        <div class="pblock"><div class="h">My role</div><p>M&amp;E lead: theory of change, measurement approach, indicator framework and baseline design.</p></div>
-        <div class="pblock"><div class="h">What I did</div><p>Worked backwards from the intended outcomes to map the causal pathways, made the assumptions explicit, and connected each pathway to indicators and data sources. Designed the M&amp;E plan, logframe and indicator performance tracking table, and built the application and baseline surveys used to collect standardised data, including consent design compliant with Kenya's Data Protection Act.</p></div>
-        <div class="pblock"><div class="h">What it produced</div><p>A programme hypothesis that could actually be tested, and a measurement system that told the team where the evidence was strong enough to support a conclusion and where it was not.</p></div>
-        <div class="pblock"><div class="h">What the team learned</div><p>The system let the programme test its assumptions about who benefits from additional support, rather than waiting until the end to find out. It also surfaced response rate limits and duplicate records beneath the headline results, which changed how the programme reported them and how it collected data the following cycle.</p></div>
-      </div>
-      <div class="tags"><span class="tag">Theory of Change</span><span class="tag">Logframe &amp; IPTT</span><span class="tag">Survey design</span><span class="tag">Data protection</span></div>
-    </div>
-
-    <div class="project">
-      <div class="kicker">Reporting systems</div>
-      <h3>BRD AFIRR / HATANA dashboard</h3>
-      <div class="pgrid">
-        <div class="pblock"><div class="h">The problem</div><p>A Rwandan development bank's SME finance programme was producing plenty of data, but stakeholders could not see progress against targets without manual work each reporting round.</p></div>
-        <div class="pblock"><div class="h">My role</div><p>Rebuilt the M&amp;E reporting dashboard used by World Bank and BRD stakeholders.</p></div>
-        <div class="pblock"><div class="h">What I did</div><p>Restructured how SME performance indicators were defined, collected and consolidated, then rebuilt the reporting layer so the underlying data and the reported figures stayed in step.</p></div>
-        <div class="pblock"><div class="h">What it produced</div><p>A reliable, decision-ready view of programme progress that stakeholders could interrogate themselves rather than request.</p></div>
-        <div class="pblock"><div class="h">Why it mattered</div><p>Teams could see progress against targets during implementation, spot issues earlier and ask their own questions of the data, instead of waiting for the next reporting cycle to find out where the programme stood.</p></div>
-      </div>
-      <div class="tags"><span class="tag">Indicator definition</span><span class="tag">Dashboard design</span><span class="tag">Data quality</span></div>
-      <a class="plink" href="https://hatana.brd.rw/" target="_blank" rel="noopener">View the programme ↗</a>
-    </div>
-
-    <div class="project">
-      <div class="kicker">Impact analysis</div>
-      <h3>FIRST+II impact analysis</h3>
-      <div class="pgrid">
-        <div class="pblock"><div class="h">The problem</div><p>The programme needed evidence of business growth that would hold up to donor scrutiny, from data with the uneven quality typical of self-reported business figures.</p></div>
-        <div class="pblock"><div class="h">My role</div><p>Designed and ran the analysis behind the annual impact report for CapPlus and the Mastercard Foundation.</p></div>
-        <div class="pblock"><div class="h">What I did</div><p>Built a matched-pair analysis using compound annual growth rate methodology with interquartile-range outlier removal, so that a handful of extreme values could not carry the headline result.</p></div>
-        <div class="pblock"><div class="h">What it produced</div><p>Growth findings the programme could defend, alongside a clear account of what the data could and could not establish.</p></div>
-      </div>
-      <div class="tags"><span class="tag">Matched-pair analysis</span><span class="tag">CAGR</span><span class="tag">Outlier treatment</span><span class="tag">Impact reporting</span></div>
-      <a class="plink" href="https://first.capplus.org/" target="_blank" rel="noopener">View the programme ↗</a>
-    </div>
-
-    <div class="project">
-      <div class="kicker">Theory of change</div>
-      <h3>Financial inclusion fund, theory of change</h3>
-      <div class="pgrid">
-        <div class="pblock"><div class="h">The problem</div><p>A financial inclusion programme had activities and indicators but no explicit account of how the intervention was expected to produce change, or what had to be true for it to work.</p></div>
-        <div class="pblock"><div class="h">My role</div><p>Built the theory of change as a standalone deliverable for the client, BFA Global.</p></div>
-        <div class="pblock"><div class="h">What I did</div><p>Mapped the causal pathways and surfaced the assumptions sitting underneath them, drawing on earlier randomised-trial impact analysis of previous cohorts rather than starting from scratch.</p></div>
-        <div class="pblock"><div class="h">What it produced</div><p>A shared account of how the programme expected change to happen, and a basis for deciding what was worth measuring.</p></div>
-      </div>
-      <div class="tags"><span class="tag">Causal pathways</span><span class="tag">Assumptions</span><span class="tag">Evidence review</span></div>
-    </div>
-
-  </div>
-</section>
-
 <section id="experience">
   <div class="wrap">
     <h2>Experience</h2>
@@ -261,8 +262,8 @@ footer .wrap{display:flex; justify-content:space-between; gap:20px; flex-wrap:wr
         <div class="org">African Management Institute</div>
         <ul style="margin-top:14px">
           <li>Led the MERL function across a multi-country portfolio funded by and delivered with partners including the Mastercard Foundation, Argidius Foundation, GIZ, USAID, AGRA and the Dutch Good Growth Fund.</li>
-          <li>Designed and strengthened MERL frameworks, theories of change, results frameworks, indicators and evaluation plans, and used outcome harvesting to identify intended and unintended change.</li>
           <li>Set learning agendas around the questions programmes needed answered, and led the reflection sessions where teams reviewed findings and agreed changes to implementation.</li>
+          <li>Designed and strengthened MERL frameworks, theories of change, results frameworks, indicators and evaluation plans, and used outcome harvesting to identify intended and unintended change.</li>
           <li>Built dashboards and automated reporting in Power BI, Metabase, Google Sheets and Apps Script, and strengthened data quality, validation and governance across collection tools.</li>
           <li>Produced donor impact reports, evaluations and learning briefs, contributed measurement content to proposals, and mentored MERL colleagues.</li>
         </ul>
@@ -326,6 +327,7 @@ footer .wrap{display:flex; justify-content:space-between; gap:20px; flex-wrap:wr
 <section id="writing">
   <div class="wrap">
     <h2>Writing</h2>
+    <p class="secintro">I write about measurement, adaptive management, evaluation, and how evidence gets used in practice.</p>
 
     <div class="piece">
       <div class="cat">Measurement</div>
@@ -346,7 +348,7 @@ footer .wrap{display:flex; justify-content:space-between; gap:20px; flex-wrap:wr
 <section id="contact">
   <div class="wrap">
     <h2>Contact</h2>
-    <p class="contact-lede">For evaluation work, research, data systems, learning, or an interesting question about how organisations measure change.</p>
+    <p class="contact-lede">For evaluation, research, data systems and learning work, get in touch.</p>
     <p class="elsewhere">
       <a href="mailto:saniamomercy@gmail.com">Email</a> ·
       <a href="https://www.linkedin.com/in/saniamomercy/" target="_blank" rel="noopener">LinkedIn</a> ·
