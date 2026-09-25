@@ -243,6 +243,14 @@ footer .container{justify-content:center;text-align:center;flex-direction:column
 .writing-item h3{font-size:clamp(17px,2vw,21px)!important}
 .writing-item h3 a{background-size:100% 40%!important}
 .writing-item h3 a:hover{background-size:100% 100%!important}
+
+/* mobile menu fix: fill the whole screen */
+@media(max-width:860px){
+.nav-links{top:0;left:0;right:auto;bottom:auto;width:100vw;height:100vh;height:100dvh;background:var(--bg)}
+.nav-links a{font-size:clamp(26px,8vw,40px)}
+.nav:has(.nav-links.open){backdrop-filter:none;-webkit-backdrop-filter:none;background:var(--bg)}
+html.menu-open,html.menu-open body{overflow:hidden}
+}
 </style>
 </head>
 <body>
@@ -382,8 +390,8 @@ if(seen||matchMedia('(prefers-reduced-motion: reduce)').matches){splash.remove()
 if(!seen)document.querySelectorAll('.drop').forEach(el=>{const d=parseFloat(el.style.animationDelay)||0;el.style.animationDelay=(d+1.2)+'s';});
 
 const menu=document.getElementById('menu'),navLinks=document.getElementById('navLinks');
-menu.addEventListener('click',()=>{const o=navLinks.classList.toggle('open');menu.setAttribute('aria-expanded',o);menu.textContent=o?'Close':'Menu';});
-navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{navLinks.classList.remove('open');menu.setAttribute('aria-expanded','false');menu.textContent='Menu';}));
+menu.addEventListener('click',()=>{const o=navLinks.classList.toggle('open');root.classList.toggle('menu-open',o);menu.setAttribute('aria-expanded',o);menu.textContent=o?'Close':'Menu';});
+navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{navLinks.classList.remove('open');root.classList.remove('menu-open');menu.setAttribute('aria-expanded','false');menu.textContent='Menu';}));
 
 const progress=document.getElementById('progress');
 const anchors=[...navLinks.querySelectorAll('a')];
