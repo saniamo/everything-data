@@ -192,6 +192,57 @@ footer .container{display:flex;justify-content:space-between;gap:16px;flex-wrap:
 .reveal{opacity:0;transform:translateY(-40px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
 .reveal.visible{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.noise,.name::after,.shapes .s,.contact .container::before,.contact .container::after{animation:none}.drop{animation:none;opacity:1;transform:none}.reveal{opacity:1;transform:none;transition:none}.splash{display:none}}
+
+/* phone polish */
+@media(max-width:600px){
+body{font-size:16px}
+.container{padding:0 20px}
+.nav .container{min-height:64px}
+.brand{font-size:17px}.brand svg{width:26px;height:26px}
+.theme{width:32px;height:32px}
+.hero{padding:2.25rem 0 2.75rem}
+.hero-inner{display:block;position:relative}
+.shapes{position:absolute;top:-6px;right:0;width:120px;max-width:120px;opacity:.9}
+.intro{font-size:clamp(32px,10vw,42px);margin:88px 0 18px}
+.outline{-webkit-text-stroke:1.5px var(--ink)}
+.roles p{font-size:18px}
+.arrow-links{gap:22px;margin-top:24px}
+.section{padding:2.75rem 0}
+.section-head{margin-bottom:20px}
+.section-title{font-size:26px}
+.positioning,.case-grid,.evidence-grid,.methods{gap:14px}
+.positioning article,.case,.evidence-card,.method{border-radius:20px;padding:22px!important}
+.positioning article:hover,.case:hover,.evidence-card:hover,.method:hover{transform:none;box-shadow:none}
+.case h3{font-size:20px}
+.case p,.about-copy p,.role li{font-size:15.5px}
+.case-tools p{font-size:14.5px!important}
+.evidence-card a{align-self:stretch;text-align:center;padding:11px 16px}
+.about-layout{gap:24px}
+.photo-slot{max-width:190px;margin:0 auto 8px;box-shadow:8px 8px 0 var(--mint)}
+.about-copy p:first-child{font-size:18px}
+.timeline{padding-left:28px}
+.timeline::before{left:6px}
+.role{padding-bottom:28px}
+.role::before{left:-28px;width:14px;height:14px}
+.role h3{font-size:18px}
+.education{padding:18px 20px;border-radius:18px;font-size:15px}
+.method h3{font-size:15px}
+.ai-note{padding:22px;border-radius:20px}
+.writing-item h3{font-size:20px}
+#writing a[style]{display:inline-block;font-size:15px!important;padding:10px 18px;border-radius:999px;background:var(--card)}
+.contact{padding:1rem 0 3rem}
+.contact .container{margin:0 14px;padding:40px 22px;border-radius:24px}
+.contact h2{font-size:26px}
+.contact-actions{flex-direction:column;align-items:stretch}
+.btn{justify-content:center;padding:14px 22px}
+footer{font-size:13px}
+footer .container{justify-content:center;text-align:center;flex-direction:column;gap:4px}
+.noise{opacity:.06}
+}
+
+.writing-item h3{font-size:clamp(17px,2vw,21px)!important}
+.writing-item h3 a{background-size:100% 40%!important}
+.writing-item h3 a:hover{background-size:100% 100%!important}
 </style>
 </head>
 <body>
@@ -213,7 +264,7 @@ footer .container{display:flex;justify-content:space-between;gap:16px;flex-wrap:
 <section class="hero"><div class="container hero-inner">
 <div>
 <h1 class="intro"><span class="line"><span class="drop" style="animation-delay:.1s"><span class="outline">Hey, I’m</span> <span class="name">Saniamo</span></span></span><span class="line"><span class="drop" style="animation-delay:.22s"><span class="name">Mercy</span></span></span></h1>
-<div class="roles"><p class="drop" style="animation-delay:.34s">I make programme evidence useful.</p><p class="drop" style="animation-delay:.44s">I help development programmes define what success looks like, measure change and use findings to improve their work.</p></div>
+<div class="roles"><p class="drop" style="animation-delay:.34s">I help development programmes define what success looks like, measure change, and use evidence to improve decisions.</p></div>
 <ul class="arrow-links"><li class="drop" style="animation-delay:.54s"><a class="ulink" href="#work">→ See my work</a></li><li class="drop" style="animation-delay:.62s"><a class="ulink" href="#contact">→ Get in touch</a></li></ul>
 </div>
 <svg class="shapes" id="shapes" viewBox="0 0 300 300" aria-hidden="true">
@@ -225,10 +276,10 @@ footer .container{display:flex;justify-content:space-between;gap:16px;flex-wrap:
 </div></section>
 
 <section class="section"><div class="container">
-<div class="section-head"><div class="section-kicker">How I work</div><div><h2 class="section-title">From measurement design to understanding results.</h2></div></div>
+<div class="section-head"><div class="section-kicker">How I work</div></div>
 <div class="positioning">
-<article class="reveal"><h3>Design the measurement approach</h3><p>Theories of change, results frameworks, indicators and practical data-collection tools.</p></article>
-<article class="reveal"><h3>Analyse and use the findings</h3><p>Reliable data, clear analysis and findings teams can use for reporting and improvement.</p></article>
+<article class="reveal"><h3>Design the measurement approach</h3><p>Clarify what success looks like and translate it into practical measurement approaches through theories of change, results frameworks, indicators and data-collection tools.</p></article>
+<article class="reveal"><h3>Make sense of the findings</h3><p>Analyse and interpret data to produce clear, credible findings that support reporting, learning and programme improvement.</p></article>
 </div></div></section>
 
 <section id="work" class="section"><div class="container">
@@ -240,12 +291,11 @@ footer .container{display:flex;justify-content:space-between;gap:16px;flex-wrap:
 <p>I contributed data, analysis and findings to AMI’s annual impact reporting and donor reporting for programmes supported by the Argidius Foundation, Mastercard Foundation and World Bank.</p>
 <div class="case-tools"><p><strong>Data collection:</strong> ODK · SurveyMonkey</p><p><strong>Analysis:</strong> Excel · SPSS</p><p><strong>Focus:</strong> Employment · Revenue · Business outcomes</p></div></article>
 
-<article class="case reveal"><div class="case-no">02 / PARTICIPATION ANALYSIS</div><h3>Using participation data to understand entrepreneur outcomes</h3>
-<p>I analysed routine programme data to examine whether consistent participation was associated with stronger revenue and employment outcomes among entrepreneurs.</p>
-<p>I linked attendance records with entrepreneur-level outcome data and used Excel and SPSS to examine patterns across participation levels, sectors, regions and business types. The analysis found that entrepreneurs who participated consistently tended to report stronger business outcomes than those with irregular participation.</p>
+<article class="case reveal"><div class="case-no">02 / PROGRAMME ANALYSIS</div><h3>Using participation data to understand entrepreneur outcomes</h3>
+<p>I analysed routine programme data to examine whether consistent participation across programme activities was associated with stronger revenue and employment outcomes among entrepreneurs.</p>
+<p>I linked participation records with entrepreneur-level outcome data and used Excel and SPSS to examine patterns across levels of engagement, sectors, regions and business types. The analysis found that entrepreneurs who were consistently engaged throughout the programme reported stronger business outcomes than those whose participation was more irregular.</p>
 <h4 class="case-sub">What changed</h4>
-<p>The findings helped make attendance a more useful programme-monitoring indicator. Programme managers could identify declining engagement earlier and follow up with entrepreneurs before the programme ended.</p>
-<p class="case-note"><strong>Method note:</strong> The analysis identified an association between participation and outcomes; it was not designed to establish causality.</p></article>
+<p>The findings highlighted the value of monitoring participation and engagement throughout the programme, rather than focusing only on whether entrepreneurs completed the programme. Programme managers could identify declining engagement earlier and follow up with entrepreneurs while there was still time to support their participation.</p></article>
 
 <article class="case reveal"><div class="case-no">03 / MERL DESIGN</div><h3>Building measurement approaches across AMI programmes</h3>
 <p>I supported MERL design and implementation across AMI programmes, translating programme objectives and theories of change into practical approaches for tracking implementation, participation and outcomes.</p>
@@ -302,20 +352,20 @@ footer .container{display:flex;justify-content:space-between;gap:16px;flex-wrap:
 <article class="method reveal"><h3>Data collection & systems</h3><p>KoboToolbox · ODK · SurveyMonkey · Power BI · Metabase · Apps Script</p></article>
 <article class="method reveal"><h3>Learning & responsible data</h3><p>Learning agendas · data quality · data protection · evidence use</p></article>
 </div>
-<div class="ai-note reveal"><h3>Responsible use of AI</h3><p>I'm exploring AI for tasks like data cleaning, qualitative coding and first-draft reporting, while keeping judgement, data quality and data protection with the practitioner.</p></div>
+<div class="ai-note reveal"><h3>Responsible use of AI</h3><p>I’m exploring AI for tasks like data cleaning, qualitative coding and first-draft reporting, while keeping judgement, data quality and data protection under human oversight.</p></div>
 </div></section>
 
 <section id="writing" class="section"><div class="container">
-<div class="section-head"><div class="section-kicker">Writing</div><div><h2 class="section-title">Thinking about measurement and evidence in practice.</h2></div></div>
-<article class="writing-item reveal"><div class="writing-type">Adaptive management</div><div><h3><a href="https://medium.com/@everythingdata/why-adaptive-management-is-not-optional-a617231ca0f4" target="_blank" rel="noopener">Why adaptive management is not optional</a></h3><p>Why programme strategy should be tested and revisited as new information comes in.</p></div></article>
-<div style="margin-top:24px"><a href="https://medium.com/@everythingdata" target="_blank" rel="noopener" style="color:var(--green);font-size:13px;font-weight:600">More at @everythingdata →</a></div>
+<div class="section-head"><div class="section-kicker">Writing</div></div>
+<article class="writing-item reveal"><div><h3><a href="https://medium.com/@everythingdata/why-adaptive-management-is-not-optional-a617231ca0f4" target="_blank" rel="noopener">Why adaptive management is not optional</a></h3></div></article>
+<div style="margin-top:24px"><a href="https://medium.com/@everythingdata" target="_blank" rel="noopener" style="color:var(--green);font-size:13px;font-weight:600">More at @everythingdata</a></div>
 </div></section>
 
 <section id="contact" class="contact"><div class="container">
 <div class="section-kicker">Contact</div>
 <h2>Working on a programme that needs better measurement?</h2>
 <p>Open to MEL and evaluation roles, and consultancy assignments.</p>
-<div class="contact-actions"><a class="btn" href="mailto:saniamomercy@gmail.com">Email me</a><a class="btn alt" href="https://www.linkedin.com/in/saniamercy/" target="_blank" rel="noopener">LinkedIn</a><a class="btn alt" href="https://medium.com/@everythingdata" target="_blank" rel="noopener">Medium</a></div>
+<div class="contact-actions"><a class="btn" href="mailto:saniamomercy@gmail.com">Email me</a><a class="btn alt" href="https://www.linkedin.com/in/saniamercy/" target="_blank" rel="noopener">LinkedIn</a></div>
 </div></section>
 </main>
 <footer><div class="container"><span>Saniamo Mercy © 2026</span><span>Nairobi, Kenya</span></div></footer>
