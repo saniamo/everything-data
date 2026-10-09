@@ -1,0 +1,627 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SME Growth Evaluation Results</title>
+<meta name="description" content="Illustrative mixed-methods evaluation results dashboard built on simulated data. Work sample by Saniamo Mercy.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&family=Space+Grotesk:wght@500;600;700&display=swap">
+<style>
+.ev { max-width: 72rem; margin-inline: auto; font-family: var(--font-anthropic-sans); font-variant-numeric: tabular-nums; }
+.ev h1 { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); margin: 0 0 var(--cds-gap-xs); }
+.ev h2 { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: 0 0 var(--cds-gap-xs); }
+.ev h3 { font-size: var(--cds-font-size-body); font-weight: var(--cds-font-weight-medium); margin: 0 0 var(--cds-gap-xs); }
+.ev p { margin: 0 0 var(--cds-gap-sm); line-height: 1.5; }
+.ev .muted { color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); }
+.ev .lede { font-size: var(--cds-font-size-body); max-width: 60rem; }
+.ev .banner { border: 1px solid var(--color-border-line); border-left: 4px solid var(--cds-chart-reference); background: var(--color-panel); border-radius: var(--cds-radius); padding: var(--cds-pad-sm) var(--cds-pad-md); margin: var(--cds-gap-md) 0; font-size: var(--cds-font-size-caption); }
+.ev nav { display: flex; flex-wrap: wrap; gap: var(--cds-gap-xs) var(--cds-gap-md); margin: var(--cds-gap-sm) 0 var(--cds-gap-lg); font-size: var(--cds-font-size-caption); }
+.ev nav a { color: var(--color-fg-muted); text-decoration: none; border-bottom: 1px solid var(--color-border-line); cursor: pointer; }
+.ev nav a:hover { color: var(--color-fg); }
+.ev section { margin: 0 0 var(--cds-gap-xl); scroll-margin-top: var(--cds-gap-lg); }
+.ev .qnum { color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); text-transform: uppercase; letter-spacing: .06em; margin-bottom: var(--cds-gap-xs); }
+.ev .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); gap: var(--cds-gap-md); }
+.ev .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); gap: var(--cds-gap-md); }
+.ev .card { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); min-width: 0; }
+.ev .card .note { color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); margin: 0 0 var(--cds-gap-md); }
+.ev .tile .label { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.ev .tile .big { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); line-height: 1.15; margin: var(--cds-gap-xs) 0; }
+.ev .tile .range { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.ev .chart { position: relative; min-height: 12rem; }
+.ev .tip { position: absolute; pointer-events: none; background: var(--cds-surface-popover); border: 1px solid var(--cds-border); border-radius: var(--cds-radius); box-shadow: var(--cds-shadow-popover); padding: var(--cds-pad-xs) var(--cds-pad-sm); font-size: var(--cds-font-size-caption); white-space: nowrap; z-index: 2; display: none; }
+.ev .tip .t-head { color: var(--cds-text-secondary); margin-bottom: 2px; }
+.ev .tip .sw { display: inline-block; width: .6rem; height: .6rem; border-radius: 2px; margin-right: .35rem; vertical-align: middle; }
+.ev .legend { display: flex; flex-wrap: wrap; gap: var(--cds-gap-md); font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin-bottom: var(--cds-gap-sm); }
+.ev .legend i { display: inline-block; width: .7rem; height: .7rem; border-radius: 2px; margin-right: .35rem; vertical-align: -1px; }
+.ev .tablewrap { overflow-x: auto; }
+.ev table { border-collapse: collapse; width: 100%; font-size: var(--cds-font-size-caption); }
+.ev th { text-align: left; font-weight: var(--cds-font-weight-medium); color: var(--color-fg-muted); border-bottom: 1px solid var(--color-border-line); padding: var(--cds-pad-xs) var(--cds-pad-sm); vertical-align: bottom; }
+.ev td { border-bottom: 1px solid var(--color-border-line); padding: var(--cds-pad-sm); vertical-align: top; line-height: 1.45; }
+.ev td.num, .ev th.num { text-align: right; white-space: nowrap; }
+.ev tr:last-child td { border-bottom: 0; }
+.ev .chip { display: inline-block; padding: 1px 8px; border-radius: 999px; border: 1px solid currentColor; font-size: var(--cds-font-size-caption); white-space: nowrap; }
+.ev .r-strong { color: var(--color-ok); }
+.ev .r-adequate { color: var(--color-fg-muted); }
+.ev .r-weak { color: var(--color-warn); }
+.ev .heat { text-align: center; font-weight: var(--cds-font-weight-medium); }
+.ev .twocol { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr)); gap: var(--cds-gap-md); }
+.ev .kv { display: flex; justify-content: space-between; gap: var(--cds-gap-sm); padding: var(--cds-pad-xs) 0; border-bottom: 1px solid var(--color-border-line); font-size: var(--cds-font-size-caption); }
+.ev .kv:last-child { border-bottom: 0; }
+.ev .wide { grid-column: 1 / -1; }
+.ev .stack .lbl { display: none; }
+@media (max-width: 640px) {
+  .ev table.stack thead { display: none; }
+  .ev table.stack, .ev table.stack tbody, .ev table.stack tr, .ev table.stack td { display: block; width: auto; }
+  .ev table.stack tr { border-bottom: 1px solid var(--color-border-line); padding: var(--cds-pad-sm) 0; }
+  .ev table.stack tr:last-child { border-bottom: 0; }
+  .ev table.stack td { border: 0; padding: 2px 0; }
+}
+.ev [data-dash-source-state=empty] { color: transparent; }
+.ev [data-dash-source-state=refreshing] { opacity: .5; transition: opacity var(--cds-dur-slow); }
+.ev .fail { display: flex; align-items: center; justify-content: center; gap: .4rem; min-height: inherit; color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); }
+.ev .fail::before { content: ""; width: .375rem; height: .375rem; border-radius: 50%; background: var(--color-bad); }
+.ev .footer { color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); border-top: 1px solid var(--color-border-line); padding-top: var(--cds-pad-md); }
+
+:root {
+  --font-anthropic-sans: 'Manrope', system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-anthropic-serif: 'Space Grotesk', 'Manrope', system-ui, sans-serif;
+  --cds-font-size-caption: 0.8125rem; --cds-font-size-body: 1rem; --cds-font-size-heading: 1.125rem; --cds-font-size-title: 2rem;
+  --cds-font-weight-medium: 700;
+  --cds-gap-xs: 4px; --cds-gap-sm: 8px; --cds-gap-md: 16px; --cds-gap-lg: 24px; --cds-gap-xl: 48px;
+  --cds-pad-xs: 4px; --cds-pad-sm: 8px; --cds-pad-md: 12px; --cds-pad-lg: 20px;
+  --cds-radius: 10px; --cds-dur-slow: 300ms;
+  /* palette taken from the theory of change */
+  --toc-ink: #272343; --toc-teal: #168f83; --toc-coral: #ef5b58; --toc-purple: #7656c7; --toc-pink: #f65aa3; --toc-yellow: #ffca3a;
+  --color-bg: #f7f3ee; --color-panel: #fffcf7; --color-fg: #272343; --color-fg-muted: #6e6982; --color-border-line: #e9e2d8;
+  --color-ok: #127368; --color-warn: #b9302d; --color-bad: #b9302d;
+  --lx-accent: #168f83;
+  --cds-chart-muted: #c9c4d4; --cds-chart-grid: #eee8df; --cds-chart-axis: #a29db3; --cds-chart-reference: #ef5b58;
+  --cds-surface-popover: #fffcf7; --cds-border: #e2dacf; --cds-shadow-popover: 0 6px 18px rgba(39,35,67,.12); --cds-text-secondary: #6e6982;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #1a1830; --color-panel: #232040; --color-fg: #ece9f4; --color-fg-muted: #a6a1ba; --color-border-line: #353159;
+    --color-ok: #4cc3b5; --color-warn: #f2807d; --color-bad: #f2807d;
+    --lx-accent: #3fb8a9;
+    --cds-chart-muted: #57527a; --cds-chart-grid: #2d2a4d; --cds-chart-axis: #6e6982; --cds-chart-reference: #f2807d;
+    --cds-surface-popover: #2a2650; --cds-border: #403b68; --cds-shadow-popover: 0 6px 18px rgba(0,0,0,.4); --cds-text-secondary: #a6a1ba;
+  }
+}
+html, body { margin: 0; background: var(--color-bg); color: var(--color-fg); }
+.page { padding: 32px 16px 48px; }
+.ev a { color: inherit; }
+.ev h1 { letter-spacing: -0.02em; font-weight: 700 !important; }
+.ev .tile .big { font-weight: 600 !important; letter-spacing: -0.01em; }
+.ev .qnum { color: var(--lx-accent) !important; font-weight: 700; }
+.ev .stripe { display: flex; gap: 4px; margin: 6px 0 14px; }
+.ev .stripe span { height: 4px; width: 28px; border-radius: 2px; opacity: .85; }
+.ev nav a:hover { color: var(--lx-accent); border-color: var(--lx-accent); }
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+</head>
+<body>
+<div class="page">
+<script>
+// Data is embedded here, so the page needs no server or database.
+window.DATA = {"revenue_change":[{"group":"Participants","bucket":"Fell >20%","pct":12.4},{"group":"Participants","bucket":"Fell 5-20%","pct":15.6},{"group":"Participants","bucket":"Flat (\u00b15%)","pct":12.7},{"group":"Participants","bucket":"Grew 5-20%","pct":15.6},{"group":"Participants","bucket":"Grew 20-50%","pct":20.6},{"group":"Participants","bucket":"Grew >50%","pct":23.1},{"group":"Comparison","bucket":"Fell >20%","pct":20.8},{"group":"Comparison","bucket":"Fell 5-20%","pct":18.4},{"group":"Comparison","bucket":"Flat (\u00b15%)","pct":15.7},{"group":"Comparison","bucket":"Grew 5-20%","pct":15.0},{"group":"Comparison","bucket":"Grew 20-50%","pct":20.1},{"group":"Comparison","bucket":"Grew >50%","pct":10.0}],"convergence":[{"finding":"Practices changed first","numbers":"Even participants who attended few sessions improved practice scores, though their revenue did not move.","interviews":"Low attenders described separating money and keeping records, but not yet changing prices or reaching new buyers.","verdict":"Agree"},{"finding":"Attendance mattered","numbers":"Revenue gains rise steadily from low to medium to high attendance.","interviews":"High attenders credited the peer group and the costing sessions most often.","verdict":"Agree"},{"finding":"Women-led businesses gained less","numbers":"The gap is not explained by attendance: women-led businesses attended about as often, and still gained less at high attendance.","interviews":"Women more often named collateral and guarantor rules blocking finance, and fewer said records helped them get a loan.","verdict":"Partly agree"},{"finding":"Jobs","numbers":"Most participants added no paid workers. A small group of fast growers created most new jobs.","interviews":"Many wanted to hire but said wages were too costly until sales were steadier.","verdict":"Agree"},{"finding":"Market shocks","numbers":"Comparison businesses in one country saw revenue fall; participants there still grew.","interviews":"Interviewees in every group named rising input costs. Interviews alone cannot say whether the programme cushioned the shock.","verdict":"Open question"}],"headline":[{"measure":"Monthly revenue","effect":12.6,"lo":7.6,"hi":17.9,"unit":"%","n":825},{"measure":"Monthly profit","effect":76,"lo":32,"hi":119,"unit":"USD","n":815},{"measure":"Paid workers","effect":0.84,"lo":0.58,"hi":1.1,"unit":"workers","n":825},{"measure":"Management practices","effect":1.86,"lo":1.66,"hi":2.06,"unit":"of 12","n":825}],"low_attendance_practices":[{"effect":1.15,"lo":0.87,"hi":1.44}],"checks":[{"spec":"No matching, simple gap","effect_pct":12.4,"lo":8.2,"hi":16.7},{"spec":"No matching, with controls","effect_pct":11.8,"lo":7.6,"hi":16.1},{"spec":"Matched (main estimate)","effect_pct":12.6,"lo":7.6,"hi":17.9},{"spec":"Matched, extremes capped","effect_pct":12.7,"lo":7.6,"hi":17.9},{"spec":"Matched, minus shock country","effect_pct":11.8,"lo":6.3,"hi":17.7}],"before_after":[{"group":"Participants","n":558,"rev_base":1928.5,"rev_end":2248.5,"profit_base":310.0,"profit_end":387.5,"jobs_base_total":2519,"jobs_end_total":3099,"prac_base":4.9,"prac_end":7.2,"share_rev_up":64.9},{"group":"Comparison","n":452,"rev_base":1874.5,"rev_end":1942.5,"profit_base":287.0,"profit_end":268.0,"jobs_base_total":1895,"jobs_end_total":2012,"prac_base":4.6,"prac_end":5.0,"share_rev_up":52.9}],"jobs_spread":[{"net_jobs_participants":580,"top20_share_pct":91.9,"share_no_new_jobs_pct":54.5}],"interview_sample":[{"group":"High attendance","n":12},{"group":"Low attendance","n":10},{"group":"Comparison","n":10},{"group":"Women-led","n":17},{"group":"Men-led","n":15}],"subgroups":[{"dimension":"Owner","group":"Women-led","effect_pct":3.9,"lo":-2.9,"hi":11.1,"n_participants":271},{"dimension":"Owner","group":"Men-led","effect_pct":21.9,"lo":14.6,"hi":29.6,"n_participants":284},{"dimension":"Size at start","group":"0-2 paid workers","effect_pct":16.1,"lo":7.4,"hi":25.4,"n_participants":179},{"dimension":"Size at start","group":"3-5 paid workers","effect_pct":7.9,"lo":0.4,"hi":16.0,"n_participants":230},{"dimension":"Size at start","group":"6+ paid workers","effect_pct":14.0,"lo":4.2,"hi":24.8,"n_participants":146},{"dimension":"Country","group":"Kenya","effect_pct":17.6,"lo":9.2,"hi":26.5,"n_participants":189},{"dimension":"Country","group":"Uganda","effect_pct":11.0,"lo":2.0,"hi":20.7,"n_participants":120},{"dimension":"Country","group":"Ghana","effect_pct":8.0,"lo":-2.8,"hi":19.9,"n_participants":146},{"dimension":"Country","group":"Zambia","effect_pct":17.9,"lo":6.4,"hi":30.5,"n_participants":100},{"dimension":"Sessions attended","group":"Low attendance","effect_pct":-1.7,"lo":-8.7,"hi":5.8,"n_participants":104},{"dimension":"Sessions attended","group":"Medium attendance","effect_pct":9.7,"lo":4.1,"hi":15.7,"n_participants":260},{"dimension":"Sessions attended","group":"High attendance","effect_pct":25.9,"lo":18.8,"hi":33.5,"n_participants":191}],"themes":[{"theme":"Separating business and household money made cash visible","type":"Mechanism","high":10,"low":5,"comp":1,"women":9,"men":7},{"theme":"Records helped secure a loan or supplier credit","type":"Mechanism","high":6,"low":1,"comp":2,"women":3,"men":6},{"theme":"Changed pricing after costing products properly","type":"Mechanism","high":8,"low":3,"comp":0,"women":6,"men":5},{"theme":"Peer group gave ideas and accountability","type":"Mechanism","high":9,"low":2,"comp":0,"women":7,"men":4},{"theme":"Session times clashed with care or household duties","type":"Barrier","high":1,"low":6,"comp":0,"women":6,"men":1},{"theme":"Rising input costs or currency swings ate into gains","type":"Barrier","high":4,"low":5,"comp":6,"women":7,"men":8},{"theme":"Wanted to hire but held back by cost of wages","type":"Barrier","high":5,"low":4,"comp":5,"women":8,"men":6},{"theme":"Collateral or guarantor needs blocked finance","type":"Barrier","high":2,"low":3,"comp":4,"women":7,"men":2}],"pretrend":[{"check":"Revenue growth in the year before the programme","effect_pct":-0.5,"lo":-3.2,"hi":2.3,"p":0.718}],"cleaning":[{"step":"Survey records received","count":1207},{"step":"Duplicate submissions removed","count":7},{"step":"Revenue figures 10x out of line, corrected after call-back","count":9},{"step":"Profit above revenue, set to missing","count":14},{"step":"Participants matched to a similar business","count":555},{"step":"Participants with no close match, left out","count":3}],"attrition":[{"group":"Participants","measure":"Median monthly revenue at start (USD)","stayed":1928.0,"left":2188.0},{"group":"Participants","measure":"Median paid workers at start","stayed":3.0,"left":3.0},{"group":"Participants","measure":"Women-led (%)","stayed":49.1,"left":45.1},{"group":"Comparison","measure":"Median monthly revenue at start (USD)","stayed":1874.0,"left":1573.0},{"group":"Comparison","measure":"Median paid workers at start","stayed":3.0,"left":3.0},{"group":"Comparison","measure":"Women-led (%)","stayed":40.9,"left":43.5}],"women_gap":[{"gap_pct_points":-16.1,"p":0.0005,"women_high":12.8,"women_high_lo":3.7,"women_high_hi":22.6,"men_high":39.0,"men_high_lo":28.4,"men_high_hi":50.5}],"rubric":[{"area":"Business results","rating":"Adequate","why":"Revenue grew more than for similar businesses, but the estimate sits below the 15% gain agreed in advance as meaningful, and the likely range spans both sides of it. Profit and jobs moved the same way."},{"area":"Management practices","rating":"Strong","why":"Participants took up clearly more good practices than similar businesses, and interviewees describe using them because of the programme."},{"area":"Fairness of benefit","rating":"Weak to adequate","why":"Women-led businesses gained much less, and the gap remains among those who attended most sessions. This is the main issue for the programme to act on."},{"area":"Confidence the programme made the difference","rating":"Adequate","why":"Both groups were growing at the same pace before the programme, results hold across checks, and interviews explain the pattern. Motivation we could not measure may still account for part of the gap."}],"response_by_attendance":[{"attendance":"High","responded_pct":89.4},{"attendance":"Low","responded_pct":81.9},{"attendance":"Medium","responded_pct":87.9}],"attendance_by_owner":[{"owner":"Men-led","engagement":"Medium","pct":50.0},{"owner":"Men-led","engagement":"High","pct":33.1},{"owner":"Men-led","engagement":"Low","pct":16.9},{"owner":"Women-led","engagement":"Medium","pct":43.4},{"owner":"Women-led","engagement":"High","pct":36.1},{"owner":"Women-led","engagement":"Low","pct":20.4}],"balance":[{"measure":"Revenue at start","before":0.086,"after":0.057},{"measure":"Management practices at start","before":0.163,"after":-0.034},{"measure":"Paid workers at start","before":0.094,"after":0.039},{"measure":"Women-led","before":0.165,"after":-0.025},{"measure":"Business age","before":-0.002,"after":-0.015}],"sample":[{"businesses":1200,"participants":640,"comparison":560,"participants_end":558,"comparison_end":452,"participant_rate":87.2,"comparison_rate":80.7}],"gender_gap":[{"gap_points":16.1}]};
+window.dash = {
+  colors: ['var(--lx-accent)'],
+  data: (id) => ({ status: DATA[id] ? 'ok' : 'missing', data: DATA[id] || [] }),
+  setLink: (id) => { try { history.replaceState(null, '', '#' + id); } catch (e) {} },
+  onData: (fn) => { fn(); let t; window.addEventListener('resize', () => { clearTimeout(t); t = setTimeout(fn, 150); }); },
+};
+</script>
+
+
+<div class="ev">
+  <header id="top">
+    <h1>SME growth programme: evaluation results</h1>
+    <div class="stripe" aria-hidden="true"><span style="background:var(--toc-coral)"></span><span style="background:var(--toc-purple)"></span><span style="background:var(--toc-teal)"></span><span style="background:var(--toc-pink)"></span><span style="background:var(--toc-yellow)"></span></div>
+    <p class="lede" id="takeaway">Participating businesses grew revenue about <b class="v" data-source="headline" data-field="effect" data-where="measure=Monthly revenue" data-fmt="pct">—</b> more than similar businesses that did not take part (likely range <span class="v" data-source="headline" data-field="lo" data-where="measure=Monthly revenue" data-fmt="pct">—</span> to <span class="v" data-source="headline" data-field="hi" data-where="measure=Monthly revenue" data-fmt="pct">—</span>). The gain was concentrated among businesses that attended most sessions and among men-led businesses. Women-led businesses gained about <span class="v" data-source="subgroups" data-field="effect_pct" data-where="group=Women-led" data-fmt="pct">—</span>, and closing that gap is the main thing to act on.</p>
+    <div class="banner"><b>Illustrative work sample.</b> Every number on this page comes from simulated data, built to show how results from a real mixed-methods evaluation design would be analysed and presented. No real businesses, people or programme are represented. You can <a href="survey_panel.csv" download>download the simulated survey file</a> and rerun the analysis.</div>
+    <nav id="nav">
+      <a data-go="judgement">Overall judgement</a>
+      <a data-go="q1">1. Did businesses change?</a>
+      <a data-go="q2">2. Was the programme the reason?</a>
+      <a data-go="q3">3. For whom did it work?</a>
+      <a data-go="q4">4. What explains the pattern?</a>
+      <a data-go="quality">Data quality and method</a>
+    </nav>
+  </header>
+
+  <section id="headline">
+    <div class="tiles">
+      <div class="card tile" id="tile-revenue">
+        <div class="label">Monthly revenue, extra growth vs similar businesses</div>
+        <div class="big"><span class="v" data-source="headline" data-field="effect" data-where="measure=Monthly revenue" data-fmt="spct">—</span></div>
+        <div class="range">Likely range <span class="v" data-source="headline" data-field="lo" data-where="measure=Monthly revenue" data-fmt="spct">—</span> to <span class="v" data-source="headline" data-field="hi" data-where="measure=Monthly revenue" data-fmt="spct">—</span></div>
+      </div>
+      <div class="card tile" id="tile-profit">
+        <div class="label">Monthly profit, extra change per business</div>
+        <div class="big"><span class="v" data-source="headline" data-field="effect" data-where="measure=Monthly profit" data-fmt="susd">—</span></div>
+        <div class="range">Likely range <span class="v" data-source="headline" data-field="lo" data-where="measure=Monthly profit" data-fmt="susd">—</span> to <span class="v" data-source="headline" data-field="hi" data-where="measure=Monthly profit" data-fmt="susd">—</span></div>
+      </div>
+      <div class="card tile" id="tile-jobs">
+        <div class="label">Paid workers, extra change per business</div>
+        <div class="big"><span class="v" data-source="headline" data-field="effect" data-where="measure=Paid workers" data-fmt="sdec">—</span></div>
+        <div class="range">Likely range <span class="v" data-source="headline" data-field="lo" data-where="measure=Paid workers" data-fmt="sdec">—</span> to <span class="v" data-source="headline" data-field="hi" data-where="measure=Paid workers" data-fmt="sdec">—</span></div>
+      </div>
+      <div class="card tile" id="tile-practices">
+        <div class="label">Good management practices (out of 12), extra gain</div>
+        <div class="big"><span class="v" data-source="headline" data-field="effect" data-where="measure=Management practices" data-fmt="sdec">—</span></div>
+        <div class="range">Likely range <span class="v" data-source="headline" data-field="lo" data-where="measure=Management practices" data-fmt="sdec">—</span> to <span class="v" data-source="headline" data-field="hi" data-where="measure=Management practices" data-fmt="sdec">—</span></div>
+      </div>
+    </div>
+    <p class="muted" style="margin-top: var(--cds-gap-sm)">"Extra" means how much more participants changed over the year than matched businesses that did not take part. The likely range is a 95% confidence interval. Based on <span class="v" data-source="headline" data-field="n" data-where="measure=Monthly revenue" data-fmt="int">—</span> businesses (participants plus the comparison businesses they were matched to).</p>
+  </section>
+
+  <section id="judgement">
+    <h2>Overall judgement</h2>
+    <p class="muted">Ratings use the rubric agreed with the programme team before analysis. A strong average that leaves some groups behind is not rated strong.</p>
+    <div class="card">
+      <div class="tablewrap">
+        <table class="stack" id="rubric-table" data-source="rubric" data-row-key="area">
+          <thead><tr><th data-field="area">Area</th><th data-field="rating">Rating</th><th data-field="why">Why</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section id="q1">
+    <div class="qnum">Question 1</div>
+    <h2>Did business outcomes change?</h2>
+    <p>Yes, for most participants. <span class="v" data-source="before_after" data-field="share_rev_up" data-where="group=Participants" data-fmt="pct">—</span> of participants grew revenue over the year, compared with <span class="v" data-source="before_after" data-field="share_rev_up" data-where="group=Comparison" data-fmt="pct">—</span> of comparison businesses. This alone does not show the programme caused the change, which is what question 2 tests.</p>
+    <div class="grid">
+      <div class="card wide" id="card-dist">
+        <h3>How much revenue changed, share of businesses</h3>
+        <p class="note">Change in monthly revenue from start to end of the programme year.</p>
+        <div class="legend"><span><i style="background: var(--lx-part)"></i>Participants</span><span><i style="background: var(--cds-chart-muted)"></i>Comparison</span></div>
+        <div class="chart" id="chart-dist" data-source="revenue_change"></div>
+      </div>
+      <div class="card wide" id="card-before-after">
+        <h3>Start and end of year, typical business</h3>
+        <p class="note">Medians for revenue and profit (USD per month), averages for practices. Businesses that answered both surveys.</p>
+        <div class="tablewrap">
+          <table id="before-after-table" data-source="before_after" data-row-key="group">
+            <thead><tr>
+              <th data-field="group">Group</th>
+              <th class="num" data-field="n">Businesses</th>
+              <th class="num" data-field="rev_base">Revenue, start</th>
+              <th class="num" data-field="rev_end">Revenue, end</th>
+              <th class="num" data-field="profit_base">Profit, start</th>
+              <th class="num" data-field="profit_end">Profit, end</th>
+              <th class="num" data-field="prac_base">Practices, start</th>
+              <th class="num" data-field="prac_end">Practices, end</th>
+            </tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="q2">
+    <div class="qnum">Question 2</div>
+    <h2>Was the programme associated with better outcomes?</h2>
+    <p>To separate the programme from everything else going on, each participant was matched to a similar business that did not take part, on revenue, practices, workers, owner gender, business age, country and sector at the start. The estimate is how much more participants changed than their matches. The answer stays close to the main estimate under every check below, and the two groups were growing at the same pace before the programme began.</p>
+    <div class="grid">
+      <div class="card" id="card-checks">
+        <h3>Revenue gain under different checks</h3>
+        <p class="note">Dot is the estimate, line is the likely range. Dashed line is the 15% gain agreed in advance as meaningful.</p>
+        <div class="chart" id="chart-checks" data-source="checks"></div>
+      </div>
+      <div class="card" id="card-balance">
+        <h3>How alike the groups were, before and after matching</h3>
+        <p class="note">Gap between groups at the start, in standard units. Inside the shaded band (under 0.1) counts as well balanced.</p>
+        <div class="legend"><span><i style="background: transparent; border: 2px solid var(--cds-chart-muted)"></i>Before matching</span><span><i style="background: var(--lx-part)"></i>After matching</span></div>
+        <div class="chart" id="chart-balance" data-source="balance"></div>
+      </div>
+    </div>
+    <div class="card" id="card-pretrend" style="margin-top: var(--cds-gap-md)">
+      <h3>Were the groups already on different paths?</h3>
+      <p style="margin:0">Using revenue reported for the year before the programme, participants grew <span class="v" data-source="pretrend" data-field="effect_pct" data-row="0" data-fmt="spct">—</span> differently from their matches (likely range <span class="v" data-source="pretrend" data-field="lo" data-row="0" data-fmt="spct">—</span> to <span class="v" data-source="pretrend" data-field="hi" data-row="0" data-fmt="spct">—</span>). That is close to zero, which supports the comparison. It cannot rule out differences in motivation that the surveys did not measure.</p>
+    </div>
+  </section>
+
+  <section id="q3">
+    <div class="qnum">Question 3</div>
+    <h2>For whom did it work differently?</h2>
+    <p>Attendance made the biggest difference: businesses that attended few sessions saw no revenue gain. Women-led businesses gained <span class="v" data-source="gender_gap" data-field="gap_points" data-row="0" data-fmt="d1">—</span> percentage points less than men-led ones, a gap too large to be chance. Groups were agreed before analysis. Where a range crosses zero, the gain for that group is uncertain.</p>
+    <div class="card" id="card-subgroups">
+      <h3>Extra revenue growth by group</h3>
+      <p class="note">Dot is the estimate, line is the likely range. Dashed line is the overall result.</p>
+      <div class="chart" id="chart-subgroups" data-source="subgroups headline"></div>
+    </div>
+    <div class="twocol" style="margin-top: var(--cds-gap-md)">
+      <div class="card" id="card-women">
+        <h3>Is the gender gap just about attendance?</h3>
+        <p class="note">No. Women-led businesses attended about as often, and still gained less at high attendance.</p>
+        <div class="kv"><span>Women-led, high attendance</span><span><span class="v" data-source="women_gap" data-field="women_high" data-row="0" data-fmt="spct">—</span> <span class="muted">(<span class="v" data-source="women_gap" data-field="women_high_lo" data-row="0" data-fmt="spct">—</span> to <span class="v" data-source="women_gap" data-field="women_high_hi" data-row="0" data-fmt="spct">—</span>)</span></span></div>
+        <div class="kv"><span>Men-led, high attendance</span><span><span class="v" data-source="women_gap" data-field="men_high" data-row="0" data-fmt="spct">—</span> <span class="muted">(<span class="v" data-source="women_gap" data-field="men_high_lo" data-row="0" data-fmt="spct">—</span> to <span class="v" data-source="women_gap" data-field="men_high_hi" data-row="0" data-fmt="spct">—</span>)</span></span></div>
+        <div class="kv"><span>Women-led attending most sessions</span><span class="v" data-source="attendance_by_owner" data-field="pct" data-where="owner=Women-led&amp;engagement=High" data-fmt="pct">—</span></div>
+        <div class="kv"><span>Men-led attending most sessions</span><span class="v" data-source="attendance_by_owner" data-field="pct" data-where="owner=Men-led&amp;engagement=High" data-fmt="pct">—</span></div>
+      </div>
+      <div class="card" id="card-jobs">
+        <h3>Who created the jobs?</h3>
+        <p class="note">Job growth was lumpy, so the average hides a lot.</p>
+        <div class="kv"><span>Net new paid workers, participants</span><span class="v" data-source="jobs_spread" data-field="net_jobs_participants" data-row="0" data-fmt="int">—</span></div>
+        <div class="kv"><span>Share created by the top 20% of businesses</span><span class="v" data-source="jobs_spread" data-field="top20_share_pct" data-row="0" data-fmt="pct">—</span></div>
+        <div class="kv"><span>Participants adding no paid workers</span><span class="v" data-source="jobs_spread" data-field="share_no_new_jobs_pct" data-row="0" data-fmt="pct">—</span></div>
+        <p class="muted" style="margin-top: var(--cds-gap-sm)">Reporting average jobs per business would overstate what a typical participant experienced.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="q4">
+    <div class="qnum">Question 4</div>
+    <h2>What explains the pattern?</h2>
+    <p>Interviews were sampled on purpose across attendance levels, owner gender and the comparison group: <span class="v" data-source="interview_sample" data-field="n" data-where="group=High attendance" data-fmt="int">—</span> high attenders, <span class="v" data-source="interview_sample" data-field="n" data-where="group=Low attendance" data-fmt="int">—</span> low attenders and <span class="v" data-source="interview_sample" data-field="n" data-where="group=Comparison" data-fmt="int">—</span> comparison business owners (<span class="v" data-source="interview_sample" data-field="n" data-where="group=Women-led" data-fmt="int">—</span> women-led, <span class="v" data-source="interview_sample" data-field="n" data-where="group=Men-led" data-fmt="int">—</span> men-led). Transcripts were coded against a framework built from the theory of change, with new codes added where people raised something unexpected.</p>
+    <div class="card" id="card-themes">
+      <h3>How many interviewees raised each theme</h3>
+      <p class="note">Count of interviewees in each group. Darker cells mean a larger share of that group. Counts show how widespread a theme was, not how important it is.</p>
+      <div class="tablewrap">
+        <table id="themes-table" data-source="themes" data-row-key="theme">
+          <thead><tr>
+            <th data-field="theme">Theme</th>
+            <th data-field="type">Type</th>
+            <th class="num" data-field="high">High attendance</th>
+            <th class="num" data-field="low">Low attendance</th>
+            <th class="num" data-field="comp">Comparison</th>
+            <th class="num" data-field="women">Women-led</th>
+            <th class="num" data-field="men">Men-led</th>
+          </tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card" id="card-convergence" style="margin-top: var(--cds-gap-md)">
+      <h3>Where the numbers and the interviews agree, and where they don't</h3>
+      <p class="note">Each finding is checked against both sources. "Open question" marks what this evaluation cannot settle.</p>
+      <p class="muted">Even low attenders improved practice scores by <span class="v" data-source="low_attendance_practices" data-field="effect" data-row="0" data-fmt="sdec">—</span> points (likely range <span class="v" data-source="low_attendance_practices" data-field="lo" data-row="0" data-fmt="dec">—</span> to <span class="v" data-source="low_attendance_practices" data-field="hi" data-row="0" data-fmt="dec">—</span>) while their revenue did not move.</p>
+      <div class="tablewrap">
+        <table class="stack" id="convergence-table" data-source="convergence" data-row-key="finding">
+          <thead><tr><th data-field="finding">Finding</th><th data-field="numbers">What the numbers show</th><th data-field="interviews">What interviews add</th><th data-field="verdict">Fit</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section id="quality">
+    <h2>Data quality and method</h2>
+    <p>Checks done before any results were reported, and who might be missing from the evidence.</p>
+    <div class="twocol">
+      <div class="card" id="card-sample">
+        <h3>Who answered</h3>
+        <p class="note">Counted directly from the survey file.</p>
+        <div class="kv"><span>Businesses surveyed at the start</span><span class="v" data-source="sample" data-field="businesses" data-row="0" data-fmt="int">—</span></div>
+        <div class="kv"><span>Participants answering the end survey</span><span><span class="v" data-source="sample" data-field="participants_end" data-row="0" data-fmt="int">—</span> of <span class="v" data-source="sample" data-field="participants" data-row="0" data-fmt="int">—</span> (<span class="v" data-source="sample" data-field="participant_rate" data-row="0" data-fmt="pct">—</span>)</span></div>
+        <div class="kv"><span>Comparison businesses answering</span><span><span class="v" data-source="sample" data-field="comparison_end" data-row="0" data-fmt="int">—</span> of <span class="v" data-source="sample" data-field="comparison" data-row="0" data-fmt="int">—</span> (<span class="v" data-source="sample" data-field="comparison_rate" data-row="0" data-fmt="pct">—</span>)</span></div>
+        <div class="kv"><span>Low attenders answering</span><span class="v" data-source="response_by_attendance" data-field="responded_pct" data-where="attendance=Low" data-fmt="pct">—</span></div>
+        <div class="kv"><span>High attenders answering</span><span class="v" data-source="response_by_attendance" data-field="responded_pct" data-where="attendance=High" data-fmt="pct">—</span></div>
+        <p class="muted" style="margin-top: var(--cds-gap-sm)">Low attenders were less likely to answer, so the results may slightly overstate the typical participant's gain.</p>
+      </div>
+      <div class="card" id="card-cleaning">
+        <h3>Cleaning log</h3>
+        <p class="note">Problems found and how each was handled. Nothing was filled in by guesswork.</p>
+        <div class="tablewrap">
+          <table id="cleaning-table" data-source="cleaning" data-row-key="step">
+            <thead><tr><th data-field="step">Step</th><th class="num" data-field="count">Records</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="card" id="card-attrition" style="margin-top: var(--cds-gap-md)">
+      <h3>Did the businesses we lost look different?</h3>
+      <p class="note">Start-of-year profile of businesses that stayed in the study compared with those that did not answer the end survey.</p>
+      <div class="tablewrap">
+        <table id="attrition-table" data-source="attrition" data-row-key="group,measure">
+          <thead><tr><th data-field="group">Group</th><th data-field="measure">Measure</th><th class="num" data-field="stayed">Stayed</th><th class="num" data-field="left">Did not answer</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <p class="muted" style="margin-top: var(--cds-gap-sm)">Comparison businesses that dropped out had lower revenue at the start, so the remaining comparison group is not a perfect picture of the original one. Matching on starting revenue limits how much this can affect the estimate.</p>
+    </div>
+    <div class="card" id="card-method" style="margin-top: var(--cds-gap-md)">
+      <h3>Method in brief</h3>
+      <p>Surveys at the start and 12 months later, for participants and a comparison group drawn from businesses that applied for a later round. Each participant was matched to the most similar comparison business. The estimate compares how much each group changed, controlling for starting differences, with ranges that allow for uneven spread in the data. Revenue gains are calculated on a log scale so that a few very large businesses do not dominate. Analysis in Python. Interviews coded in a shared framework, with a second coder reviewing a sample of transcripts.</p>
+      <p class="muted" style="margin:0">Limits: matching only accounts for what the surveys measured, revenue and profit are self-reported, and 12 months may be too short to see job creation in full.</p>
+    </div>
+  </section>
+
+  <div class="footer">Illustrative work sample by Saniamo Mercy. Simulated data only. <a href="/">saniamomercy.com</a></div>
+</div>
+
+<script>
+(function () {
+  const root = document.querySelector('.ev');
+  root.style.setProperty('--lx-part', dash.colors[0]);
+
+  const fmt = {
+    pct: (v) => d3.format('.1f')(v) + '%',
+    spct: (v) => (v > 0 ? '+' : '') + d3.format('.1f')(v) + '%',
+    abspts: (v) => d3.format('.1f')(Math.abs(v)),
+    susd: (v) => (v > 0 ? '+$' : v < 0 ? '-$' : '$') + d3.format(',.0f')(Math.abs(v)),
+    usd: (v) => '$' + d3.format(',.0f')(v),
+    sdec: (v) => (v > 0 ? '+' : '') + d3.format('.2f')(v),
+    dec: (v) => d3.format('.2f')(v),
+    d1: (v) => d3.format('.1f')(v),
+    int: (v) => d3.format(',')(Math.round(v)),
+  };
+  const rowsOf = (id) => { const d = dash.data(id); return d.status === 'ok' && Array.isArray(d.data) ? d.data : []; };
+  const status = (id) => dash.data(id).status;
+  const num = (x) => Number(x);
+
+  function matchRow(rows, el) {
+    if (el.dataset.row != null) return rows[Number(el.dataset.row)];
+    const where = el.getAttribute('data-where');
+    if (!where) return rows[0];
+    const conds = where.split('&').map((p) => p.split('=').map(decodeURIComponent));
+    return rows.find((r) => conds.every(([k, v]) => String(r[k]) === v));
+  }
+
+  function fillValues() {
+    root.querySelectorAll('.v[data-source]').forEach((el) => {
+      const id = el.dataset.source;
+      const rows = rowsOf(id);
+      if (!rows.length) { el.textContent = '—'; return; }
+      el.classList.remove('dash-skeleton');
+      const r = matchRow(rows, el);
+      const v = r ? r[el.dataset.field] : undefined;
+      el.textContent = v == null || v === '' ? '—' : (fmt[el.dataset.fmt] || String)(num(v));
+    });
+  }
+
+  function failLine(el, id) {
+    el.replaceChildren();
+    if (status(id) === 'error') {
+      const d = document.createElement('div'); d.className = 'fail'; d.textContent = 'Failed to load'; el.appendChild(d);
+    }
+  }
+
+  // Tables: words only; key column shows the raw value
+  function fillTable(sel, id, cols, opts = {}) {
+    const table = root.querySelector(sel);
+    const tb = table.querySelector('tbody');
+    const rows = rowsOf(id);
+    tb.replaceChildren();
+    rows.forEach((r) => {
+      const tr = document.createElement('tr');
+      cols.forEach((c) => {
+        const td = document.createElement('td');
+        const v = r[c.f];
+        if (c.num) td.className = 'num';
+        if (c.render) c.render(td, v, r);
+        else td.textContent = c.fmt ? c.fmt(num(v)) : String(v);
+        tr.appendChild(td);
+      });
+      tb.appendChild(tr);
+    });
+  }
+
+  function tooltip(box) {
+    let tip = box.querySelector('.tip');
+    if (!tip) { tip = document.createElement('div'); tip.className = 'tip'; box.appendChild(tip); }
+    return {
+      show(event, head, lines) {
+        tip.replaceChildren();
+        const h = document.createElement('div'); h.className = 't-head'; h.textContent = head; tip.appendChild(h);
+        lines.forEach(([color, label, value]) => {
+          const l = document.createElement('div');
+          if (color) { const s = document.createElement('span'); s.className = 'sw'; s.style.background = color; l.appendChild(s); }
+          l.appendChild(document.createTextNode(label + (label ? ': ' : '') + value));
+          tip.appendChild(l);
+        });
+        tip.style.display = 'block';
+        const b = box.getBoundingClientRect();
+        let x = event.clientX - b.left + 12, y = event.clientY - b.top + 12;
+        const tw = tip.offsetWidth, th = tip.offsetHeight;
+        if (x + tw > b.width) x = Math.max(0, event.clientX - b.left - tw - 12);
+        if (y + th > b.height) y = Math.max(0, event.clientY - b.top - th - 12);
+        tip.style.left = x + 'px'; tip.style.top = y + 'px';
+      },
+      hide() { tip.style.display = 'none'; },
+    };
+  }
+
+  function measure(svg, texts, cls) {
+    const t = svg.append('text').attr('class', cls).style('font-size', 'var(--cds-font-size-caption)');
+    let w = 0; texts.forEach((s) => { t.text(s); w = Math.max(w, t.node().getComputedTextLength()); });
+    t.remove(); return w;
+  }
+
+  // Grouped horizontal bars: revenue change distribution
+  function drawDist() {
+    const box = root.querySelector('#chart-dist');
+    const rows = rowsOf('revenue_change');
+    if (!rows.length) { failLine(box, 'revenue_change'); return; }
+    box.replaceChildren();
+    const buckets = Array.from(new Set(rows.map((r) => r.bucket)));
+    const groups = ['Participants', 'Comparison'];
+    const color = { Participants: dash.colors[0], Comparison: 'var(--cds-chart-muted)' };
+    const W = box.clientWidth || 360, rowH = 34, H = buckets.length * rowH + 24;
+    const svg = d3.select(box).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img').attr('aria-label', 'Revenue change distribution by group');
+    const labW = measure(svg, buckets) + 10;
+    const max = d3.max(rows, (r) => num(r.pct));
+    const x = d3.scaleLinear([0, max * 1.15], [labW, W - 40]);
+    const y = d3.scaleBand(buckets, [0, H - 24]).padding(0.25);
+    const yi = d3.scaleBand(groups, [0, y.bandwidth()]).padding(0.12);
+    x.ticks(4).forEach((t) => {
+      svg.append('line').attr('x1', x(t)).attr('x2', x(t)).attr('y1', 0).attr('y2', H - 24).style('stroke', 'var(--cds-chart-grid)');
+      svg.append('text').attr('x', x(t)).attr('y', H - 8).attr('text-anchor', 'middle').style('fill', 'var(--color-fg-muted)').style('font-size', 'var(--cds-font-size-caption)').text(t + '%');
+    });
+    buckets.forEach((b) => svg.append('text').attr('x', labW - 8).attr('y', y(b) + y.bandwidth() / 2).attr('dy', '0.35em').attr('text-anchor', 'end').style('fill', 'var(--color-fg)').style('font-size', 'var(--cds-font-size-caption)').text(b));
+    const tip = tooltip(box);
+    svg.append('g').selectAll('rect').data(rows).join('rect')
+      .attr('x', labW).attr('y', (r) => y(r.bucket) + yi(r.group)).attr('height', yi.bandwidth())
+      .attr('width', (r) => Math.max(1, x(num(r.pct)) - labW)).attr('rx', 3)
+      .style('fill', (r) => color[r.group])
+      .on('mousemove', (e, r) => tip.show(e, r.bucket, rowsOf('revenue_change').filter((q) => q.bucket === r.bucket).map((q) => [color[q.group], q.group, fmt.pct(num(q.pct))])))
+      .on('mouseleave', () => tip.hide());
+  }
+
+  // Forest plot shared by checks and subgroups
+  function forest(box, items, opts) {
+    box.replaceChildren();
+    const W = box.clientWidth || 360;
+    const rowH = 28, headH = 22;
+    let yPos = 0; const layout = [];
+    let lastHead = null;
+    items.forEach((d) => {
+      if (opts.head && d[opts.head] !== lastHead) { lastHead = d[opts.head]; layout.push({ head: lastHead, y: yPos }); yPos += headH; }
+      layout.push({ d, y: yPos }); yPos += rowH;
+    });
+    const H = yPos + 26;
+    const svg = d3.select(box).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img').attr('aria-label', opts.aria);
+    const labW = Math.min(W * 0.45, measure(svg, items.map((d) => d[opts.label])) + 14);
+    const lo = d3.min(items, (d) => num(d.lo)), hi = d3.max(items, (d) => num(d.hi));
+    const refs = opts.refs || [];
+    const x = d3.scaleLinear([Math.min(lo, 0, ...refs.map((r) => r.x)) - 2, Math.max(hi, ...refs.map((r) => r.x)) + 2], [labW, W - 28]).nice();
+    x.ticks(5).forEach((t) => {
+      svg.append('line').attr('x1', x(t)).attr('x2', x(t)).attr('y1', 0).attr('y2', H - 26).style('stroke', t === 0 ? 'var(--cds-chart-axis)' : 'var(--cds-chart-grid)');
+      svg.append('text').attr('x', x(t)).attr('y', H - 8).attr('text-anchor', 'middle').style('fill', 'var(--color-fg-muted)').style('font-size', 'var(--cds-font-size-caption)').text((t > 0 ? '+' : '') + t + '%');
+    });
+    refs.forEach((r) => {
+      svg.append('line').attr('x1', x(r.x)).attr('x2', x(r.x)).attr('y1', 0).attr('y2', H - 26).style('stroke', 'var(--cds-chart-reference)').attr('stroke-dasharray', '4 3');
+    });
+    const tip = tooltip(box);
+    layout.forEach((l) => {
+      if (l.head) {
+        svg.append('text').attr('x', 0).attr('y', l.y + 15).style('fill', 'var(--color-fg-muted)').style('font-size', 'var(--cds-font-size-caption)').style('text-transform', 'uppercase').style('letter-spacing', '.05em').text(l.head);
+        return;
+      }
+      const d = l.d, cy = l.y + rowH / 2;
+      const main = opts.isMain ? opts.isMain(d) : true;
+      const c = main ? dash.colors[0] : 'var(--cds-chart-muted)';
+      svg.append('text').attr('x', labW - 10).attr('y', cy).attr('dy', '0.35em').attr('text-anchor', 'end').style('fill', 'var(--color-fg)').style('font-size', 'var(--cds-font-size-caption)').text(d[opts.label]);
+      svg.append('line').attr('x1', x(num(d.lo))).attr('x2', x(num(d.hi))).attr('y1', cy).attr('y2', cy).style('stroke', c).attr('stroke-width', 2).attr('stroke-linecap', 'round');
+      svg.append('circle').attr('cx', x(num(d.effect_pct))).attr('cy', cy).attr('r', 5).style('fill', c).style('stroke', 'var(--color-panel)').attr('stroke-width', 2);
+      svg.append('rect').attr('x', labW).attr('y', l.y).attr('width', W - labW).attr('height', rowH).style('fill', 'transparent')
+        .on('mousemove', (e) => tip.show(e, d[opts.label], [[null, 'Estimate', fmt.spct(num(d.effect_pct))], [null, 'Likely range', fmt.spct(num(d.lo)) + ' to ' + fmt.spct(num(d.hi))]].concat(opts.extra ? opts.extra(d) : [])))
+        .on('mouseleave', () => tip.hide());
+    });
+    if (opts.refLabels) refs.forEach((r) => {
+      svg.append('text').attr('x', x(r.x) + 4).attr('y', 10).style('fill', 'var(--color-fg-muted)').style('font-size', 'var(--cds-font-size-caption)').text(r.label);
+    });
+  }
+
+  function drawChecks() {
+    const box = root.querySelector('#chart-checks');
+    const rows = rowsOf('checks');
+    if (!rows.length) { failLine(box, 'checks'); return; }
+    forest(box, rows, { label: 'spec', aria: 'Revenue gain under different checks', refs: [{ x: 15, label: 'Meaningful' }], refLabels: true,
+      isMain: (d) => d.spec.startsWith('Matched (main') });
+  }
+
+  function drawSubgroups() {
+    const box = root.querySelector('#chart-subgroups');
+    const rows = rowsOf('subgroups');
+    const head = rowsOf('headline').find((r) => r.measure === 'Monthly revenue');
+    if (!rows.length) { failLine(box, 'subgroups'); return; }
+    forest(box, rows, { label: 'group', head: 'dimension', aria: 'Extra revenue growth by group',
+      refs: head ? [{ x: num(head.effect), label: 'Overall' }] : [], refLabels: true,
+      isMain: (d) => d.dimension === 'Sessions attended' || d.dimension === 'Owner',
+      extra: (d) => [[null, 'Participants', fmt.int(num(d.n_participants))]] });
+  }
+
+  function drawBalance() {
+    const box = root.querySelector('#chart-balance');
+    const rows = rowsOf('balance');
+    if (!rows.length) { failLine(box, 'balance'); return; }
+    box.replaceChildren();
+    const W = box.clientWidth || 360, rowH = 34, H = rows.length * rowH + 26;
+    const svg = d3.select(box).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img').attr('aria-label', 'Balance before and after matching');
+    const labW = Math.min(W * 0.45, measure(svg, rows.map((r) => r.measure)) + 14);
+    const ext = Math.max(0.2, d3.max(rows, (r) => Math.max(Math.abs(num(r.before)), Math.abs(num(r.after))))) * 1.1;
+    const x = d3.scaleLinear([-ext, ext], [labW, W - 12]);
+    svg.append('rect').attr('x', x(-0.1)).attr('width', x(0.1) - x(-0.1)).attr('y', 0).attr('height', H - 26).style('fill', 'var(--cds-chart-grid)').attr('opacity', 0.6);
+    [-0.2, -0.1, 0, 0.1, 0.2].filter((t) => Math.abs(t) <= ext).forEach((t) => {
+      svg.append('line').attr('x1', x(t)).attr('x2', x(t)).attr('y1', 0).attr('y2', H - 26).style('stroke', t === 0 ? 'var(--cds-chart-axis)' : 'var(--cds-chart-grid)');
+      svg.append('text').attr('x', x(t)).attr('y', H - 8).attr('text-anchor', 'middle').style('fill', 'var(--color-fg-muted)').style('font-size', 'var(--cds-font-size-caption)').text(t);
+    });
+    const tip = tooltip(box);
+    rows.forEach((r, i) => {
+      const cy = i * rowH + rowH / 2, b = num(r.before), a = num(r.after);
+      svg.append('text').attr('x', labW - 10).attr('y', cy).attr('dy', '0.35em').attr('text-anchor', 'end').style('fill', 'var(--color-fg)').style('font-size', 'var(--cds-font-size-caption)').text(r.measure);
+      svg.append('line').attr('x1', x(b)).attr('x2', x(a)).attr('y1', cy).attr('y2', cy).style('stroke', 'var(--cds-chart-muted)').attr('stroke-width', 2);
+      svg.append('circle').attr('cx', x(b)).attr('cy', cy).attr('r', 5).style('fill', 'var(--color-panel)').style('stroke', 'var(--cds-chart-muted)').attr('stroke-width', 2);
+      svg.append('circle').attr('cx', x(a)).attr('cy', cy).attr('r', 5).style('fill', dash.colors[0]).style('stroke', 'var(--color-panel)').attr('stroke-width', 2);
+      svg.append('rect').attr('x', labW).attr('y', i * rowH).attr('width', W - labW).attr('height', rowH).style('fill', 'transparent')
+        .on('mousemove', (e) => tip.show(e, r.measure, [[null, 'Before matching', d3.format('.2f')(b)], [dash.colors[0], 'After matching', d3.format('.2f')(a)]]))
+        .on('mouseleave', () => tip.hide());
+    });
+  }
+
+  function ratingChip(td, v) {
+    const s = document.createElement('span');
+    const k = /strong/i.test(v) ? 'r-strong' : /weak/i.test(v) ? 'r-weak' : 'r-adequate';
+    s.className = 'chip ' + k; s.textContent = v; td.appendChild(s);
+  }
+
+  function drawTables() {
+    fillTable('#rubric-table', 'rubric', [
+      { f: 'area', render: (td, v) => { td.textContent = v; td.style.fontWeight = 'var(--cds-font-weight-medium)'; } },
+      { f: 'rating', render: ratingChip },
+      { f: 'why' }]);
+    fillTable('#before-after-table', 'before_after', [
+      { f: 'group' }, { f: 'n', num: true, fmt: fmt.int },
+      { f: 'rev_base', num: true, fmt: fmt.usd }, { f: 'rev_end', num: true, fmt: fmt.usd },
+      { f: 'profit_base', num: true, fmt: fmt.usd }, { f: 'profit_end', num: true, fmt: fmt.usd },
+      { f: 'prac_base', num: true, fmt: fmt.d1 }, { f: 'prac_end', num: true, fmt: fmt.d1 }]);
+    const n = Object.fromEntries(rowsOf('interview_sample').map((r) => [r.group, num(r.n)]));
+    const denom = { high: n['High attendance'], low: n['Low attendance'], comp: n['Comparison'], women: n['Women-led'], men: n['Men-led'] };
+    const heat = (key) => (td, v) => {
+      td.className = 'num heat'; td.textContent = String(v);
+      const share = denom[key] ? num(v) / denom[key] : 0;
+      td.style.background = `color-mix(in srgb, ${dash.colors[0]} ${Math.round(share * 70)}%, transparent)`;
+      if (share > 0.55) td.style.color = 'var(--color-bg)';
+    };
+    fillTable('#themes-table', 'themes', [
+      { f: 'theme' }, { f: 'type', render: (td, v) => { td.textContent = v; td.style.color = 'var(--color-fg-muted)'; } },
+      { f: 'high', render: heat('high') }, { f: 'low', render: heat('low') }, { f: 'comp', render: heat('comp') },
+      { f: 'women', render: heat('women') }, { f: 'men', render: heat('men') }]);
+    fillTable('#convergence-table', 'convergence', [
+      { f: 'finding', render: (td, v) => { td.textContent = v; td.style.fontWeight = 'var(--cds-font-weight-medium)'; } },
+      { f: 'numbers' }, { f: 'interviews' },
+      { f: 'verdict', render: (td, v) => { const s = document.createElement('span'); s.className = 'chip ' + (v === 'Agree' ? 'r-strong' : v === 'Open question' ? 'r-weak' : 'r-adequate'); s.textContent = v; td.appendChild(s); } }]);
+    fillTable('#cleaning-table', 'cleaning', [{ f: 'step' }, { f: 'count', num: true, fmt: fmt.int }]);
+    fillTable('#attrition-table', 'attrition', [
+      { f: 'group' }, { f: 'measure' },
+      { f: 'stayed', num: true, render: (td, v, r) => { td.className = 'num'; td.textContent = /%/.test(r.measure) ? fmt.pct(num(v)) : /USD/.test(r.measure) ? fmt.usd(num(v)) : fmt.int(num(v)); } },
+      { f: 'left', num: true, render: (td, v, r) => { td.className = 'num'; td.textContent = /%/.test(r.measure) ? fmt.pct(num(v)) : /USD/.test(r.measure) ? fmt.usd(num(v)) : fmt.int(num(v)); } }]);
+    // attrition key is two columns: carry it on each row
+    const keys = rowsOf('attrition');
+    root.querySelectorAll('#attrition-table tbody tr').forEach((tr, i) => {
+      const r = keys[i]; if (r) tr.dataset.key = encodeURIComponent(r.group) + ',' + encodeURIComponent(r.measure);
+    });
+  }
+
+  // in-page navigation
+  root.querySelectorAll('nav a[data-go]').forEach((a) => a.addEventListener('click', () => {
+    const el = document.getElementById(a.dataset.go); if (el) { el.scrollIntoView({ behavior: 'smooth' }); dash.setLink(el.id); }
+  }));
+  let linked = false;
+
+  dash.onData(() => {
+    fillValues();
+    drawTables();
+    drawDist();
+    drawChecks();
+    drawSubgroups();
+    drawBalance();
+    if (!linked && rowsOf('headline').length) {
+      linked = true;
+      const named = document.getElementById(location.hash.slice(1));
+      if (named) named.scrollIntoView();
+    }
+  });
+})();
+</script>
+
+</div>
+</body>
+</html>
